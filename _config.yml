@@ -83,7 +83,7 @@ theme_mode: # [light|dark]
 img_cdn: "https://raw.githubusercontent.com/cotes2020/chirpy-images/main"
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "/commons/avatar.jpg"
+avatar: "https://user-images.githubusercontent.com/17401630/194796779-da9c0e64-0d3e-40c6-9488-94d7b68266f3.jpeg"
 
 # boolean type, the global switch for ToC in posts.
 toc: true
