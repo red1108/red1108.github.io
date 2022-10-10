@@ -26,7 +26,7 @@ title: red1108's blog # the main title
 tagline: Quantum Information & AI # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
+  Quantum Computing, Quantum Information, AI.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: ""
@@ -83,7 +83,7 @@ theme_mode: # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "/assets/img/profile.jpeg"
+avatar: /assets/img/profile.jpeg
 
 # boolean type, the global switch for ToC in posts.
 toc: true
