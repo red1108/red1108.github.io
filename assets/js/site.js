@@ -8,4 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
       navList.classList.toggle("open");
     });
   }
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((registration) => {
+        if (registration.scope.startsWith(window.location.origin + "/")) {
+          registration.unregister();
+        }
+      });
+    });
+  }
 });
