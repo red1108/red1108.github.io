@@ -29,7 +29,7 @@ Static site built with Jekyll + Bundler and a Python-assisted quant dashboard fo
 ```
 
 ## Requirements
-- Ruby 3.3.x (use `rbenv` or `ruby-install`)
+- Ruby 3.3.x (repo ships `.ruby-version=3.3.10`, install via `rbenv install 3.3.10` or `asdf install ruby 3.3.10`)
 - Bundler 2.5+
 - Python 3.11+
 
@@ -49,6 +49,15 @@ python scripts/build_quant.py
 bundle exec jekyll serve --livereload
 ```
 Navigate to http://localhost:4000 to preview. Re-run `scripts/build_quant.py` whenever `data/quant/returns.csv` changes.
+
+### Simulate GitHub Actions locally
+Run the same sequence as `.github/workflows/deploy.yml`:
+
+```bash
+bash scripts/ci_build.sh
+```
+
+The script checks for Bundler + Python, installs gems (`bundle install`), installs Python requirements, regenerates quant assets, and runs `bundle exec jekyll build --trace`. Use this before pushing to ensure CI will pass.
 
 ## Deployment
 1. Push to `main`.

@@ -12,6 +12,7 @@ gem "jekyll-scholar", "~> 7.0"
 gem "jekyll-include-cache", "~> 0.2"
 gem "jekyll-redirect-from", "~> 0.16"
 gem "jekyll-toc", "~> 0.18"
+gem "kramdown-math-katex", "~> 1.0"
 
 group :development do
   gem "webrick", "~> 1.8"
