@@ -1,19 +1,12 @@
 name: Mingyu Lee
 role: Undergraduate Researcher · Quantum ML & Finance
 location: Seoul, Korea
-photo: /assets/images/profile.svg
+photo: /assets/images/profile.jpg
 email: red1108@snu.ac.kr
 summary: >-
   Undergraduate researcher at Seoul National University focused on quantum
   machine learning, quantitative investing, and high-level programming
   competitions.
-highlights:
-  - label: GPA
-    value: 4.05 / 4.30
-  - label: ICPC Seoul 2025
-    value: Bronze (8th), President's Award
-  - label: Programming Contests
-    value: Codeforces Master (2279 max), AtCoder 1 Kyu
 cta:
   - label: Download CV (PDF)
     url: /assets/docs/mingyu-lee-cv.pdf

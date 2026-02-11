@@ -1,54 +1,65 @@
 ---
 layout: default
 ---
-<article class="quant-section">
-  <header>
+<article class="quant-dashboard">
+  <header class="quant-dashboard__intro">
+    <p class="eyebrow">Rebated cross-exchange arbitrage · Simple ROI</p>
     <h1>Quant Dashboard</h1>
-    <p>Equity long/short strategy tracked since 2023. Metrics update via build-time Python script fed by CSV.</p>
+    <p>Hourly trades aggregated from <code>Rebated_ROI</code>. Returns are summed linearly to avoid strategy leakage; time-based metrics consider actual elapsed hours (365x24 baseline).</p>
   </header>
-  <section class="quant-grid">
-    <div class="quant-metrics">
-      <h2>Performance Summary</h2>
+
+  <section class="quant-dashboard__chart">
+    <figure class="quant-chart-frame">
+      <div id="quant-dynamic-chart" class="quant-chart" aria-live="polite" data-placeholder="/assets/quant/cumulative.png">
+        <img src="{{ '/assets/quant/cumulative.png' | relative_url }}" alt="Cumulative Rebated ROI fallback chart" loading="lazy" />
+      </div>
+      <figcaption>Simple cumulative Rebated ROI by trade index (x-axis displays trade sequence, not time).</figcaption>
+    </figure>
+  </section>
+
+  <section class="quant-dashboard__metrics">
+    <h2>Strategy Performance</h2>
+    <div class="metric-grid">
+      {% assign metrics = site.data.quant_metrics %}
+      {% for metric in metrics %}
+      <article class="metric-card">
+        <p class="metric-label">{{ metric.label }}</p>
+        <p class="metric-value">{{ metric.value }}</p>
+        {% if metric.note %}
+        <p class="metric-note">{{ metric.note }}</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="quant-dashboard__details">
+    <div class="quant-monthly">
+      <h2>Monthly Rebated ROI</h2>
       <table>
-        <tbody>
-          {% assign metrics = site.data.quant_metrics %}
-          {% for metric in metrics %}
+        <thead>
           <tr>
-            <th scope="row">{{ metric.label }}</th>
-            <td>{{ metric.value }}</td>
-            <td class="muted">{{ metric.note }}</td>
+            <th>Month</th>
+            <th>Return</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in site.data.quant_monthly %}
+          <tr>
+            <td>{{ row.month }}</td>
+            <td>{{ row.return }}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
-    <figure>
-      <img src="{{ '/assets/quant/cumulative.png' | relative_url }}" alt="Cumulative returns chart" loading="lazy" />
-      <figcaption>Build-time generated plot (PNG) for SEO and JS-off browsing.</figcaption>
-    </figure>
-  </section>
-  <section>
-    <h2>Monthly Returns</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Month</th>
-          <th>Return</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in site.data.quant_monthly %}
-        <tr>
-          <td>{{ row.month }}</td>
-          <td>{{ row.return }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </section>
-  <section>
-    <h2>Interactive Chart</h2>
-    <p class="muted">Loads JSON data for cumulative returns. Visible enhancement; static assets already convey signal.</p>
-    <div id="quant-dynamic-chart" class="quant-chart" aria-live="polite"></div>
+    <div class="quant-notes">
+      <h2>Methodology</h2>
+      <ul>
+        <li>Returns use <code>Rebated_ROI</code> per trade (decimal). Graph starts at 0% and adds each trade's ROI without compounding.</li>
+        <li>Monthly/annual ROI scale the realized simple return by elapsed hours (365x24 baseline) to respect sparse trading cadence.</li>
+        <li>Sharpe/Sortino ratios annualize per-trade stats using the same time-weighted frequency. Max drawdown follows the linear equity curve.</li>
+      </ul>
+    </div>
   </section>
 </article>

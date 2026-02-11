@@ -173,10 +173,20 @@ a {
   margin: 1rem 0 0;
 }
 
-.hero-media img {
+.hero-photo-frame {
   width: 100%;
-  border-radius: 1rem;
-  margin-bottom: 1rem;
+  aspect-ratio: 11 / 5;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .quick-stats {
@@ -226,6 +236,108 @@ a {
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.03);
+}
+
+.quant-dashboard {
+  display: grid;
+  gap: 2rem;
+}
+
+.quant-dashboard__intro .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  color: $muted;
+  margin-bottom: 0.5rem;
+}
+
+.quant-dashboard__chart {
+  display: flex;
+  justify-content: center;
+}
+
+.quant-chart-frame {
+  width: min(960px, 100%);
+  margin: 0 auto;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 12, 20, 0.8);
+  padding: 1.25rem;
+}
+
+.quant-chart {
+  min-height: 360px;
+}
+
+.quant-chart img {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.quant-dashboard__metrics h2,
+.quant-dashboard__details h2 {
+  margin-bottom: 0.8rem;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.metric-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem;
+  background: rgba(11, 14, 23, 0.7);
+}
+
+.metric-label {
+  margin: 0;
+  font-size: 0.85rem;
+  color: $muted;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.metric-value {
+  margin: 0.35rem 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.metric-note {
+  margin: 0;
+  color: $muted;
+}
+
+.quant-dashboard__details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.quant-monthly table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.quant-monthly th,
+.quant-monthly td {
+  text-align: left;
+  padding: 0.6rem 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.quant-notes ul {
+  padding-left: 1.25rem;
+  margin: 0;
+  color: $muted;
+}
+
+.quant-error {
+  color: #ff8c8c;
 }
 
 .project-grid {
