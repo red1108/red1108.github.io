@@ -1,25 +1,74 @@
 ---
 layout: default
 ---
+{% assign profile = site.data.profile %}
 <section class="hero">
-  <div class="hero-card">
-    <h1>{{ site.author.name }}</h1>
-    <p class="lead">Bay Area-based researcher building quantitative intelligence for resilient markets.</p>
-    <div class="chips">
-      {% for research in site.data.research %}
-        <span class="chip">{{ research.title }}</span>
+  <div class="hero-card hero-intro">
+    <p class="eyebrow">{{ profile.role }}</p>
+    <h1>{{ profile.name }}</h1>
+    <p class="lead">{{ profile.summary }}</p>
+    <ul class="hero-meta">
+      <li>{{ profile.location }}</li>
+      <li><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></li>
+    </ul>
+    <div class="cta-group">
+      {% for action in profile.cta %}
+        <a class="btn btn-{{ action.variant | default: 'ghost' }}" href="{{ action.url }}">{{ action.label }}</a>
       {% endfor %}
     </div>
-    <p class="muted">Contact: <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></p>
-    <div class="links">
-      <a href="{{ site.social.scholar }}">Google Scholar</a> ·
-      <a href="{{ site.social.orcid }}">ORCID</a> ·
-      <a href="https://github.com/{{ site.social.github }}">GitHub</a>
+    <div class="focus-pills">
+      {% for focus in profile.focus %}
+        <span class="chip">{{ focus }}</span>
+      {% endfor %}
     </div>
+    <ul class="social-inline">
+      {% for link in profile.social_links %}
+        <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+      {% endfor %}
+    </ul>
   </div>
-  <div class="hero-card">
-    <img src="{{ '/assets/images/profile.svg' | relative_url }}" alt="Portrait of {{ site.author.name }}" />
+  <div class="hero-card hero-media">
+    <img src="{{ profile.photo | relative_url }}" alt="Portrait of {{ profile.name }}" loading="lazy" />
+    <ul class="quick-stats">
+      {% for stat in profile.highlights %}
+      <li>
+        <span class="value">{{ stat.value }}</span>
+        <span class="label">{{ stat.label }}</span>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
+</section>
+
+<section class="experience">
+  <div class="section-header">
+    <h2 class="section-title">Experience</h2>
+    <p>Hands-on leadership across quantum research labs and systematic investing teams.</p>
+  </div>
+  <div class="timeline">
+    {% for role in profile.experience %}
+    <article>
+      <header>
+        <p class="muted">{{ role.period }}</p>
+        <h3>{{ role.role }}</h3>
+        <p class="org">{{ role.org }}</p>
+      </header>
+      <p>{{ role.summary }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="education">
+  <h2 class="section-title">Education</h2>
+  <ul>
+    {% for edu in profile.education %}
+    <li>
+      <strong>{{ edu.school }}</strong> · {{ edu.degree }}<br />
+      <span class="muted">{{ edu.period }}</span>
+    </li>
+    {% endfor %}
+  </ul>
 </section>
 
 <section>
