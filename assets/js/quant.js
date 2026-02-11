@@ -3,6 +3,38 @@ const clearChartContainer = (node) => {
   node.innerHTML = "";
 };
 
+const computeRoiDensity = (values) => {
+  if (!Array.isArray(values) || values.length === 0) {
+    return null;
+  }
+  const n = values.length;
+  const mean = values.reduce((acc, value) => acc + value, 0) / n;
+  const variance = values.reduce((acc, value) => acc + (value - mean) ** 2, 0) / n;
+  const stdDev = Math.sqrt(variance) || 0.01;
+  const bandwidth = Math.max(0.01, 1.06 * stdDev * Math.pow(n, -0.2));
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const padding = Math.max(bandwidth * 3, (max - min) * 0.05 || bandwidth);
+  const start = min - padding;
+  const end = max + padding;
+  const points = Math.min(Math.max(n * 5, 180), 600);
+  const step = (end - start) / (points - 1 || 1);
+  const x = [];
+  const y = [];
+  const normalizer = 1 / (n * bandwidth * Math.sqrt(2 * Math.PI));
+  for (let i = 0; i < points; i += 1) {
+    const xi = start + step * i;
+    let sum = 0;
+    for (let j = 0; j < n; j += 1) {
+      const z = (xi - values[j]) / bandwidth;
+      sum += Math.exp(-0.5 * z * z);
+    }
+    x.push(xi);
+    y.push(sum * normalizer);
+  }
+  return { x, y, range: [start, end] };
+};
+
 async function renderQuantChart() {
   const target = document.getElementById("quant-dynamic-chart");
   const histogramTarget = document.getElementById("quant-roi-hist");
@@ -40,35 +72,33 @@ async function renderQuantChart() {
     Plotly.newPlot(target, [trace], layout, config);
 
     if (histogramTarget && roiPct.length > 0) {
-      clearChartContainer(histogramTarget);
-      const binSize = 0.02;
-      const minRoi = Math.min(...roiPct);
-      const maxRoi = Math.max(...roiPct);
-      const start = Math.floor(minRoi / binSize) * binSize;
-      const end = Math.ceil(maxRoi / binSize) * binSize;
-      const histogramTrace = {
-        x: roiPct,
-        type: "histogram",
-        autobinx: false,
-        xbins: { start, end, size: binSize },
-        marker: { color: "#4db7ff", opacity: 0.85 },
-        hovertemplate: "ROI %{x:.3f}%<br>Trades %{y}<extra></extra>",
-        name: "ROI Distribution"
-      };
-      const histogramLayout = {
-        margin: { l: 60, r: 20, t: 40, b: 55 },
-        bargap: 0.03,
-        xaxis: {
-          title: "ROI (%)",
-          tickformat: ".2f",
-          range: [start, end]
-        },
-        yaxis: { title: "Frequency" },
-        paper_bgcolor: chartBackground,
-        plot_bgcolor: chartBackground,
-        font: { color: "#f5f5f5" }
-      };
-      Plotly.newPlot(histogramTarget, [histogramTrace], histogramLayout, config);
+      const density = computeRoiDensity(roiPct);
+      if (density) {
+        clearChartContainer(histogramTarget);
+        const densityTrace = {
+          x: density.x,
+          y: density.y,
+          type: "scatter",
+          mode: "lines",
+          line: { color: "#4db7ff", width: 3 },
+          fill: "tozeroy",
+          name: "ROI Density",
+          hovertemplate: "ROI %{x:.3f}%<br>Density %{y:.4f}<extra></extra>"
+        };
+        const densityLayout = {
+          margin: { l: 60, r: 20, t: 40, b: 55 },
+          xaxis: {
+            title: "ROI (%)",
+            tickformat: ".2f",
+            range: density.range
+          },
+          yaxis: { title: "Density" },
+          paper_bgcolor: chartBackground,
+          plot_bgcolor: chartBackground,
+          font: { color: "#f5f5f5" }
+        };
+        Plotly.newPlot(histogramTarget, [densityTrace], densityLayout, config);
+      }
     }
   } catch (error) {
     clearChartContainer(target);
