@@ -10,12 +10,18 @@ $muted: #868b8e;
   box-sizing: border-box;
 }
 
+html {
+  background: #030305;
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
   background: radial-gradient(circle at top, #101828, #030305 60%);
   color: $text;
   line-height: 1.6;
+  min-height: 100%;
 }
 
 img {
