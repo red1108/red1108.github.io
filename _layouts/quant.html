@@ -17,25 +17,25 @@ layout: default
 
   <section class="quant-dashboard__chart">
     <figure class="quant-chart-frame">
+      <figcaption>Simple cumulative ROI</figcaption>
       <div id="quant-dynamic-chart" class="quant-chart" aria-live="polite">
         <div class="quant-skeleton" aria-hidden="true">
           <div class="quant-skeleton__grid"></div>
         </div>
       </div>
-      <figcaption>Simple cumulative ROI</figcaption>
     </figure>
     <figure class="quant-chart-frame">
+      <figcaption>ROI distribution per each trade</figcaption>
       <div id="quant-roi-hist" class="quant-chart" aria-live="polite">
         <div class="quant-skeleton" aria-hidden="true">
           <div class="quant-skeleton__grid"></div>
         </div>
       </div>
-      <figcaption>ROI distribution per each trade</figcaption>
     </figure>
   </section>
 
   <section class="quant-dashboard__metrics">
-    <h2>Strategy Performance</h2>
+    <h2 id="strategy-performance-heading">Strategy Performance</h2>
     <div class="metric-grid">
       {% for metric in quant_metrics %}
       <article class="metric-card">

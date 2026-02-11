@@ -284,7 +284,19 @@ a {
   border-radius: 1.2rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(10, 12, 20, 0.8);
-  padding: 1.25rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quant-chart-frame figcaption {
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 245, 0.9);
 }
 
 .quant-chart {
@@ -340,14 +352,52 @@ a {
 .metric-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .metric-card {
-  border-radius: 1rem;
+  position: relative;
+  border-radius: 1.1rem;
+  padding: 1.35rem 1.35rem 1.1rem;
+  background: rgba(11, 14, 23, 0.88);
+  border: 1px solid transparent;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+}
+
+.metric-card::before {
+  content: "";
+  position: absolute;
+  inset: -40% auto auto -40%;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(255, 111, 60, 0.4), transparent 65%);
+  opacity: 0.75;
+  z-index: -1;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.metric-card:nth-child(3n + 2)::before {
+  background: radial-gradient(circle, rgba(77, 183, 255, 0.4), transparent 65%);
+}
+
+.metric-card:nth-child(3n)::before {
+  background: radial-gradient(circle, rgba(129, 127, 255, 0.45), transparent 65%);
+}
+
+.metric-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 1.25rem;
-  background: rgba(11, 14, 23, 0.7);
+  pointer-events: none;
+}
+
+.metric-card:hover::before {
+  transform: translate(30px, -20px) scale(1.05);
+  opacity: 1;
 }
 
 .metric-label {
@@ -359,14 +409,18 @@ a {
 }
 
 .metric-value {
-  margin: 0.35rem 0;
-  font-size: 1.6rem;
+  margin: 0.45rem 0 0.35rem;
+  font-size: 1.75rem;
   font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
 }
 
 .metric-note {
   margin: 0;
-  color: $muted;
+  color: rgba(245, 245, 245, 0.85);
+  font-size: 0.95rem;
 }
 
 .quant-dashboard__details {

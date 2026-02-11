@@ -152,6 +152,7 @@ async function renderQuantChart() {
   const target = document.getElementById("quant-dynamic-chart");
   const histogramTarget = document.getElementById("quant-roi-hist");
   const metricGrid = document.querySelector(".metric-grid");
+  const metricHeading = document.getElementById("strategy-performance-heading");
   if (!target) return;
   try {
     const response = await fetch("/assets/quant/returns.json", { cache: "no-cache" });
@@ -188,6 +189,15 @@ async function renderQuantChart() {
 
     const fullMetrics = computeMetrics(series);
     renderMetricGrid(metricGrid, fullMetrics);
+
+    const defaultHeadingText = metricHeading?.textContent?.trim() || "Strategy Performance";
+    const updateHeading = (selected) => {
+      if (!metricHeading) return;
+      metricHeading.textContent = selected
+        ? `${defaultHeadingText} (Selected Period)`
+        : defaultHeadingText;
+    };
+    updateHeading(false);
 
     const histogramState = { initialized: false };
     const histogramConfig = { responsive: true, displayModeBar: false };
@@ -248,6 +258,7 @@ async function renderQuantChart() {
     const resetRange = () => {
       renderMetricGrid(metricGrid, fullMetrics);
       updateHistogram(series);
+      updateHeading(false);
     };
 
     const applyRange = (startValue, endValue) => {
@@ -264,8 +275,10 @@ async function renderQuantChart() {
         resetRange();
         return;
       }
+      const selectedSubset = min > fullBounds.min || max < fullBounds.max;
       renderMetricGrid(metricGrid, computeMetrics(filtered));
       updateHistogram(filtered);
+      updateHeading(selectedSubset);
     };
 
     clearChartContainer(target);
