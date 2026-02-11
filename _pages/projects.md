@@ -2,11 +2,10 @@
 layout: page
 title: Projects
 permalink: /projects/
-description: Software, datasets, and experiments.
+description: This is a collection of projects I've developed based on my personal interests.
 ---
 
 <section class="project-board">
-  <p>Interactive research builds spanning quantum machine learning, ETF research systems, and live quant dashboards.</p>
   <div class="card-grid project-grid">
     {% for project in site.data.projects %}
       {% assign primary_link = project.url | default: project.links[0].url | default: '#' %}
