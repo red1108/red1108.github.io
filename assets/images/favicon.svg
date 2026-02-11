@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title id="title">Quant favicon</title>
+  <rect width="256" height="256" rx="48" fill="#030305" />
+  <circle cx="128" cy="128" r="82" fill="none" stroke="#ff6f3c" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M96 56v144" stroke="#ff6f3c" stroke-width="14" stroke-linecap="round" />
+  <path d="M162 170l50 50" stroke="#ff6f3c" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
