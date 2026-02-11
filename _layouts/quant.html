@@ -1,11 +1,13 @@
 ---
 layout: default
 ---
+{% assign quant_metrics = site.data.quant_metrics %}
+{% assign trade_metric = quant_metrics[0] %}
 <article class="quant-dashboard">
   <header class="quant-dashboard__intro">
     <p class="eyebrow">Cross-exchange arbitrage · Simple ROI</p>
     <h1>Quant Dashboard</h1>
-    <p>Trade-level ROI is tracked on a simple (non-compounded) basis so the public dashboard reveals performance without exposing scheduling details.</p>
+    <p>총 {{ trade_metric.note | remove: '기간 ' }} 동안 {{ trade_metric.value }}번의 트레이드를 통해 계산된 결과입니다. 모든 계산은 복리가 아닌 단리 기준입니다.</p>
   </header>
 
   <section class="quant-dashboard__chart">
@@ -20,8 +22,7 @@ layout: default
   <section class="quant-dashboard__metrics">
     <h2>Strategy Performance</h2>
     <div class="metric-grid">
-      {% assign metrics = site.data.quant_metrics %}
-      {% for metric in metrics %}
+      {% for metric in quant_metrics %}
       <article class="metric-card">
         <p class="metric-label">{{ metric.label }}</p>
         <p class="metric-value">{{ metric.value }}</p>

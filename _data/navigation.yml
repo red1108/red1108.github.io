@@ -1,5 +1,5 @@
 - label: Home
-  url: "/index"
+  url: "/"
 - label: Research
   url: "/research/"
 - label: Publications
