@@ -1,12 +1,18 @@
-- title: Quantum Machine Learning & Generative Models
-  summary: Mutual-information maximizing quantum GANs and disentangled quantum neural networks for estimating entropies and distance measures.
+- title: Mutual Information Maximizing Quantum GANs
+  summary: Designing quantum generative adversarial networks that maximize mutual information to stabilize training and improve sample fidelity (Scientific Reports 15, 32835, 2025).
   interests:
-    - Quantum ML
+    - Quantum machine learning
     - Generative models
     - Quantum information
-- title: Quantum Computing for Finance
-  summary: Applying quantum algorithms and hybrid methods to portfolio construction, ETF strategies, and risk-aware modeling.
+- title: Disentangled Quantum Neural Networks
+  summary: Building disentangled quantum neural networks for unified estimation of quantum entropies and distance measures (Physical Review A 110, 062418, 2024).
   interests:
-    - Quantum algorithms
-    - Portfolio optimization
-    - Risk analytics
+    - Quantum neural networks
+    - Entropy estimation
+    - Variational algorithms
+- title: Quantum & Systematic Finance Methods
+  summary: Applying quantum-inspired modeling and AI-based ETF portfolio research from NCSOFT internship and competition work to liquidity-aware strategies.
+  interests:
+    - Portfolio research
+    - Quantum finance
+    - Algorithmic trading

@@ -1,5 +1,5 @@
 - label: Home
-  url: "/"
+  url: "/index"
 - label: Research
   url: "/research/"
 - label: Publications
@@ -12,7 +12,5 @@
   url: "/shares/"
 - label: Projects
   url: "/projects/"
-- label: Quant Dashboard
-  url: "/quant/"
 - label: CV
   url: "/cv/"

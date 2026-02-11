@@ -4,15 +4,16 @@ location: Seoul, Korea
 photo: /assets/images/profile.svg
 email: red1108@snu.ac.kr
 summary: >-
-  Undergraduate researcher at Seoul National University exploring quantum
-  machine learning, quantitative research, and competitive programming.
+  Undergraduate researcher at Seoul National University focused on quantum
+  machine learning, quantitative investing, and high-level programming
+  competitions.
 highlights:
   - label: GPA
     value: 4.05 / 4.30
   - label: ICPC Seoul 2025
-    value: Bronze (8th)
-  - label: Codeforces
-    value: Master 2279 max
+    value: Bronze (8th), President's Award
+  - label: Programming Contests
+    value: Codeforces Master (2279 max), AtCoder 1 Kyu
 cta:
   - label: Download CV (PDF)
     url: /assets/docs/mingyu-lee-cv.pdf
@@ -21,26 +22,26 @@ cta:
     url: /cv/
     variant: ghost
 experience:
-  - role: Mandatory Military Service
-    org: Republic of Korea Air Force
-    period: Feb 2024 — Nov 2025
-    summary: Serving in the Air Force; on leave continuing algorithmic practice and research reading.
   - role: Undergraduate Researcher
     org: Research Institute of Mathematics, Seoul National University
     period: Jul 2022 — Present
-    summary: Exploring quantum machine learning and generative models that borrow ideas from classical neural networks.
+    summary: Investigating quantum machine learning and mutual-information maximizing quantum GANs.
+  - role: Mandatory Military Service
+    org: Republic of Korea Air Force
+    period: Feb 2024 — Nov 2025
+    summary: Serving national duty while staying active in research reading and contest training.
   - role: Research Intern
     org: NCSOFT
     period: Jul 2023 — Aug 2023
-    summary: Built AI-based ETF portfolio management components.
+    summary: Developed components of an AI-based ETF portfolio management system.
   - role: Teaching Assistant
     org: Seoul National University
     period: Mar 2022 — Jun 2022
-    summary: Teaching assistant for discrete mathematics.
+    summary: Supported instruction for discrete mathematics.
   - role: Data Intern
     org: Rainbow Brain, Inc.
     period: Jan 2022 — Mar 2022
-    summary: Collected e-commerce data and delivered exploratory analyses.
+    summary: Collected e-commerce datasets and delivered analysis for product decisions.
 education:
   - school: Seoul National University
     degree: B.Sc. in Computer Science and Engineering; Double major in Mathematical Sciences
@@ -50,12 +51,14 @@ education:
     period: Mar 2018 — Feb 2021
 focus:
   - Quantum computation and quantum information
-  - Quantum machine learning and generative models
   - Quantitative research and trading
+  - Machine learning and its applications
 social_links:
   - label: GitHub
     url: https://github.com/red1108
   - label: LinkedIn
     url: https://www.linkedin.com/in/%EB%AF%BC%EA%B7%9C-%EC%9D%B4-1b50871b8/
+  - label: Homepage
+    url: /
   - label: Location
     url: https://goo.gl/maps/jA2sH2EFyQsEsLWw7

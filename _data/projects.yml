@@ -1,18 +1,40 @@
 - name: Mutual Information Maximizing Quantum GAN
-  description: Quantum generative adversarial network that maximizes mutual information; applied to finance-inspired datasets and published in Scientific Reports.
+  description: Quantum GAN that maximizes mutual information for stable training and higher-fidelity samples; showcased in Scientific Reports.
   status: Research
+  url: /publications/
+  tags:
+    - Quantum ML
+    - Generative models
   links:
     - label: Publication
       url: /publications/
 - name: Disentangled Quantum Neural Networks
-  description: Unified estimation of quantum entropies and distance measures with disentangled QNNs.
+  description: Variational architecture estimating quantum entropies and distance measures through disentangled layers.
   status: Published
+  url: /publications/
+  tags:
+    - Quantum neural networks
+    - Entropy estimation
   links:
     - label: Physical Review A (2024)
       url: /publications/
 - name: Transformer-based ETF Portfolio System
-  description: ETF management prototype combining transformers and AI signals, developed during NCSOFT internship.
+  description: ETF management prototype combining transformers and market microstructure features from my NCSOFT internship.
   status: Prototype
+  url: /shares/
+  tags:
+    - Portfolio research
+    - AI systems
   links:
-    - label: Summary
+    - label: Project Notes
       url: /shares/
+- name: Quant Portfolio Dashboard
+  description: Python + Jekyll dashboard translating monthly returns into metrics, charts, and JSON feeds for systematic research.
+  status: Live
+  url: /quant/
+  tags:
+    - Quant research
+    - Data viz
+  links:
+    - label: View Dashboard
+      url: /quant/
