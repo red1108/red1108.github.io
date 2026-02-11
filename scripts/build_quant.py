@@ -95,14 +95,14 @@ def compute_metrics(df: pd.DataFrame) -> tuple[pd.DataFrame, list[dict[str, str]
 
   metrics = [
     {"label": "총 거래 횟수", "value": f"{total_trades:,}", "note": f"기간 {total_hours/24:.1f}일"},
-    {"label": "누적 수익률", "value": f"{total_return * 100:.2f}%", "note": "단리"},
+    {"label": "누적 수익률", "value": f"{total_return * 100:.2f}%", "note": "단리 기준"},
     {"label": "승률", "value": f"{win_rate * 100:.1f}%", "note": f"승 {int((roi>0).sum())} / 패 {int((roi<=0).sum())}"},
     {"label": "손익비", "value": "∞" if math.isinf(profit_factor) else f"{profit_factor:.2f}", "note": "총이익 / 총손실"},
     {"label": "월 수익률", "value": f"{monthly_return * 100:.2f}%", "note": "거래 간격 반영"},
     {"label": "년 수익률", "value": f"{annual_return * 100:.2f}%", "note": "거래 간격 반영"},
-    {"label": "Sharpe Ratio", "value": f"{sharpe:.2f}" if not math.isnan(sharpe) else "N/A", "note": "연간 환산"},
-    {"label": "Sortino Ratio", "value": f"{sortino:.2f}" if not math.isnan(sortino) else "N/A", "note": "하방 변동성"},
-    {"label": "Max Drawdown", "value": f"{max_drawdown * 100:.2f}%", "note": "단리 곡선"},
+    {"label": "Sharpe Ratio", "value": f"{sharpe:.2f}" if not math.isnan(sharpe) else "N/A", "note": "연 환산"},
+    {"label": "Sortino Ratio", "value": f"{sortino:.2f}" if not math.isnan(sortino) else "N/A", "note": "연 환산"},
+    {"label": "Max Drawdown", "value": f"{max_drawdown * 100:.2f}%", "note": "최대 낙폭"},
   ]
 
   df["month_key"] = df["timestamp"].dt.to_period("M")
