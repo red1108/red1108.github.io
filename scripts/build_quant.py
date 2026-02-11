@@ -24,9 +24,7 @@ def ensure_paths() -> None:
 
 REQUIRED_COLUMNS = {
   "Timestamp",
-  "Rebated_ROI",
-  "Rebated_Net_Profit",
-  "Symbol",
+  "ROI",
 }
 
 
@@ -39,9 +37,7 @@ def load_returns() -> pd.DataFrame:
     raise ValueError(f"returns.csv missing columns: {sorted(missing)}")
   df["timestamp"] = pd.to_datetime(df["Timestamp"], utc=True)
   df = df.sort_values("timestamp").reset_index(drop=True)
-  df["rebated_roi"] = df["Rebated_ROI"].astype(float)
-  df["rebated_net_profit"] = df["Rebated_Net_Profit"].astype(float)
-  df["symbol"] = df["Symbol"].astype(str)
+  df["roi"] = df["ROI"].astype(float)
   df["trade"] = df.index + 1
   return df
 
@@ -58,7 +54,7 @@ def compute_time_spans(df: pd.DataFrame) -> tuple[float, float]:
 
 
 def compute_metrics(df: pd.DataFrame) -> tuple[pd.DataFrame, list[dict[str, str]], list[dict[str, str]], list[dict[str, float]], dict[str, object]]:
-  roi = df["rebated_roi"].astype(float)
+  roi = df["roi"].astype(float)
   cumulative = roi.cumsum()
   df = df.assign(
     cumulative=cumulative,
@@ -113,24 +109,22 @@ def compute_metrics(df: pd.DataFrame) -> tuple[pd.DataFrame, list[dict[str, str]
       "month": label,
       "return": f"{value * 100:.2f}%",
     }
-    for label, value in df.groupby("month_label")["rebated_roi"].sum().items()
+    for label, value in df.groupby("month_label")["roi"].sum().items()
   ]
 
   series = [
     {
       "trade": int(trade),
       "timestamp": timestamp.isoformat(),
-      "symbol": symbol,
       "roi": float(roi_value),
       "roi_pct": float(roi_value * 100),
       "cumulative": float(cumulative_value),
       "cumulative_pct": float(cumulative_pct_value),
     }
-    for trade, timestamp, symbol, roi_value, cumulative_value, cumulative_pct_value in zip(
+    for trade, timestamp, roi_value, cumulative_value, cumulative_pct_value in zip(
       df["trade"],
       df["timestamp"],
-      df["symbol"],
-      df["rebated_roi"],
+      df["roi"],
       df["cumulative"],
       df["cumulative_pct"],
     )
