@@ -72,14 +72,12 @@ The script checks for Bundler + Python, installs gems (`bundle install`), instal
 Ensure repository name is `username.github.io` and GitHub Pages is set to "GitHub Actions" in repository settings.
 
 ## Quant data workflow
-1. Update `data/quant/returns.csv` (monthly `%` returns as decimals).
-2. Run `python scripts/build_quant.py` locally or rely on CI.
-3. Script outputs:
-   - `_data/quant_metrics.json`
-   - `_data/quant_monthly.json`
-   - `assets/quant/returns.json`
-   - `assets/quant/cumulative.png`
-4. Jekyll consumes JSON data for tables; PNG is referenced for JS-off SEO.
+1. Update `data/quant/returns.csv`. Expected headers: `Timestamp`, `Long_ex`, `Short_ex`, `Total_Invested`, `Long_Net_Profit`, `Short_Net_Profit`, `Net_Profit`, `ROI`, `Rebated_Net_Profit`, `Rebated_ROI`, `Symbol`.
+2. `Rebated_ROI` is the per-trade decimal return (multiply by 100 for %). The dashboard sums these linearly (no compounding) to avoid strategy leakage.
+3. Run `python scripts/build_quant.py` locally or rely on CI. The script:
+   - Parses timestamps, sorts trades, and computes linear cumulative ROI, Sharpe/Sortino, win rate, profit factor, and time-adjusted monthly/yearly returns using a 365×24 hour baseline.
+   - Emits `_data/quant_metrics.json`, `_data/quant_monthly.json`, `assets/quant/returns.json`, and `assets/quant/cumulative.png` (trade-index chart fallback).
+4. `/quant/` consumes the JSON data for the metric grid, table, and Plotly chart (x-axis is trade count, y-axis is cumulative Rebated ROI %).
 
 ## SEO checklist (built-in)
 - Canonical URLs + meta description on every page via `head.html` + `jekyll-seo-tag`.

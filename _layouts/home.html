@@ -28,15 +28,9 @@ layout: default
     </ul>
   </div>
   <div class="hero-card hero-media">
-    <img src="{{ profile.photo | relative_url }}" alt="Portrait of {{ profile.name }}" loading="lazy" />
-    <ul class="quick-stats">
-      {% for stat in profile.highlights %}
-      <li>
-        <span class="value">{{ stat.value }}</span>
-        <span class="label">{{ stat.label }}</span>
-      </li>
-      {% endfor %}
-    </ul>
+    <div class="hero-photo-frame">
+      <img src="{{ profile.photo | relative_url }}" alt="Portrait of {{ profile.name }}" loading="lazy" />
+    </div>
   </div>
 </section>
 

@@ -1,62 +1,1082 @@
 [
   {
-    "date": "2024-01-31",
-    "return": 0.012,
-    "cumulative": 0.01200000000000001
+    "trade": 1,
+    "timestamp": "2026-01-28T19:28:00+00:00",
+    "symbol": "BIRBUSDT",
+    "roi": 0.002011,
+    "roi_pct": 0.20110000000000003,
+    "cumulative": 0.002011,
+    "cumulative_pct": 0.20110000000000003
   },
   {
-    "date": "2024-02-29",
-    "return": 0.008,
-    "cumulative": 0.020096000000000114
+    "trade": 2,
+    "timestamp": "2026-01-29T02:28:00+00:00",
+    "symbol": "SAHARAUSDT",
+    "roi": 0.000359,
+    "roi_pct": 0.0359,
+    "cumulative": 0.00237,
+    "cumulative_pct": 0.23700000000000002
   },
   {
-    "date": "2024-03-31",
-    "return": -0.006,
-    "cumulative": 0.01397542400000007
+    "trade": 3,
+    "timestamp": "2026-01-29T07:28:00+00:00",
+    "symbol": "BIRBUSDT",
+    "roi": 0.002839,
+    "roi_pct": 0.2839,
+    "cumulative": 0.005209,
+    "cumulative_pct": 0.5209
   },
   {
-    "date": "2024-04-30",
-    "return": 0.015,
-    "cumulative": 0.029185055359999934
+    "trade": 4,
+    "timestamp": "2026-01-29T08:28:00+00:00",
+    "symbol": "GWEIUSDT",
+    "roi": 0.002436,
+    "roi_pct": 0.24359999999999998,
+    "cumulative": 0.007645,
+    "cumulative_pct": 0.7645
   },
   {
-    "date": "2024-05-31",
-    "return": 0.007,
-    "cumulative": 0.03638935074751992
+    "trade": 5,
+    "timestamp": "2026-01-29T11:28:00+00:00",
+    "symbol": "SENTUSDT",
+    "roi": -0.000834,
+    "roi_pct": -0.0834,
+    "cumulative": 0.006811,
+    "cumulative_pct": 0.6811
   },
   {
-    "date": "2024-06-30",
-    "return": 0.004,
-    "cumulative": 0.040534908150509974
+    "trade": 6,
+    "timestamp": "2026-01-29T13:28:00+00:00",
+    "symbol": "SENTUSDT",
+    "roi": -0.009128,
+    "roi_pct": -0.9128000000000001,
+    "cumulative": -0.0023170000000000005,
+    "cumulative_pct": -0.23170000000000004
   },
   {
-    "date": "2024-07-31",
-    "return": -0.002,
-    "cumulative": 0.03845383833420901
+    "trade": 7,
+    "timestamp": "2026-01-30T13:28:00+00:00",
+    "symbol": "ENSOUSDT",
+    "roi": 0.000473,
+    "roi_pct": 0.0473,
+    "cumulative": -0.0018440000000000006,
+    "cumulative_pct": -0.18440000000000006
   },
   {
-    "date": "2024-08-31",
-    "return": 0.013,
-    "cumulative": 0.05195373823255367
+    "trade": 8,
+    "timestamp": "2026-01-30T15:28:00+00:00",
+    "symbol": "ENSOUSDT",
+    "roi": 0.000531,
+    "roi_pct": 0.0531,
+    "cumulative": -0.0013130000000000006,
+    "cumulative_pct": -0.13130000000000006
   },
   {
-    "date": "2024-09-30",
-    "return": -0.005,
-    "cumulative": 0.04669396954139082
+    "trade": 9,
+    "timestamp": "2026-01-30T17:28:00+00:00",
+    "symbol": "ENSOUSDT",
+    "roi": 0.000796,
+    "roi_pct": 0.0796,
+    "cumulative": -0.0005170000000000005,
+    "cumulative_pct": -0.05170000000000005
   },
   {
-    "date": "2024-10-31",
-    "return": 0.011,
-    "cumulative": 0.058207603206346104
+    "trade": 10,
+    "timestamp": "2026-01-30T20:09:00+00:00",
+    "symbol": "XAGUSDT",
+    "roi": -0.000899,
+    "roi_pct": -0.0899,
+    "cumulative": -0.0014160000000000006,
+    "cumulative_pct": -0.14160000000000006
   },
   {
-    "date": "2024-11-30",
-    "return": 0.009,
-    "cumulative": 0.0677314716352031
+    "trade": 11,
+    "timestamp": "2026-02-01T20:28:00+00:00",
+    "symbol": "FIGHTUSDT",
+    "roi": -0.001267,
+    "roi_pct": -0.12669999999999998,
+    "cumulative": -0.0026830000000000005,
+    "cumulative_pct": -0.26830000000000004
   },
   {
-    "date": "2024-12-31",
-    "return": 0.014,
-    "cumulative": 0.082679712238096
+    "trade": 12,
+    "timestamp": "2026-02-01T21:28:00+00:00",
+    "symbol": "DUSDT",
+    "roi": 0.000729,
+    "roi_pct": 0.0729,
+    "cumulative": -0.0019540000000000004,
+    "cumulative_pct": -0.19540000000000005
+  },
+  {
+    "trade": 13,
+    "timestamp": "2026-02-02T00:09:00+00:00",
+    "symbol": "XAGUSDT",
+    "roi": 0.011576,
+    "roi_pct": 1.1576,
+    "cumulative": 0.009621999999999999,
+    "cumulative_pct": 0.9621999999999998
+  },
+  {
+    "trade": 14,
+    "timestamp": "2026-02-02T01:28:00+00:00",
+    "symbol": "FUSDT",
+    "roi": 0.011887,
+    "roi_pct": 1.1887,
+    "cumulative": 0.021509,
+    "cumulative_pct": 2.1509
+  },
+  {
+    "trade": 15,
+    "timestamp": "2026-02-02T02:28:00+00:00",
+    "symbol": "ZORAUSDT",
+    "roi": -0.001183,
+    "roi_pct": -0.1183,
+    "cumulative": 0.020326,
+    "cumulative_pct": 2.0326
+  },
+  {
+    "trade": 16,
+    "timestamp": "2026-02-02T03:28:00+00:00",
+    "symbol": "ZORAUSDT",
+    "roi": 0.003225,
+    "roi_pct": 0.3225,
+    "cumulative": 0.023551,
+    "cumulative_pct": 2.3550999999999997
+  },
+  {
+    "trade": 17,
+    "timestamp": "2026-02-02T04:28:00+00:00",
+    "symbol": "FIGHTUSDT",
+    "roi": -0.002322,
+    "roi_pct": -0.2322,
+    "cumulative": 0.021228999999999998,
+    "cumulative_pct": 2.1228999999999996
+  },
+  {
+    "trade": 18,
+    "timestamp": "2026-02-02T06:28:00+00:00",
+    "symbol": "FUSDT",
+    "roi": -0.003746,
+    "roi_pct": -0.37460000000000004,
+    "cumulative": 0.017483,
+    "cumulative_pct": 1.7483
+  },
+  {
+    "trade": 19,
+    "timestamp": "2026-02-02T07:28:00+00:00",
+    "symbol": "FUSDT",
+    "roi": 0.000724,
+    "roi_pct": 0.0724,
+    "cumulative": 0.018206999999999997,
+    "cumulative_pct": 1.8206999999999998
+  },
+  {
+    "trade": 20,
+    "timestamp": "2026-02-02T08:28:00+00:00",
+    "symbol": "ZORAUSDT",
+    "roi": 0.002376,
+    "roi_pct": 0.2376,
+    "cumulative": 0.020582999999999997,
+    "cumulative_pct": 2.0582999999999996
+  },
+  {
+    "trade": 21,
+    "timestamp": "2026-02-02T09:28:00+00:00",
+    "symbol": "AUCTIONUSDT",
+    "roi": 0.003568,
+    "roi_pct": 0.3568,
+    "cumulative": 0.024151,
+    "cumulative_pct": 2.4151
+  },
+  {
+    "trade": 22,
+    "timestamp": "2026-02-02T11:28:00+00:00",
+    "symbol": "FUSDT",
+    "roi": 0.004871,
+    "roi_pct": 0.48710000000000003,
+    "cumulative": 0.029022,
+    "cumulative_pct": 2.9022
+  },
+  {
+    "trade": 23,
+    "timestamp": "2026-02-02T12:28:00+00:00",
+    "symbol": "FUSDT",
+    "roi": 0.000211,
+    "roi_pct": 0.0211,
+    "cumulative": 0.029233,
+    "cumulative_pct": 2.9233
+  },
+  {
+    "trade": 24,
+    "timestamp": "2026-02-02T14:28:00+00:00",
+    "symbol": "MOVEUSDT",
+    "roi": -0.000964,
+    "roi_pct": -0.0964,
+    "cumulative": 0.028269,
+    "cumulative_pct": 2.8268999999999997
+  },
+  {
+    "trade": 25,
+    "timestamp": "2026-02-02T16:28:00+00:00",
+    "symbol": "ZILUSDT",
+    "roi": 0.003889,
+    "roi_pct": 0.3889,
+    "cumulative": 0.032158,
+    "cumulative_pct": 3.2157999999999998
+  },
+  {
+    "trade": 26,
+    "timestamp": "2026-02-03T00:28:00+00:00",
+    "symbol": "ZILUSDT",
+    "roi": 0.034333,
+    "roi_pct": 3.4333,
+    "cumulative": 0.066491,
+    "cumulative_pct": 6.6491
+  },
+  {
+    "trade": 27,
+    "timestamp": "2026-02-03T01:28:00+00:00",
+    "symbol": "CYBERUSDT",
+    "roi": 0.001828,
+    "roi_pct": 0.1828,
+    "cumulative": 0.06831899999999999,
+    "cumulative_pct": 6.831899999999999
+  },
+  {
+    "trade": 28,
+    "timestamp": "2026-02-03T03:28:00+00:00",
+    "symbol": "AXLUSDT",
+    "roi": -0.001023,
+    "roi_pct": -0.1023,
+    "cumulative": 0.067296,
+    "cumulative_pct": 6.7296
+  },
+  {
+    "trade": 29,
+    "timestamp": "2026-02-03T04:28:00+00:00",
+    "symbol": "ZILUSDT",
+    "roi": 0.002109,
+    "roi_pct": 0.21090000000000003,
+    "cumulative": 0.069405,
+    "cumulative_pct": 6.940499999999999
+  },
+  {
+    "trade": 30,
+    "timestamp": "2026-02-03T08:28:00+00:00",
+    "symbol": "ZILUSDT",
+    "roi": 0.001703,
+    "roi_pct": 0.1703,
+    "cumulative": 0.07110799999999999,
+    "cumulative_pct": 7.110799999999999
+  },
+  {
+    "trade": 31,
+    "timestamp": "2026-02-03T11:28:00+00:00",
+    "symbol": "BIRBUSDT",
+    "roi": -0.001688,
+    "roi_pct": -0.1688,
+    "cumulative": 0.06942,
+    "cumulative_pct": 6.941999999999999
+  },
+  {
+    "trade": 32,
+    "timestamp": "2026-02-03T15:28:00+00:00",
+    "symbol": "FLOWUSDT",
+    "roi": 0.001185,
+    "roi_pct": 0.11850000000000001,
+    "cumulative": 0.070605,
+    "cumulative_pct": 7.0605
+  },
+  {
+    "trade": 33,
+    "timestamp": "2026-02-03T16:28:00+00:00",
+    "symbol": "GIGGLEUSDT",
+    "roi": -0.000438,
+    "roi_pct": -0.043800000000000006,
+    "cumulative": 0.07016700000000001,
+    "cumulative_pct": 7.016700000000001
+  },
+  {
+    "trade": 34,
+    "timestamp": "2026-02-03T17:28:00+00:00",
+    "symbol": "ZILUSDT",
+    "roi": 0.003267,
+    "roi_pct": 0.3267,
+    "cumulative": 0.07343400000000001,
+    "cumulative_pct": 7.343400000000002
+  },
+  {
+    "trade": 35,
+    "timestamp": "2026-02-03T20:28:00+00:00",
+    "symbol": "GIGGLEUSDT",
+    "roi": -0.000363,
+    "roi_pct": -0.0363,
+    "cumulative": 0.07307100000000001,
+    "cumulative_pct": 7.307100000000001
+  },
+  {
+    "trade": 36,
+    "timestamp": "2026-02-03T23:28:00+00:00",
+    "symbol": "BIRBUSDT",
+    "roi": -0.002118,
+    "roi_pct": -0.21180000000000002,
+    "cumulative": 0.07095300000000002,
+    "cumulative_pct": 7.095300000000002
+  },
+  {
+    "trade": 37,
+    "timestamp": "2026-02-04T02:28:00+00:00",
+    "symbol": "CLOUSDT",
+    "roi": 0.006335,
+    "roi_pct": 0.6335000000000001,
+    "cumulative": 0.07728800000000002,
+    "cumulative_pct": 7.728800000000002
+  },
+  {
+    "trade": 38,
+    "timestamp": "2026-02-04T03:28:00+00:00",
+    "symbol": "ZILUSDT",
+    "roi": -0.001885,
+    "roi_pct": -0.1885,
+    "cumulative": 0.07540300000000003,
+    "cumulative_pct": 7.540300000000003
+  },
+  {
+    "trade": 39,
+    "timestamp": "2026-02-04T04:28:00+00:00",
+    "symbol": "CLOUSDT",
+    "roi": -0.007579,
+    "roi_pct": -0.7579,
+    "cumulative": 0.06782400000000002,
+    "cumulative_pct": 6.782400000000003
+  },
+  {
+    "trade": 40,
+    "timestamp": "2026-02-04T10:28:00+00:00",
+    "symbol": "CLOUSDT",
+    "roi": 0.01236,
+    "roi_pct": 1.236,
+    "cumulative": 0.08018400000000002,
+    "cumulative_pct": 8.018400000000002
+  },
+  {
+    "trade": 41,
+    "timestamp": "2026-02-04T12:28:00+00:00",
+    "symbol": "CLOUSDT",
+    "roi": -0.001151,
+    "roi_pct": -0.1151,
+    "cumulative": 0.07903300000000002,
+    "cumulative_pct": 7.9033000000000015
+  },
+  {
+    "trade": 42,
+    "timestamp": "2026-02-04T13:28:00+00:00",
+    "symbol": "ZKPUSDT",
+    "roi": 0.007503,
+    "roi_pct": 0.7503,
+    "cumulative": 0.08653600000000002,
+    "cumulative_pct": 8.6536
+  },
+  {
+    "trade": 43,
+    "timestamp": "2026-02-04T14:28:00+00:00",
+    "symbol": "ENSOUSDT",
+    "roi": 0.000327,
+    "roi_pct": 0.0327,
+    "cumulative": 0.08686300000000001,
+    "cumulative_pct": 8.686300000000001
+  },
+  {
+    "trade": 44,
+    "timestamp": "2026-02-04T15:28:00+00:00",
+    "symbol": "SENTUSDT",
+    "roi": 0.003433,
+    "roi_pct": 0.3433,
+    "cumulative": 0.09029600000000002,
+    "cumulative_pct": 9.029600000000002
+  },
+  {
+    "trade": 45,
+    "timestamp": "2026-02-04T16:28:00+00:00",
+    "symbol": "ZKPUSDT",
+    "roi": -0.000547,
+    "roi_pct": -0.0547,
+    "cumulative": 0.08974900000000001,
+    "cumulative_pct": 8.974900000000002
+  },
+  {
+    "trade": 46,
+    "timestamp": "2026-02-04T20:28:00+00:00",
+    "symbol": "PLAYUSDT",
+    "roi": -0.00209,
+    "roi_pct": -0.209,
+    "cumulative": 0.08765900000000001,
+    "cumulative_pct": 8.765900000000002
+  },
+  {
+    "trade": 47,
+    "timestamp": "2026-02-04T22:28:00+00:00",
+    "symbol": "SENTUSDT",
+    "roi": 0.002429,
+    "roi_pct": 0.2429,
+    "cumulative": 0.09008800000000002,
+    "cumulative_pct": 9.0088
+  },
+  {
+    "trade": 48,
+    "timestamp": "2026-02-04T23:28:00+00:00",
+    "symbol": "SENTUSDT",
+    "roi": -0.001115,
+    "roi_pct": -0.11150000000000002,
+    "cumulative": 0.08897300000000001,
+    "cumulative_pct": 8.897300000000001
+  },
+  {
+    "trade": 49,
+    "timestamp": "2026-02-05T00:28:00+00:00",
+    "symbol": "SENTUSDT",
+    "roi": 0.005961,
+    "roi_pct": 0.5961,
+    "cumulative": 0.094934,
+    "cumulative_pct": 9.493400000000001
+  },
+  {
+    "trade": 50,
+    "timestamp": "2026-02-05T01:28:00+00:00",
+    "symbol": "SENTUSDT",
+    "roi": 0.000556,
+    "roi_pct": 0.0556,
+    "cumulative": 0.09549,
+    "cumulative_pct": 9.549000000000001
+  },
+  {
+    "trade": 51,
+    "timestamp": "2026-02-05T04:28:00+00:00",
+    "symbol": "SENTUSDT",
+    "roi": -0.001247,
+    "roi_pct": -0.1247,
+    "cumulative": 0.09424300000000001,
+    "cumulative_pct": 9.4243
+  },
+  {
+    "trade": 52,
+    "timestamp": "2026-02-05T08:28:00+00:00",
+    "symbol": "ENSOUSDT",
+    "roi": 0.002698,
+    "roi_pct": 0.2698,
+    "cumulative": 0.09694100000000001,
+    "cumulative_pct": 9.6941
+  },
+  {
+    "trade": 53,
+    "timestamp": "2026-02-05T12:28:00+00:00",
+    "symbol": "GIGGLEUSDT",
+    "roi": 0.000457,
+    "roi_pct": 0.0457,
+    "cumulative": 0.09739800000000001,
+    "cumulative_pct": 9.7398
+  },
+  {
+    "trade": 54,
+    "timestamp": "2026-02-05T16:28:00+00:00",
+    "symbol": "GIGGLEUSDT",
+    "roi": -0.00062,
+    "roi_pct": -0.062,
+    "cumulative": 0.09677800000000002,
+    "cumulative_pct": 9.677800000000001
+  },
+  {
+    "trade": 55,
+    "timestamp": "2026-02-05T20:28:00+00:00",
+    "symbol": "GIGGLEUSDT",
+    "roi": -0.000118,
+    "roi_pct": -0.0118,
+    "cumulative": 0.09666000000000002,
+    "cumulative_pct": 9.666000000000002
+  },
+  {
+    "trade": 56,
+    "timestamp": "2026-02-06T00:28:00+00:00",
+    "symbol": "FLOWUSDT",
+    "roi": 0.002012,
+    "roi_pct": 0.2012,
+    "cumulative": 0.09867200000000002,
+    "cumulative_pct": 9.867200000000002
+  },
+  {
+    "trade": 57,
+    "timestamp": "2026-02-06T04:28:00+00:00",
+    "symbol": "FLOWUSDT",
+    "roi": 0.001114,
+    "roi_pct": 0.1114,
+    "cumulative": 0.09978600000000003,
+    "cumulative_pct": 9.978600000000002
+  },
+  {
+    "trade": 58,
+    "timestamp": "2026-02-06T08:28:00+00:00",
+    "symbol": "FLOWUSDT",
+    "roi": -0.000405,
+    "roi_pct": -0.040499999999999994,
+    "cumulative": 0.09938100000000002,
+    "cumulative_pct": 9.938100000000002
+  },
+  {
+    "trade": 59,
+    "timestamp": "2026-02-06T13:28:00+00:00",
+    "symbol": "BIRBUSDT",
+    "roi": 0.001397,
+    "roi_pct": 0.1397,
+    "cumulative": 0.10077800000000002,
+    "cumulative_pct": 10.077800000000002
+  },
+  {
+    "trade": 60,
+    "timestamp": "2026-02-06T15:28:00+00:00",
+    "symbol": "BIRBUSDT",
+    "roi": -0.001114,
+    "roi_pct": -0.1114,
+    "cumulative": 0.09966400000000002,
+    "cumulative_pct": 9.966400000000002
+  },
+  {
+    "trade": 61,
+    "timestamp": "2026-02-06T16:28:00+00:00",
+    "symbol": "GIGGLEUSDT",
+    "roi": 0.000159,
+    "roi_pct": 0.015899999999999997,
+    "cumulative": 0.09982300000000002,
+    "cumulative_pct": 9.982300000000002
+  },
+  {
+    "trade": 62,
+    "timestamp": "2026-02-06T20:28:00+00:00",
+    "symbol": "FLOWUSDT",
+    "roi": 0.001392,
+    "roi_pct": 0.1392,
+    "cumulative": 0.10121500000000003,
+    "cumulative_pct": 10.121500000000003
+  },
+  {
+    "trade": 63,
+    "timestamp": "2026-02-07T00:28:00+00:00",
+    "symbol": "FLOWUSDT",
+    "roi": -0.001508,
+    "roi_pct": -0.1508,
+    "cumulative": 0.09970700000000003,
+    "cumulative_pct": 9.970700000000003
+  },
+  {
+    "trade": 64,
+    "timestamp": "2026-02-07T01:28:00+00:00",
+    "symbol": "API3USDT",
+    "roi": -0.005804,
+    "roi_pct": -0.5804,
+    "cumulative": 0.09390300000000003,
+    "cumulative_pct": 9.390300000000003
+  },
+  {
+    "trade": 65,
+    "timestamp": "2026-02-07T03:28:00+00:00",
+    "symbol": "LAUSDT",
+    "roi": 0.004059,
+    "roi_pct": 0.40590000000000004,
+    "cumulative": 0.09796200000000002,
+    "cumulative_pct": 9.796200000000002
+  },
+  {
+    "trade": 66,
+    "timestamp": "2026-02-07T04:28:00+00:00",
+    "symbol": "LAUSDT",
+    "roi": -0.001543,
+    "roi_pct": -0.15430000000000002,
+    "cumulative": 0.09641900000000002,
+    "cumulative_pct": 9.641900000000001
+  },
+  {
+    "trade": 67,
+    "timestamp": "2026-02-07T05:28:00+00:00",
+    "symbol": "LAUSDT",
+    "roi": 0.009342,
+    "roi_pct": 0.9341999999999999,
+    "cumulative": 0.10576100000000002,
+    "cumulative_pct": 10.576100000000002
+  },
+  {
+    "trade": 68,
+    "timestamp": "2026-02-07T06:28:00+00:00",
+    "symbol": "LAUSDT",
+    "roi": 0.004532,
+    "roi_pct": 0.45319999999999994,
+    "cumulative": 0.11029300000000002,
+    "cumulative_pct": 11.029300000000001
+  },
+  {
+    "trade": 69,
+    "timestamp": "2026-02-07T07:28:00+00:00",
+    "symbol": "LAUSDT",
+    "roi": -0.000201,
+    "roi_pct": -0.0201,
+    "cumulative": 0.11009200000000001,
+    "cumulative_pct": 11.009200000000002
+  },
+  {
+    "trade": 70,
+    "timestamp": "2026-02-07T08:28:00+00:00",
+    "symbol": "API3USDT",
+    "roi": -0.000896,
+    "roi_pct": -0.0896,
+    "cumulative": 0.10919600000000002,
+    "cumulative_pct": 10.9196
+  },
+  {
+    "trade": 71,
+    "timestamp": "2026-02-07T11:28:00+00:00",
+    "symbol": "ARKUSDT",
+    "roi": -0.001403,
+    "roi_pct": -0.1403,
+    "cumulative": 0.10779300000000001,
+    "cumulative_pct": 10.779300000000001
+  },
+  {
+    "trade": 72,
+    "timestamp": "2026-02-07T12:28:00+00:00",
+    "symbol": "FLOWUSDT",
+    "roi": -0.001188,
+    "roi_pct": -0.1188,
+    "cumulative": 0.10660500000000002,
+    "cumulative_pct": 10.660500000000003
+  },
+  {
+    "trade": 73,
+    "timestamp": "2026-02-07T13:28:00+00:00",
+    "symbol": "FLOWUSDT",
+    "roi": -0.001493,
+    "roi_pct": -0.1493,
+    "cumulative": 0.10511200000000002,
+    "cumulative_pct": 10.511200000000002
+  },
+  {
+    "trade": 74,
+    "timestamp": "2026-02-07T14:28:00+00:00",
+    "symbol": "CVCUSDT",
+    "roi": 0.001683,
+    "roi_pct": 0.1683,
+    "cumulative": 0.10679500000000003,
+    "cumulative_pct": 10.679500000000003
+  },
+  {
+    "trade": 75,
+    "timestamp": "2026-02-07T15:28:00+00:00",
+    "symbol": "BREVUSDT",
+    "roi": 0.000576,
+    "roi_pct": 0.0576,
+    "cumulative": 0.10737100000000002,
+    "cumulative_pct": 10.737100000000002
+  },
+  {
+    "trade": 76,
+    "timestamp": "2026-02-07T16:28:00+00:00",
+    "symbol": "FLOWUSDT",
+    "roi": 3.1e-05,
+    "roi_pct": 0.0031000000000000003,
+    "cumulative": 0.10740200000000003,
+    "cumulative_pct": 10.740200000000003
+  },
+  {
+    "trade": 77,
+    "timestamp": "2026-02-07T20:28:00+00:00",
+    "symbol": "FLOWUSDT",
+    "roi": -0.000277,
+    "roi_pct": -0.027700000000000002,
+    "cumulative": 0.10712500000000003,
+    "cumulative_pct": 10.712500000000002
+  },
+  {
+    "trade": 78,
+    "timestamp": "2026-02-08T01:28:00+00:00",
+    "symbol": "FUSDT",
+    "roi": -0.000466,
+    "roi_pct": -0.0466,
+    "cumulative": 0.10665900000000003,
+    "cumulative_pct": 10.665900000000002
+  },
+  {
+    "trade": 79,
+    "timestamp": "2026-02-08T02:28:00+00:00",
+    "symbol": "ARKUSDT",
+    "roi": 0.000195,
+    "roi_pct": 0.0195,
+    "cumulative": 0.10685400000000003,
+    "cumulative_pct": 10.685400000000003
+  },
+  {
+    "trade": 80,
+    "timestamp": "2026-02-08T03:28:00+00:00",
+    "symbol": "ARKUSDT",
+    "roi": 0.000709,
+    "roi_pct": 0.0709,
+    "cumulative": 0.10756300000000003,
+    "cumulative_pct": 10.756300000000003
+  },
+  {
+    "trade": 81,
+    "timestamp": "2026-02-08T04:28:00+00:00",
+    "symbol": "NOMUSDT",
+    "roi": -0.000484,
+    "roi_pct": -0.0484,
+    "cumulative": 0.10707900000000004,
+    "cumulative_pct": 10.707900000000004
+  },
+  {
+    "trade": 82,
+    "timestamp": "2026-02-08T05:28:00+00:00",
+    "symbol": "FUSDT",
+    "roi": 0.004807,
+    "roi_pct": 0.48069999999999996,
+    "cumulative": 0.11188600000000004,
+    "cumulative_pct": 11.188600000000005
+  },
+  {
+    "trade": 83,
+    "timestamp": "2026-02-08T06:28:00+00:00",
+    "symbol": "FUSDT",
+    "roi": 0.005053,
+    "roi_pct": 0.5053,
+    "cumulative": 0.11693900000000004,
+    "cumulative_pct": 11.693900000000005
+  },
+  {
+    "trade": 84,
+    "timestamp": "2026-02-08T07:28:00+00:00",
+    "symbol": "FUSDT",
+    "roi": 0.002439,
+    "roi_pct": 0.2439,
+    "cumulative": 0.11937800000000004,
+    "cumulative_pct": 11.937800000000005
+  },
+  {
+    "trade": 85,
+    "timestamp": "2026-02-08T08:28:00+00:00",
+    "symbol": "NOMUSDT",
+    "roi": 0.001147,
+    "roi_pct": 0.1147,
+    "cumulative": 0.12052500000000003,
+    "cumulative_pct": 12.052500000000004
+  },
+  {
+    "trade": 86,
+    "timestamp": "2026-02-08T11:28:00+00:00",
+    "symbol": "API3USDT",
+    "roi": 0.004926,
+    "roi_pct": 0.4926,
+    "cumulative": 0.12545100000000003,
+    "cumulative_pct": 12.545100000000003
+  },
+  {
+    "trade": 87,
+    "timestamp": "2026-02-08T12:28:00+00:00",
+    "symbol": "API3USDT",
+    "roi": 0.004899,
+    "roi_pct": 0.48989999999999995,
+    "cumulative": 0.13035000000000002,
+    "cumulative_pct": 13.035000000000002
+  },
+  {
+    "trade": 88,
+    "timestamp": "2026-02-08T16:28:00+00:00",
+    "symbol": "ARKUSDT",
+    "roi": 0.001368,
+    "roi_pct": 0.1368,
+    "cumulative": 0.13171800000000003,
+    "cumulative_pct": 13.171800000000003
+  },
+  {
+    "trade": 89,
+    "timestamp": "2026-02-08T20:28:00+00:00",
+    "symbol": "DUSKUSDT",
+    "roi": 0.000517,
+    "roi_pct": 0.051699999999999996,
+    "cumulative": 0.13223500000000002,
+    "cumulative_pct": 13.223500000000001
+  },
+  {
+    "trade": 90,
+    "timestamp": "2026-02-08T22:28:00+00:00",
+    "symbol": "WCTUSDT",
+    "roi": -0.001772,
+    "roi_pct": -0.1772,
+    "cumulative": 0.13046300000000002,
+    "cumulative_pct": 13.046300000000002
+  },
+  {
+    "trade": 91,
+    "timestamp": "2026-02-09T00:28:00+00:00",
+    "symbol": "DUSKUSDT",
+    "roi": 0.003492,
+    "roi_pct": 0.3492,
+    "cumulative": 0.13395500000000002,
+    "cumulative_pct": 13.395500000000002
+  },
+  {
+    "trade": 92,
+    "timestamp": "2026-02-09T04:28:00+00:00",
+    "symbol": "RVVUSDT",
+    "roi": -0.008047,
+    "roi_pct": -0.8047000000000001,
+    "cumulative": 0.12590800000000002,
+    "cumulative_pct": 12.590800000000002
+  },
+  {
+    "trade": 93,
+    "timestamp": "2026-02-09T08:28:00+00:00",
+    "symbol": "RVVUSDT",
+    "roi": 0.004546,
+    "roi_pct": 0.45459999999999995,
+    "cumulative": 0.13045400000000001,
+    "cumulative_pct": 13.0454
+  },
+  {
+    "trade": 94,
+    "timestamp": "2026-02-09T12:28:00+00:00",
+    "symbol": "GPSUSDT",
+    "roi": -8.7e-05,
+    "roi_pct": -0.0087,
+    "cumulative": 0.130367,
+    "cumulative_pct": 13.036700000000002
+  },
+  {
+    "trade": 95,
+    "timestamp": "2026-02-09T14:28:00+00:00",
+    "symbol": "VANAUSDT",
+    "roi": 0.000275,
+    "roi_pct": 0.0275,
+    "cumulative": 0.130642,
+    "cumulative_pct": 13.064200000000001
+  },
+  {
+    "trade": 96,
+    "timestamp": "2026-02-09T15:28:00+00:00",
+    "symbol": "VANAUSDT",
+    "roi": 0.001163,
+    "roi_pct": 0.1163,
+    "cumulative": 0.131805,
+    "cumulative_pct": 13.1805
+  },
+  {
+    "trade": 97,
+    "timestamp": "2026-02-09T16:28:00+00:00",
+    "symbol": "VANAUSDT",
+    "roi": -0.001027,
+    "roi_pct": -0.10269999999999999,
+    "cumulative": 0.130778,
+    "cumulative_pct": 13.0778
+  },
+  {
+    "trade": 98,
+    "timestamp": "2026-02-09T17:28:00+00:00",
+    "symbol": "ZKPUSDT",
+    "roi": -0.006397,
+    "roi_pct": -0.6396999999999999,
+    "cumulative": 0.124381,
+    "cumulative_pct": 12.4381
+  },
+  {
+    "trade": 99,
+    "timestamp": "2026-02-09T18:28:00+00:00",
+    "symbol": "ZKPUSDT",
+    "roi": 0.001082,
+    "roi_pct": 0.1082,
+    "cumulative": 0.12546300000000002,
+    "cumulative_pct": 12.546300000000002
+  },
+  {
+    "trade": 100,
+    "timestamp": "2026-02-09T19:28:00+00:00",
+    "symbol": "ZKPUSDT",
+    "roi": 0.009317,
+    "roi_pct": 0.9317000000000001,
+    "cumulative": 0.13478,
+    "cumulative_pct": 13.478000000000002
+  },
+  {
+    "trade": 101,
+    "timestamp": "2026-02-09T20:28:00+00:00",
+    "symbol": "VANAUSDT",
+    "roi": 0.000814,
+    "roi_pct": 0.0814,
+    "cumulative": 0.13559400000000002,
+    "cumulative_pct": 13.559400000000002
+  },
+  {
+    "trade": 102,
+    "timestamp": "2026-02-09T21:28:00+00:00",
+    "symbol": "MYXUSDT",
+    "roi": -0.001465,
+    "roi_pct": -0.1465,
+    "cumulative": 0.13412900000000003,
+    "cumulative_pct": 13.412900000000002
+  },
+  {
+    "trade": 103,
+    "timestamp": "2026-02-10T00:28:00+00:00",
+    "symbol": "MYXUSDT",
+    "roi": 0.000557,
+    "roi_pct": 0.0557,
+    "cumulative": 0.13468600000000003,
+    "cumulative_pct": 13.468600000000002
+  },
+  {
+    "trade": 104,
+    "timestamp": "2026-02-10T01:28:00+00:00",
+    "symbol": "AXSUSDT",
+    "roi": 0.002205,
+    "roi_pct": 0.2205,
+    "cumulative": 0.13689100000000004,
+    "cumulative_pct": 13.689100000000003
+  },
+  {
+    "trade": 105,
+    "timestamp": "2026-02-10T02:28:00+00:00",
+    "symbol": "AXSUSDT",
+    "roi": -0.000542,
+    "roi_pct": -0.0542,
+    "cumulative": 0.13634900000000005,
+    "cumulative_pct": 13.634900000000005
+  },
+  {
+    "trade": 106,
+    "timestamp": "2026-02-10T03:28:00+00:00",
+    "symbol": "AXSUSDT",
+    "roi": 0.000332,
+    "roi_pct": 0.0332,
+    "cumulative": 0.13668100000000005,
+    "cumulative_pct": 13.668100000000006
+  },
+  {
+    "trade": 107,
+    "timestamp": "2026-02-10T04:28:00+00:00",
+    "symbol": "AXSUSDT",
+    "roi": -0.001028,
+    "roi_pct": -0.1028,
+    "cumulative": 0.13565300000000005,
+    "cumulative_pct": 13.565300000000006
+  },
+  {
+    "trade": 108,
+    "timestamp": "2026-02-10T06:28:00+00:00",
+    "symbol": "SONICUSDT",
+    "roi": 0.001762,
+    "roi_pct": 0.1762,
+    "cumulative": 0.13741500000000006,
+    "cumulative_pct": 13.741500000000006
+  },
+  {
+    "trade": 109,
+    "timestamp": "2026-02-10T10:28:00+00:00",
+    "symbol": "SONICUSDT",
+    "roi": -0.002027,
+    "roi_pct": -0.20270000000000002,
+    "cumulative": 0.13538800000000006,
+    "cumulative_pct": 13.538800000000005
+  },
+  {
+    "trade": 110,
+    "timestamp": "2026-02-10T12:28:00+00:00",
+    "symbol": "AXSUSDT",
+    "roi": -0.001992,
+    "roi_pct": -0.1992,
+    "cumulative": 0.13339600000000007,
+    "cumulative_pct": 13.339600000000008
+  },
+  {
+    "trade": 111,
+    "timestamp": "2026-02-10T13:28:00+00:00",
+    "symbol": "VANAUSDT",
+    "roi": 0.004358,
+    "roi_pct": 0.43579999999999997,
+    "cumulative": 0.13775400000000007,
+    "cumulative_pct": 13.775400000000007
+  },
+  {
+    "trade": 112,
+    "timestamp": "2026-02-10T14:28:00+00:00",
+    "symbol": "SONICUSDT",
+    "roi": 0.003284,
+    "roi_pct": 0.3284,
+    "cumulative": 0.14103800000000008,
+    "cumulative_pct": 14.103800000000009
+  },
+  {
+    "trade": 113,
+    "timestamp": "2026-02-10T16:28:00+00:00",
+    "symbol": "VANAUSDT",
+    "roi": 0.005819,
+    "roi_pct": 0.5819000000000001,
+    "cumulative": 0.14685700000000007,
+    "cumulative_pct": 14.685700000000008
+  },
+  {
+    "trade": 114,
+    "timestamp": "2026-02-10T17:28:00+00:00",
+    "symbol": "MYXUSDT",
+    "roi": -0.000543,
+    "roi_pct": -0.054299999999999994,
+    "cumulative": 0.14631400000000008,
+    "cumulative_pct": 14.631400000000008
+  },
+  {
+    "trade": 115,
+    "timestamp": "2026-02-10T18:28:00+00:00",
+    "symbol": "MYXUSDT",
+    "roi": 0.005192,
+    "roi_pct": 0.5192,
+    "cumulative": 0.15150600000000009,
+    "cumulative_pct": 15.150600000000008
+  },
+  {
+    "trade": 116,
+    "timestamp": "2026-02-10T19:28:00+00:00",
+    "symbol": "AXSUSDT",
+    "roi": -0.00241,
+    "roi_pct": -0.241,
+    "cumulative": 0.1490960000000001,
+    "cumulative_pct": 14.909600000000008
+  },
+  {
+    "trade": 117,
+    "timestamp": "2026-02-10T20:28:00+00:00",
+    "symbol": "AXSUSDT",
+    "roi": -0.00085,
+    "roi_pct": -0.08499999999999999,
+    "cumulative": 0.1482460000000001,
+    "cumulative_pct": 14.82460000000001
+  },
+  {
+    "trade": 118,
+    "timestamp": "2026-02-10T23:28:00+00:00",
+    "symbol": "AXSUSDT",
+    "roi": -0.000153,
+    "roi_pct": -0.015300000000000001,
+    "cumulative": 0.1480930000000001,
+    "cumulative_pct": 14.809300000000011
+  },
+  {
+    "trade": 119,
+    "timestamp": "2026-02-11T00:28:00+00:00",
+    "symbol": "MYXUSDT",
+    "roi": 0.003298,
+    "roi_pct": 0.32980000000000004,
+    "cumulative": 0.1513910000000001,
+    "cumulative_pct": 15.139100000000012
+  },
+  {
+    "trade": 120,
+    "timestamp": "2026-02-11T01:28:00+00:00",
+    "symbol": "VANAUSDT",
+    "roi": 0.003401,
+    "roi_pct": 0.3401,
+    "cumulative": 0.1547920000000001,
+    "cumulative_pct": 15.47920000000001
   }
 ]
