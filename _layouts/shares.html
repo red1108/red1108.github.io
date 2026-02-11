@@ -1,0 +1,40 @@
+---
+layout: default
+---
+<section>
+  <header>
+    <h1>Shares</h1>
+    <p>Research notes, tutorial write-ups, and QCQI exercises with proper sourcing.</p>
+  </header>
+  <div class="shares-filter">
+    <label>
+      Tag
+      <select id="shares-tag-filter">
+        <option value="all">All tags</option>
+        {% assign all_tags = site.shares | map: 'tags' | join: ',' | split: ',' | uniq | sort %}
+        {% for tag in all_tags %}
+          {% if tag != '' %}
+            <option value="{{ tag }}">{{ tag }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      Category
+      <select id="shares-category-filter">
+        <option value="all">All categories</option>
+        {% assign categories = site.shares | map: 'category' | uniq | sort %}
+        {% for category in categories %}
+          <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <button id="shares-view-toggle" type="button">List view</button>
+  </div>
+  <div class="shares-grid" data-view="cards">
+    {% assign sorted = site.shares | sort: 'date' | reverse %}
+    {% for share in sorted %}
+      {% include share-card.html share=share %}
+    {% endfor %}
+  </div>
+</section>

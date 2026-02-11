@@ -1,0 +1,27 @@
+[
+  {
+    "label": "CAGR",
+    "value": "8.27%",
+    "note": "Annualized"
+  },
+  {
+    "label": "Sharpe (rf=0)",
+    "value": "3.28",
+    "note": "Monthly sampling"
+  },
+  {
+    "label": "Max Drawdown",
+    "value": "-0.60%",
+    "note": "Peak-to-trough"
+  },
+  {
+    "label": "Volatility",
+    "value": "2.44%",
+    "note": "Annualized"
+  },
+  {
+    "label": "Win rate",
+    "value": "75.0%",
+    "note": "Positive months"
+  }
+]

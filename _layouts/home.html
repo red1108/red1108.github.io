@@ -1,0 +1,51 @@
+---
+layout: default
+---
+<section class="hero">
+  <div class="hero-card">
+    <h1>{{ site.author.name }}</h1>
+    <p class="lead">Bay Area-based researcher building quantitative intelligence for resilient markets.</p>
+    <div class="chips">
+      {% for research in site.data.research %}
+        <span class="chip">{{ research.title }}</span>
+      {% endfor %}
+    </div>
+    <p class="muted">Contact: <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></p>
+    <div class="links">
+      <a href="{{ site.social.scholar }}">Google Scholar</a> ·
+      <a href="{{ site.social.orcid }}">ORCID</a> ·
+      <a href="https://github.com/{{ site.social.github }}">GitHub</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <img src="{{ '/assets/images/profile.svg' | relative_url }}" alt="Portrait of {{ site.author.name }}" />
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Research Interests</h2>
+  <div class="card-grid">
+    {% for research in site.data.research %}
+    <article class="card">
+      <h3>{{ research.title }}</h3>
+      <p>{{ research.summary }}</p>
+      <div class="chips">
+        {% for interest in research.interests %}
+          <span class="chip">{{ interest }}</span>
+        {% endfor %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">News</h2>
+  <ul class="news-timeline">
+    {% for item in site.data.news %}
+    <li>
+      <strong>{{ item.date | date: '%b %Y' }}:</strong> {{ item.title }}
+    </li>
+    {% endfor %}
+  </ul>
+</section>

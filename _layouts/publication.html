@@ -1,0 +1,13 @@
+---
+layout: page
+---
+<section class="publication">
+  <h2>{{ page.title }}</h2>
+  <p>{{ page.abstract }}</p>
+  <ul>
+    <li><strong>Authors:</strong> {{ page.author }}</li>
+    <li><strong>Published:</strong> {{ page.date | date: '%Y' }}</li>
+    {% if page.doi %}<li><strong>DOI:</strong> <a href="https://doi.org/{{ page.doi }}">{{ page.doi }}</a></li>{% endif %}
+  </ul>
+  <a href="{{ page.pdf | default: '#' }}">Download PDF</a>
+</section>

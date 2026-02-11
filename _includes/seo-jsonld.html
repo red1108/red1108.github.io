@@ -1,0 +1,36 @@
+{% assign page_type = page.schema | default: page.layout %}
+{% if page_type == 'home' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ site.author.name | escape }}",
+  "url": "{{ site.url }}",
+  "description": "{{ site.description | escape }}",
+  "sameAs": [
+    "https://github.com/{{ site.social.github }}",
+    "{{ site.social.scholar }}",
+    "{{ site.social.orcid }}",
+    "https://www.linkedin.com/in/{{ site.social.linkedin }}"
+  ]
+}
+</script>
+{% elsif page.collection == 'shares' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ page.title | escape }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "inLanguage": "{{ page.language | default: site.lang }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.author.name | escape }}"
+  },
+  "description": "{{ page.summary | default: page.excerpt | strip_html | normalize_whitespace | escape }}",
+  "keywords": [{% for tag in page.tags %}"{{ tag }}"{% if forloop.last == false %}, {% endif %}{% endfor %}],
+  "mainEntityOfPage": "{{ page.url | absolute_url }}"
+}
+</script>
+{% endif %}

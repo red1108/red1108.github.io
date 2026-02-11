@@ -1,0 +1,7 @@
+<ol class="bibliography">
+{% for entry in bibliography %}
+  <li id="{{ entry.key }}">
+    {{ entry.reference }}
+  </li>
+{% endfor %}
+</ol>

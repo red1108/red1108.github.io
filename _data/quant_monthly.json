@@ -1,0 +1,50 @@
+[
+  {
+    "month": "Jan 2024",
+    "return": "1.20%"
+  },
+  {
+    "month": "Feb 2024",
+    "return": "0.80%"
+  },
+  {
+    "month": "Mar 2024",
+    "return": "-0.60%"
+  },
+  {
+    "month": "Apr 2024",
+    "return": "1.50%"
+  },
+  {
+    "month": "May 2024",
+    "return": "0.70%"
+  },
+  {
+    "month": "Jun 2024",
+    "return": "0.40%"
+  },
+  {
+    "month": "Jul 2024",
+    "return": "-0.20%"
+  },
+  {
+    "month": "Aug 2024",
+    "return": "1.30%"
+  },
+  {
+    "month": "Sep 2024",
+    "return": "-0.50%"
+  },
+  {
+    "month": "Oct 2024",
+    "return": "1.10%"
+  },
+  {
+    "month": "Nov 2024",
+    "return": "0.90%"
+  },
+  {
+    "month": "Dec 2024",
+    "return": "1.40%"
+  }
+]

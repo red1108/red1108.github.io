@@ -1,0 +1,14 @@
+- name: Adaptive Market Simulator
+  description: Multi-agent simulation environment for testing strategy robustness under regime shifts.
+  status: Active
+  links:
+    - label: GitHub
+      url: https://github.com/username/adaptive-market-sim
+    - label: Paper
+      url: https://arxiv.org/abs/2501.01234
+- name: Quantum Risk Toolkit
+  description: Python library exposing quantum kernel estimation utilities for portfolio tail risk.
+  status: Beta
+  links:
+    - label: Docs
+      url: https://quantumrisk.dev/docs

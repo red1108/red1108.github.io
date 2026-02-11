@@ -1,0 +1,54 @@
+---
+layout: default
+---
+<article class="quant-section">
+  <header>
+    <h1>Quant Dashboard</h1>
+    <p>Equity long/short strategy tracked since 2023. Metrics update via build-time Python script fed by CSV.</p>
+  </header>
+  <section class="quant-grid">
+    <div class="quant-metrics">
+      <h2>Performance Summary</h2>
+      <table>
+        <tbody>
+          {% assign metrics = site.data.quant_metrics %}
+          {% for metric in metrics %}
+          <tr>
+            <th scope="row">{{ metric.label }}</th>
+            <td>{{ metric.value }}</td>
+            <td class="muted">{{ metric.note }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <figure>
+      <img src="{{ '/assets/quant/cumulative.png' | relative_url }}" alt="Cumulative returns chart" loading="lazy" />
+      <figcaption>Build-time generated plot (PNG) for SEO and JS-off browsing.</figcaption>
+    </figure>
+  </section>
+  <section>
+    <h2>Monthly Returns</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Return</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in site.data.quant_monthly %}
+        <tr>
+          <td>{{ row.month }}</td>
+          <td>{{ row.return }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  <section>
+    <h2>Interactive Chart</h2>
+    <p class="muted">Loads JSON data for cumulative returns. Visible enhancement; static assets already convey signal.</p>
+    <div id="quant-dynamic-chart" class="quant-chart" aria-live="polite"></div>
+  </section>
+</article>

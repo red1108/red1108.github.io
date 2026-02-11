@@ -1,0 +1,11 @@
+<article class="share-card" data-share-card data-tags="{{ share.tags | join: ',' }}" data-category="{{ share.category }}">
+  <p class="muted">{{ share.date | date: '%b %d, %Y' }}</p>
+  <h3><a href="{{ share.url | relative_url }}">{{ share.title }}</a></h3>
+  <p>{{ share.summary }}</p>
+  <div class="chips">
+    {% for tag in share.tags %}
+      <span class="chip">{{ tag }}</span>
+    {% endfor %}
+  </div>
+  <a class="read-more" href="{{ share.url | relative_url }}">Read →</a>
+</article>

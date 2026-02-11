@@ -1,50 +1,86 @@
-# Chirpy Starter [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)](https://rubygems.org/gems/jekyll-theme-chirpy) [![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+# Research Portfolio — username.github.io
 
-When installing the [**Chirpy**][chirpy] theme through [RubyGems.org][gem], Jekyll can only read files in the folders `_includes`, `_layout`, `_sass` and `assets`, as well as a small part of options of the `_config.yml` file from the theme's gem. If you have ever installed this theme gem, you can use the command `bundle info --path jekyll-theme-chirpy` to locate these files.
+Static site built with Jekyll + Bundler and a Python-assisted quant dashboard for publishing research, teaching, news, and shareable notes.
 
-The Jekyll organization claims that this is to leave the ball in the user’s court, but this also results in users not being able to enjoy the out-of-the-box experience when using feature-rich themes.
+## Features
+- **Structured content**: Home hero, Research, Publications (jekyll-scholar), Teaching, News, Projects, Shares collection with filters, Quant dashboard under `/quant/`.
+- **Data-aware Shares**: Collection items expose rich front matter (tags, categories, languages, summaries) with MathJax/KaTeX support.
+- **Quant pipeline**: CSV input → Python script → metrics JSON, monthly table JSON, interactive JSON, PNG chart.
+- **SEO-ready**: `jekyll-seo-tag`, canonical URLs, Open Graph/Twitter, JSON-LD (Person + BlogPosting), sitemap, robots, alt text everywhere.
+- **Automated deploy**: GitHub Actions builds site, runs Python script, and publishes via GitHub Pages.
 
-To fully use all the features of **Chirpy**, you need to copy the other critical files from the theme's gem to your Jekyll site. The following is a list of targets:
-
-```shell
-.
-├── _config.yml
-├── _data
-├── _plugins
-├── _tabs
-└── index.html
-```
-
-In order to save your time, and to prevent you from missing some files when copying, we extract those files/configurations of the latest version of the **Chirpy** theme and the [CD][cd] workflow to here, so that you can start writing in minutes.
-
-## Prerequisites
-
-Follow the instructions in the [Jekyll Docs](https://jekyllrb.com/docs/installation/) to complete the installation of `Ruby`, `RubyGems`, `Jekyll` and `Bundler`.
-
-## Installation
+## Repository layout
 
 ```
-$ bundle
+├── _config.yml                 # Site metadata, collections, plugins
+├── _data/                      # Navigation, research, projects, quant metrics
+├── _includes/                  # Head, navigation, footer, JSON-LD, share card
+├── _layouts/                   # Base + page-specific layouts (home, shares, quant)
+├── _pages/                     # Content pages (research, teaching, news, projects)
+├── _shares/                    # Knowledge base entries
+├── _bibliography/              # BibTeX file for jekyll-scholar
+├── assets/css, js, images      # Styling, interactivity, profile SVG
+├── assets/quant/               # Build artifacts (returns.json, PNG)
+├── data/quant/returns.csv      # Source returns data for quant dashboard
+├── scripts/build_quant.py      # Python build step
+├── quant.md                    # Quant dashboard page
+├── shares.md                   # Collection index page
+├── .github/workflows/deploy.yml# Build + deploy pipeline
 ```
 
-## Local build
+## Requirements
+- Ruby 3.3.x (use `rbenv` or `ruby-install`)
+- Bundler 2.5+
+- Python 3.11+
 
+## Local development
+```bash
+# install Ruby gems
+bundle install
+
+# install Python deps (optional: use virtualenv)
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+# generate quant assets before serving
+python scripts/build_quant.py
+
+# run Jekyll locally
+bundle exec jekyll serve --livereload
 ```
-$ jekyll serve
-```
+Navigate to http://localhost:4000 to preview. Re-run `scripts/build_quant.py` whenever `data/quant/returns.csv` changes.
 
-## Usage
+## Deployment
+1. Push to `main`.
+2. GitHub Actions workflow `Build and Deploy Site`:
+   - Checks out repo & submodules
+   - Installs Ruby + Bundler deps
+   - Installs Python deps + runs `scripts/build_quant.py`
+   - Builds Jekyll site (`_site/`)
+   - Uploads artifact + deploys to GitHub Pages
+3. GitHub Pages serves directly from the action (no GitHub Pages auto-build).
 
-Please see the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy#documentation).
+Ensure repository name is `username.github.io` and GitHub Pages is set to "GitHub Actions" in repository settings.
 
-## License
+## Quant data workflow
+1. Update `data/quant/returns.csv` (monthly `%` returns as decimals).
+2. Run `python scripts/build_quant.py` locally or rely on CI.
+3. Script outputs:
+   - `_data/quant_metrics.json`
+   - `_data/quant_monthly.json`
+   - `assets/quant/returns.json`
+   - `assets/quant/cumulative.png`
+4. Jekyll consumes JSON data for tables; PNG is referenced for JS-off SEO.
 
-This work is published under [MIT][mit] License.
+## SEO checklist (built-in)
+- Canonical URLs + meta description on every page via `head.html` + `jekyll-seo-tag`.
+- JSON-LD: Person schema on home, BlogPosting schema on Shares.
+- Sitemap + robots ready out-of-the-box.
+- Open Graph/Twitter tags from `jekyll-seo-tag`.
+- Accessible alt text for hero/profile/quant imagery.
+- Clean permalinks (`/:categories/:title/`, `/shares/:title/`, `/quant/`).
 
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[use-template]: https://github.com/cotes2020/chirpy-starter/generate
-[cd]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
-
-Hello!
+## Testing
+- `bundle exec jekyll build` (ensures layout + Liquid correctness).
+- `python scripts/build_quant.py && bundle exec jekyll serve --unpublished` for iterative development.
+- Optionally run `htmlproofer ./_site` (installed via Gemfile) after builds.

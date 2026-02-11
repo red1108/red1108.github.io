@@ -1,0 +1,16 @@
+- label: Home
+  url: "/"
+- label: Research
+  url: "/research/"
+- label: Publications
+  url: "/publications/"
+- label: Teaching
+  url: "/teaching/"
+- label: News
+  url: "/news/"
+- label: Shares
+  url: "/shares/"
+- label: Projects
+  url: "/projects/"
+- label: Quant Dashboard
+  url: "/quant/"
