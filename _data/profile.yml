@@ -1,56 +1,61 @@
-name: Mingyu Lee, Ph.D.
-role: Research Scientist · Quant Intelligence
-location: San Francisco Bay Area
+name: Mingyu Lee
+role: Undergraduate Researcher · Quantum ML & Finance
+location: Seoul, Korea
 photo: /assets/images/profile.svg
-email: hello@mingyu.dev
+email: red1108@snu.ac.kr
 summary: >-
-  I design defensible quantitative systems that blend statistical rigor with
-  human-centered research, shipping production-grade models for macro funds and
-  enterprise labs.
+  Undergraduate researcher at Seoul National University exploring quantum
+  machine learning, quantitative research, and competitive programming.
 highlights:
-  - label: Years in research
-    value: 10+
-  - label: Peer-reviewed papers
-    value: 24
-  - label: Patents
-    value: 4
+  - label: GPA
+    value: 4.05 / 4.30
+  - label: ICPC Seoul 2025
+    value: Bronze (8th)
+  - label: Codeforces
+    value: Master 2279 max
 cta:
-  - label: Download CV
-    url: https://username.github.io/assets/docs/mingyu-lee-cv.pdf
+  - label: Download CV (PDF)
+    url: /assets/docs/mingyu-lee-cv.pdf
     variant: primary
-  - label: Email me
-    url: mailto:hello@mingyu.dev
+  - label: View CV page
+    url: /cv/
     variant: ghost
 experience:
-  - role: Principal Quant Scientist
-    org: Redwood Quantum Finance Lab
-    period: 2023 — Present
-    summary: Leading a team defining reinforcement-learned volatility surfaces and explainable trading policies for institutional desks.
-  - role: Research Scientist
-    org: Google X / Gradient Ventures
-    period: 2019 — 2023
-    summary: Built causal ML pipelines for macro hedging and co-authored open tooling for governance stress-testing.
-  - role: Quant Strategist
-    org: BlackRock Systematic Investing
-    period: 2016 — 2019
-    summary: Produced production alpha streams across FX and equities using probabilistic programming and scalable factor research.
+  - role: Mandatory Military Service
+    org: Republic of Korea Air Force
+    period: Feb 2024 — Nov 2025
+    summary: Serving in the Air Force; on leave continuing algorithmic practice and research reading.
+  - role: Undergraduate Researcher
+    org: Research Institute of Mathematics, Seoul National University
+    period: Jul 2022 — Present
+    summary: Exploring quantum machine learning and generative models that borrow ideas from classical neural networks.
+  - role: Research Intern
+    org: NCSOFT
+    period: Jul 2023 — Aug 2023
+    summary: Built AI-based ETF portfolio management components.
+  - role: Teaching Assistant
+    org: Seoul National University
+    period: Mar 2022 — Jun 2022
+    summary: Teaching assistant for discrete mathematics.
+  - role: Data Intern
+    org: Rainbow Brain, Inc.
+    period: Jan 2022 — Mar 2022
+    summary: Collected e-commerce data and delivered exploratory analyses.
 education:
-  - school: Stanford University
-    degree: Ph.D. in Electrical Engineering (Quantum Information)
-    period: 2012 — 2016
-  - school: KAIST
-    degree: B.S. in Physics & Computer Science
-    period: 2008 — 2012
+  - school: Seoul National University
+    degree: B.Sc. in Computer Science and Engineering; Double major in Mathematical Sciences
+    period: Mar 2021 — Present
+  - school: Gyeonggi Science High School for the Gifted
+    degree: Computer Science
+    period: Mar 2018 — Feb 2021
 focus:
-  - Quantum machine learning for risk modeling
-  - Causal explainability for automated trading
-  - Responsible deployment of high-stakes AI
+  - Quantum computation and quantum information
+  - Quantum machine learning and generative models
+  - Quantitative research and trading
 social_links:
-  - label: Google Scholar
-    url: https://scholar.google.com/citations?user=xxxx
-  - label: ORCID
-    url: https://orcid.org/0000-0003-1234-5678
   - label: GitHub
     url: https://github.com/red1108
   - label: LinkedIn
-    url: https://www.linkedin.com/in/mingyu-quant
+    url: https://www.linkedin.com/in/%EB%AF%BC%EA%B7%9C-%EC%9D%B4-1b50871b8/
+  - label: Location
+    url: https://goo.gl/maps/jA2sH2EFyQsEsLWw7

@@ -1,14 +1,18 @@
-- name: Adaptive Market Simulator
-  description: Multi-agent simulation environment for testing strategy robustness under regime shifts.
-  status: Active
+- name: Mutual Information Maximizing Quantum GAN
+  description: Quantum generative adversarial network that maximizes mutual information; applied to finance-inspired datasets and published in Scientific Reports.
+  status: Research
   links:
-    - label: GitHub
-      url: https://github.com/username/adaptive-market-sim
-    - label: Paper
-      url: https://arxiv.org/abs/2501.01234
-- name: Quantum Risk Toolkit
-  description: Python library exposing quantum kernel estimation utilities for portfolio tail risk.
-  status: Beta
+    - label: Publication
+      url: /publications/
+- name: Disentangled Quantum Neural Networks
+  description: Unified estimation of quantum entropies and distance measures with disentangled QNNs.
+  status: Published
   links:
-    - label: Docs
-      url: https://quantumrisk.dev/docs
+    - label: Physical Review A (2024)
+      url: /publications/
+- name: Transformer-based ETF Portfolio System
+  description: ETF management prototype combining transformers and AI signals, developed during NCSOFT internship.
+  status: Prototype
+  links:
+    - label: Summary
+      url: /shares/

@@ -14,3 +14,5 @@
   url: "/projects/"
 - label: Quant Dashboard
   url: "/quant/"
+- label: CV
+  url: "/cv/"

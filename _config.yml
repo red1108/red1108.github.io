@@ -1,7 +1,7 @@
-title: "Researcher Portfolio"
-description: "Research, publications, shares, and quantitative performance dashboard"
+title: "Mingyu Lee"
+description: "Quantum ML, competitive programming, and finance projects"
 lang: en
-url: https://username.github.io
+url: https://red1108.github.io
 baseurl: ""
 timezone: America/Los_Angeles
 permalink: "/:categories/:title/"
@@ -50,20 +50,19 @@ defaults:
     values:
       layout: post
 author:
-  name: "Mingyu Lee, Ph.D."
-  email: "hello@mingyu.dev"
-  orcid: "0000-0003-1234-5678"
+  name: "Mingyu Lee"
+  email: "red1108@snu.ac.kr"
   affiliations:
-    - "Redwood Quantum Finance Lab"
+    - "Seoul National University"
 social:
   github: red1108
-  linkedin: mingyu-quant
-  scholar: https://scholar.google.com/citations?user=xxxx
-  twitter: mingyu_quant
-  orcid: https://orcid.org/0000-0003-1234-5678
+  linkedin: https://www.linkedin.com/in/%EB%AF%BC%EA%B7%9C-%EC%9D%B4-1b50871b8/
+  scholar: 
+  twitter: 
+  orcid: 
 navigation: _data/navigation.yml
 analytics:
-  plausible_domain: username.github.io
+  plausible_domain: red1108.github.io
 jekyll-scholar:
   style: apa
   bibliography: _bibliography/references.bib

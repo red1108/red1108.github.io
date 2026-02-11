@@ -323,3 +323,74 @@ a {
   gap: 1rem;
   padding: 0;
 }
+
+.muted {
+  color: $muted;
+}
+
+.cv-header {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cv-header h1 {
+  margin: 0.2rem 0 0.4rem;
+}
+
+.cv-contact {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0.8rem 0 1rem;
+}
+
+.cv-sections {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.cv-section {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.cv-items {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.cv-item-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cv-item-meta {
+  display: grid;
+  gap: 0.35rem;
+  text-align: right;
+  color: $muted;
+  font-size: 0.95rem;
+}
+
+.cv-bullets {
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+  color: $text;
+}
+
+@media (max-width: 720px) {
+  .cv-item-meta {
+    text-align: left;
+  }
+}

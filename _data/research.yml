@@ -1,12 +1,12 @@
+- title: Quantum Machine Learning & Generative Models
+  summary: Mutual-information maximizing quantum GANs and disentangled quantum neural networks for estimating entropies and distance measures.
+  interests:
+    - Quantum ML
+    - Generative models
+    - Quantum information
 - title: Quantum Computing for Finance
-  summary: Leveraging hybrid quantum-classical methods for portfolio optimization and risk modeling.
+  summary: Applying quantum algorithms and hybrid methods to portfolio construction, ETF strategies, and risk-aware modeling.
   interests:
     - Quantum algorithms
+    - Portfolio optimization
     - Risk analytics
-    - Reinforcement learning
-- title: Explainable AI for Trading
-  summary: Building interpretable agent-based systems that satisfy regulatory transparency.
-  interests:
-    - Causal inference
-    - Human-in-the-loop ML
-    - Responsible AI

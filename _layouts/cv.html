@@ -1,0 +1,53 @@
+---
+layout: default
+---
+{% assign cv = site.data.cv %}
+<section class="cv-header">
+  <div>
+    <p class="eyebrow">{{ cv.header.role }}</p>
+    <h1>{{ cv.header.name }}</h1>
+    <p class="muted">{{ cv.header.location }}</p>
+    <ul class="cv-contact">
+      {% for contact in cv.header.contacts %}
+        <li><a href="{{ contact.url }}">{{ contact.label }}</a></li>
+      {% endfor %}
+    </ul>
+    <div class="cta-group">
+      <a class="btn btn-primary" href="{{ '/assets/docs/mingyu-lee-cv.pdf' | relative_url }}" target="_blank" rel="noopener">Download PDF</a>
+      <a class="btn btn-ghost" href="{{ '/assets/docs/mingyu-lee-cv.pdf' | relative_url }}" target="_blank" rel="noopener">Open PDF</a>
+      <a class="btn btn-ghost" href="#" onclick="window.print(); return false;">Print</a>
+    </div>
+    <p class="muted">Last updated: {{ cv.header.updated }}</p>
+  </div>
+</section>
+
+<section class="cv-sections">
+  {% for section in cv.sections %}
+    <div class="cv-section">
+      <h2 class="section-title">{{ section.title }}</h2>
+      <ul class="cv-items">
+        {% for item in section.items %}
+        <li class="cv-item">
+          <div class="cv-item-header">
+            <div>
+              <h3>{{ item.institution }}</h3>
+              {% if item.role %}<p class="muted">{{ item.role }}</p>{% endif %}
+            </div>
+            <div class="cv-item-meta">
+              {% if item.period %}<span>{{ item.period }}</span>{% endif %}
+              {% if item.location %}<span>{{ item.location }}</span>{% endif %}
+            </div>
+          </div>
+          {% if item.details %}
+            <ul class="cv-bullets">
+              {% for detail in item.details %}
+                <li>{{ detail }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+</section>

@@ -1,10 +1,5 @@
-- course: Advanced Quantum Finance
-  institution: Bay Area Institute of Technology
-  term: Fall 2025
-  role: Instructor
-  materials: https://example.com/courses/quantum-finance
-- course: Machine Learning for Asset Management
-  institution: University of California
-  term: Spring 2025
-  role: Lecturer
-  materials: https://example.com/courses/ml-asset-management
+- course: Discrete Mathematics
+  institution: Seoul National University
+  term: Spring 2022
+  role: Teaching Assistant
+  materials: https://cs.snu.ac.kr/

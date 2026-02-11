@@ -1,0 +1,161 @@
+header:
+  name: Mingyu Lee
+  role: Undergraduate Researcher · Quantum ML & Finance
+  location: Seoul, Korea
+  contacts:
+    - label: red1108@snu.ac.kr
+      url: mailto:red1108@snu.ac.kr
+    - label: GitHub: red1108
+      url: https://github.com/red1108
+    - label: LinkedIn
+      url: https://www.linkedin.com/in/%EB%AF%BC%EA%B7%9C-%EC%9D%B4-1b50871b8/
+    - label: Homepage
+      url: /
+  updated: Feb 2026
+
+sections:
+  - title: Education
+    items:
+      - institution: Seoul National University
+        role: B.Sc. in Computer Science and Engineering; Double major in Mathematical Sciences
+        period: Mar 2021 — Present
+        location: Seoul, Korea
+        details:
+          - GPA: 4.05/4.30, Major GPA: 4.05/4.30
+      - institution: Gyeonggi Science High School for the Gifted
+        role: Computer Science
+        period: Mar 2018 — Feb 2021
+        location: Suwon, Korea
+  - title: Research Experience
+    items:
+      - institution: Research Institute of Mathematics, Seoul National University
+        role: Undergraduate Researcher
+        period: Jul 2022 — Present
+        location: Seoul, Korea
+        details:
+          - Exploring quantum machine learning and quantum generative models, adapting techniques from classical neural networks.
+  - title: Work Experience
+    items:
+      - institution: Republic of Korea Air Force
+        role: Mandatory Military Service
+        period: Feb 2024 — Nov 2025
+        location: Pyeongtaek-si, Gyeonggi-do, Korea
+      - institution: NCSOFT
+        role: Research Intern
+        period: Jul 2023 — Aug 2023
+        location: Seongnam-si, Gyeonggi-do, Korea
+        details:
+          - Developed an AI-based exchange traded fund (ETF) management system.
+      - institution: Seoul National University
+        role: Teaching Assistant
+        period: Mar 2022 — Jun 2022
+        location: Seoul, Korea
+        details:
+          - Teaching assistant for discrete mathematics.
+      - institution: Rainbow Brain, Inc.
+        role: Internship
+        period: Jan 2022 — Mar 2022
+        location: Seoul, Korea
+        details:
+          - Collected e-commerce data and provided analysis.
+  - title: Awards & Achievements
+    items:
+      - institution: 2025 ICPC Seoul Regional
+        role: Bronze prize (8th); President’s Award of NIA
+        period: Nov 2025
+      - institution: 2023 ICPC Seoul Regional
+        role: Encouragement prize (14th); Director's award of NIA
+        period: Nov 2023
+      - institution: 2023 UCPC Final Round
+        role: 7th place
+        period: Jul 2023
+      - institution: 2023 Quantum Hackathon Korea
+        role: 1st place; Ministry of Science and ICT Minister's Award
+        period: Jun 2023
+      - institution: WorldQuant Brain
+        role: Research consultant
+        period: Apr 2023
+      - institution: QHack
+        role: Certificate of achievement (advanced)
+        period: Feb 2023
+      - institution: Xanadu QHack Coding Challenges
+        role: Power-Up Awards (IBM Quantum/PINQ2, NVIDIA/Cyxtera/Run:AI)
+        period: Feb 2023
+      - institution: Samsung Collegiate Programming Cup (SCPC)
+        role: 5th prize
+        period: Sep 2022
+      - institution: Samsung Humantech Paper Award
+        role: Bronze prize for “Improving Performance of Pyramid CNN used in Image Deblurring (2020)”
+        period: Jul 2021
+  - title: Honors
+    items:
+      - institution: Korea–U.S. Advanced Industries Youth Exchange Scholarship, 4th Cohort
+        period: Nov 2025 — Present
+      - institution: Seoul National University Semiconductor Characterization College Scholarship
+        period: Feb 2024 — Present
+      - institution: Young Engineers Honor Society (YEHS), The National Academy of Engineering of Korea
+        period: Nov 2023 — Present
+      - institution: Samsung Software Membership
+        period: Oct 2022 — Present
+      - institution: The Presidential Science Scholarship (Computer Science)
+        period: Mar 2022 — Present
+  - title: Publications
+    items:
+      - institution: Scientific Reports
+        role: Mutual information maximizing quantum generative adversarial networks
+        period: 2025
+        details:
+          - Authors: M. Lee, M. Shin, J. Lee, K. Jeong. Scientific Reports 15(1), 32835.
+      - institution: Physical Review A
+        role: Disentangling quantum neural networks for unified estimation of quantum entropies and distance measures
+        period: 2024
+        details:
+          - Authors: M. Shin, S. Lee, J. Lee, M. Lee, D. Ji, H. Yeo, K. Jeong. Physical Review A 110, 062418.
+      - institution: Preprint
+        role: Improving Performance of Pyramid CNN used in Image Deblurring
+        period: 2020
+        details:
+          - Author: Mingyu Lee.
+  - title: Contributed Talks
+    items:
+      - institution: 2nd CQNC Winter Kick-off Workshop
+        role: Mutual Information Maximizing Quantum Generative Adversarial Network and Its Applications (Speaker)
+        period: Dec 2023
+      - institution: KSIAM 2023 Annual Meeting
+        role: Mutual Information Maximizing Quantum Generative Adversarial Network and Its Applications (Speaker)
+        period: Nov 2023
+      - institution: Korean Institute of Industrial Engineers Autumn Annual Conference
+        role: Proposing a Transformer-based ETF portfolio for liquidity providers (Co-author)
+        period: Nov 2023
+      - institution: 1st CQNC Winter Kick-off Workshop
+        role: Introduction to Shadow Tomography and Its Application (Speaker)
+        period: Jan 2023
+  - title: Invited Talks
+    items:
+      - institution: Quantum FinTech Webinars Series, Rethinc. Labs, UNC Kenan-Flagler Business School
+        role: Mutual Information Maximizing Quantum Generative Adversarial Network and Its Applications in Finance (Speaker)
+        period: Nov 2023
+  - title: Poster Presentations
+    items:
+      - institution: 27th Annual Conference on Quantum Information Processing (QIP 2024)
+        role: Mutual Information Maximizing Quantum Generative Adversarial Network and Its Applications
+        period: 2024
+  - title: Skills & Qualifications
+    items:
+      - institution: Programming
+        role: Advanced
+        details:
+          - C/C++, Python
+      - institution: Programming
+        role: Basic
+        details:
+          - MATLAB, TypeScript/JavaScript, Java, R
+      - institution: Algorithms & Problem Solving
+        details:
+          - Codeforces Master (rating 2177, max 2279) — handle: red1108
+          - AtCoder 1 Kyu (rating 1915, max 1929) — handle: red1108
+  - title: Interests
+    items:
+      - institution: Quantum computation and quantum information
+      - institution: Quantitative research and trading
+      - institution: Machine learning and its applications
