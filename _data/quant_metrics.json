@@ -7,7 +7,7 @@
   {
     "label": "\ub204\uc801 \uc218\uc775\ub960",
     "value": "15.48%",
-    "note": "\ub2e8\ub9ac"
+    "note": "\ub2e8\ub9ac \uae30\uc900"
   },
   {
     "label": "\uc2b9\ub960",
@@ -32,16 +32,16 @@
   {
     "label": "Sharpe Ratio",
     "value": "16.17",
-    "note": "\uc5f0\uac04 \ud658\uc0b0"
+    "note": "\uc5f0 \ud658\uc0b0"
   },
   {
     "label": "Sortino Ratio",
     "value": "36.17",
-    "note": "\ud558\ubc29 \ubcc0\ub3d9\uc131"
+    "note": "\uc5f0 \ud658\uc0b0"
   },
   {
     "label": "Max Drawdown",
     "value": "-1.03%",
-    "note": "\ub2e8\ub9ac \uace1\uc120"
+    "note": "\ucd5c\ub300 \ub099\ud3ed"
   }
 ]
