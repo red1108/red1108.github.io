@@ -153,6 +153,7 @@ async function renderQuantChart() {
   const histogramTarget = document.getElementById("quant-roi-hist");
   const metricGrid = document.querySelector(".metric-grid");
   const metricHeading = document.getElementById("strategy-performance-heading");
+  const zoomHint = document.getElementById("quant-zoom-hint");
   if (!target) return;
   try {
     const response = await fetch("/assets/quant/returns.json", { cache: "no-cache" });
@@ -197,7 +198,12 @@ async function renderQuantChart() {
         ? `${defaultHeadingText} (Selected Period)`
         : defaultHeadingText;
     };
+    const updateZoomHint = (selected) => {
+      if (!zoomHint) return;
+      zoomHint.hidden = !selected;
+    };
     updateHeading(false);
+    updateZoomHint(false);
 
     const histogramState = { initialized: false };
     const histogramConfig = { responsive: true, displayModeBar: false };
@@ -259,6 +265,7 @@ async function renderQuantChart() {
       renderMetricGrid(metricGrid, fullMetrics);
       updateHistogram(series);
       updateHeading(false);
+      updateZoomHint(false);
     };
 
     const applyRange = (startValue, endValue) => {
@@ -279,6 +286,7 @@ async function renderQuantChart() {
       renderMetricGrid(metricGrid, computeMetrics(filtered));
       updateHistogram(filtered);
       updateHeading(selectedSubset);
+      updateZoomHint(selectedSubset);
     };
 
     clearChartContainer(target);
@@ -306,6 +314,9 @@ async function renderQuantChart() {
     }
     if (metricGrid) {
       metricGrid.innerHTML = `<p class="quant-error">${error.message}</p>`;
+    }
+    if (zoomHint) {
+      zoomHint.hidden = true;
     }
   }
 }
