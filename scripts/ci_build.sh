@@ -21,7 +21,11 @@ echo "[ci-build] Installing Ruby gems"
 bundle install --quiet
 
 echo "[ci-build] Installing Python requirements"
-python3 -m pip install --user -r requirements.txt >/dev/null
+if [[ -n "${VIRTUAL_ENV:-}" ]]; then
+  python3 -m pip install -r requirements.txt >/dev/null
+else
+  python3 -m pip install --user -r requirements.txt >/dev/null
+fi
 
 echo "[ci-build] Generating quant artifacts"
 python3 scripts/build_quant.py

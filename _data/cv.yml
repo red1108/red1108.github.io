@@ -5,7 +5,7 @@ header:
   contacts:
     - label: red1108@snu.ac.kr
       url: mailto:red1108@snu.ac.kr
-    - label: GitHub: red1108
+    - label: "GitHub: red1108"
       url: https://github.com/red1108
     - label: LinkedIn
       url: https://www.linkedin.com/in/%EB%AF%BC%EA%B7%9C-%EC%9D%B4-1b50871b8/
@@ -21,7 +21,7 @@ sections:
         period: Mar 2021 — Present
         location: Seoul, Korea
         details:
-          - GPA: 4.05/4.30, Major GPA: 4.05/4.30
+          - "GPA: 4.05/4.30, Major GPA: 4.05/4.30"
       - institution: Gyeonggi Science High School for the Gifted
         role: Computer Science
         period: Mar 2018 — Feb 2021
@@ -105,17 +105,17 @@ sections:
         role: Mutual information maximizing quantum generative adversarial networks
         period: 2025
         details:
-          - Authors: M. Lee, M. Shin, J. Lee, K. Jeong. Scientific Reports 15(1), 32835.
+          - "Authors: M. Lee, M. Shin, J. Lee, K. Jeong. Scientific Reports 15(1), 32835."
       - institution: Physical Review A
         role: Disentangling quantum neural networks for unified estimation of quantum entropies and distance measures
         period: 2024
         details:
-          - Authors: M. Shin, S. Lee, J. Lee, M. Lee, D. Ji, H. Yeo, K. Jeong. Physical Review A 110, 062418.
+          - "Authors: M. Shin, S. Lee, J. Lee, M. Lee, D. Ji, H. Yeo, K. Jeong. Physical Review A 110, 062418."
       - institution: Preprint
         role: Improving Performance of Pyramid CNN used in Image Deblurring
         period: 2020
         details:
-          - Author: Mingyu Lee.
+          - "Author: Mingyu Lee."
   - title: Contributed Talks
     items:
       - institution: 2nd CQNC Winter Kick-off Workshop
