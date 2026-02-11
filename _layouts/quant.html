@@ -3,17 +3,17 @@ layout: default
 ---
 <article class="quant-dashboard">
   <header class="quant-dashboard__intro">
-    <p class="eyebrow">Rebated cross-exchange arbitrage · Simple ROI</p>
+    <p class="eyebrow">Cross-exchange arbitrage · Simple ROI</p>
     <h1>Quant Dashboard</h1>
-    <p>Hourly trades aggregated from <code>Rebated_ROI</code>. Returns are summed linearly to avoid strategy leakage; time-based metrics consider actual elapsed hours (365x24 baseline).</p>
+    <p>Trade-level ROI is tracked on a simple (non-compounded) basis so the public dashboard reveals performance without exposing scheduling details.</p>
   </header>
 
   <section class="quant-dashboard__chart">
     <figure class="quant-chart-frame">
       <div id="quant-dynamic-chart" class="quant-chart" aria-live="polite" data-placeholder="/assets/quant/cumulative.png">
-        <img src="{{ '/assets/quant/cumulative.png' | relative_url }}" alt="Cumulative Rebated ROI fallback chart" loading="lazy" />
+        <img src="{{ '/assets/quant/cumulative.png' | relative_url }}" alt="Cumulative ROI fallback chart" loading="lazy" />
       </div>
-      <figcaption>Simple cumulative Rebated ROI by trade index (x-axis displays trade sequence, not time).</figcaption>
+      <figcaption>Simple cumulative ROI by trade index (x-axis displays trade sequence, not time).</figcaption>
     </figure>
   </section>
 
@@ -35,7 +35,7 @@ layout: default
 
   <section class="quant-dashboard__details">
     <div class="quant-monthly">
-      <h2>Monthly Rebated ROI</h2>
+      <h2>Monthly ROI</h2>
       <table>
         <thead>
           <tr>
@@ -56,9 +56,9 @@ layout: default
     <div class="quant-notes">
       <h2>Methodology</h2>
       <ul>
-        <li>Returns use <code>Rebated_ROI</code> per trade (decimal). Graph starts at 0% and adds each trade's ROI without compounding.</li>
-        <li>Monthly/annual ROI scale the realized simple return by elapsed hours (365x24 baseline) to respect sparse trading cadence.</li>
-        <li>Sharpe/Sortino ratios annualize per-trade stats using the same time-weighted frequency. Max drawdown follows the linear equity curve.</li>
+        <li>All metrics derive from simple (non-compounded) ROI per trade.</li>
+        <li>Monthly/annual figures scale the observed average ROI across the testing window.</li>
+        <li>Sharpe, Sortino, and drawdown reference the same simple equity curve.</li>
       </ul>
     </div>
   </section>
