@@ -95,7 +95,7 @@ def compute_metrics(df: pd.DataFrame) -> tuple[pd.DataFrame, list[dict[str, str]
 
   metrics = [
     {"label": "총 거래 횟수", "value": f"{total_trades:,}", "note": f"기간 {total_hours/24:.1f}일"},
-    {"label": "누적 수익률", "value": f"{total_return * 100:.2f}%", "note": "단리, Rebated"},
+    {"label": "누적 수익률", "value": f"{total_return * 100:.2f}%", "note": "단리"},
     {"label": "승률", "value": f"{win_rate * 100:.1f}%", "note": f"승 {int((roi>0).sum())} / 패 {int((roi<=0).sum())}"},
     {"label": "손익비", "value": "∞" if math.isinf(profit_factor) else f"{profit_factor:.2f}", "note": "총이익 / 총손실"},
     {"label": "월 수익률", "value": f"{monthly_return * 100:.2f}%", "note": "거래 간격 반영"},

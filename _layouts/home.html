@@ -6,7 +6,9 @@ layout: default
   <div class="hero-card hero-intro">
     <p class="eyebrow">{{ profile.role }}</p>
     <h1>{{ profile.name }}</h1>
-    <p class="lead">{{ profile.summary }}</p>
+    <div class="lead">
+      {{ profile.summary | markdownify }}
+    </div>
     <ul class="hero-meta">
       <li>{{ profile.location }}</li>
       <li><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></li>

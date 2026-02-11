@@ -10,11 +10,7 @@ async function renderQuantChart() {
     }
     const trades = series.map((row) => row.trade);
     const cumulative = series.map((row) => row.cumulative_pct);
-    const customData = series.map((row) => [
-      new Date(row.timestamp).toLocaleString(),
-      row.symbol,
-      row.roi_pct
-    ]);
+    const roiPct = series.map((row) => row.roi_pct);
     const trace = {
       x: trades,
       y: cumulative,
@@ -23,10 +19,9 @@ async function renderQuantChart() {
       line: { color: "#ff6f3c", width: 3 },
       fill: "tozeroy",
       name: "Cumulative ROI",
-      customdata: customData,
+      customdata: roiPct,
       hovertemplate:
-        "Trade %{x}<br>%{customdata[0]}<br>" +
-        "%{customdata[1]} ROI: %{customdata[2]:.3f}%<extra></extra>"
+        "Trade %{x}<br>ROI %{customdata:.3f}%<extra></extra>"
     };
     const layout = {
       margin: { l: 50, r: 20, t: 30, b: 50 },
