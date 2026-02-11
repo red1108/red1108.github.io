@@ -55,7 +55,7 @@ def compute_time_spans(df: pd.DataFrame) -> tuple[float, float]:
   return total_hours, total_years
 
 
-def compute_metrics(df: pd.DataFrame) -> tuple[pd.DataFrame, list[dict[str, str]], list[dict[str, str]], list[dict[str, float]]]:
+def compute_metrics(df: pd.DataFrame) -> tuple[pd.DataFrame, list[dict[str, str]], list[dict[str, str]], list[dict[str, float]], dict[str, object]]:
   roi = df["rebated_roi"].astype(float)
   cumulative = roi.cumsum()
   df = df.assign(
@@ -127,13 +127,21 @@ def compute_metrics(df: pd.DataFrame) -> tuple[pd.DataFrame, list[dict[str, str]
     for row in df.itertuples()
   ]
 
-  return df, metrics, monthly, series
+  last_timestamp = df["timestamp"].iloc[-1] if total_trades else None
+  overview = {
+    "trade_count": total_trades,
+    "duration_days": round(total_hours / 24, 1),
+    "last_updated": last_timestamp.strftime("%Y-%m-%d") if last_timestamp is not None else "",
+  }
+
+  return df, metrics, monthly, series, overview
 
 
-def save_outputs(df: pd.DataFrame, metrics: list[dict], monthly: list[dict], series: list[dict]) -> None:
+def save_outputs(df: pd.DataFrame, metrics: list[dict], monthly: list[dict], series: list[dict], overview: dict[str, object]) -> None:
   (SITE_DATA / "quant_metrics.json").write_text(json.dumps(metrics, indent=2))
   (SITE_DATA / "quant_monthly.json").write_text(json.dumps(monthly, indent=2))
   (QUANT_ASSETS / "returns.json").write_text(json.dumps(series, indent=2))
+  (SITE_DATA / "quant_overview.json").write_text(json.dumps(overview, indent=2))
 
   plt.style.use("dark_background")
   fig, ax = plt.subplots(figsize=(9, 4.8), dpi=150)
@@ -151,8 +159,8 @@ def save_outputs(df: pd.DataFrame, metrics: list[dict], monthly: list[dict], ser
 def main() -> None:
   ensure_paths()
   df = load_returns()
-  enriched, metrics, monthly, series = compute_metrics(df)
-  save_outputs(enriched, metrics, monthly, series)
+  enriched, metrics, monthly, series, overview = compute_metrics(df)
+  save_outputs(enriched, metrics, monthly, series, overview)
   print("Generated quant artifacts")
 
 

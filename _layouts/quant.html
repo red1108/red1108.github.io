@@ -2,12 +2,15 @@
 layout: default
 ---
 {% assign quant_metrics = site.data.quant_metrics %}
-{% assign trade_metric = quant_metrics[0] %}
+{% assign quant_overview = site.data.quant_overview %}
+{% assign duration_days = quant_overview.duration_days | default: 0 %}
+{% assign trade_count = quant_overview.trade_count | default: 0 %}
+{% assign last_updated = quant_overview.last_updated | default: '' %}
 <article class="quant-dashboard">
   <header class="quant-dashboard__intro">
     <p class="eyebrow">Cross-exchange arbitrage · Simple ROI</p>
     <h1>Quant Dashboard</h1>
-    <p>모든 결과는 {{ trade_metric.note | remove: '기간 ' }} 동안 {{ trade_metric.value }}번의 실제 트레이딩으로부터 얻은 결과입니다. 모든 계산은 복리가 아닌 단리 기준이며, 트레이딩 기간 동안의 평균 성과로 계산되었습니다.</p>
+    <p>모든 데이터는 백테스팅이 아닌 실제 거래로 얻은 결과입니다. 총 {{ duration_days | round: 1 }}일 동안 {{ trade_count }}번의 트레이딩을 통해 계산된 결과입니다. 모든 계산은 복리가 아닌 단리 기준이며, 트레이딩 기간 동안의 평균 성과로 계산되었습니다. 마지막 업데이트: {{ last_updated }} · Collaborator: <a href="https://myeongjinshin.github.io/" target="_blank" rel="noopener">Myeongjin Shin</a>.</p>
   </header>
 
   <section class="quant-dashboard__chart">
