@@ -1078,5 +1078,104 @@
     "roi_pct": 0.3401,
     "cumulative": 0.1547920000000001,
     "cumulative_pct": 15.47920000000001
+  },
+  {
+    "trade": 121,
+    "timestamp": "2026-02-11T03:28:00+00:00",
+    "symbol": "VANAUSDT",
+    "roi": -0.001272,
+    "roi_pct": -0.12719999999999998,
+    "cumulative": 0.1535200000000001,
+    "cumulative_pct": 15.352000000000011
+  },
+  {
+    "trade": 122,
+    "timestamp": "2026-02-11T04:28:00+00:00",
+    "symbol": "AXSUSDT",
+    "roi": 0.000165,
+    "roi_pct": 0.0165,
+    "cumulative": 0.1536850000000001,
+    "cumulative_pct": 15.36850000000001
+  },
+  {
+    "trade": 123,
+    "timestamp": "2026-02-11T06:28:00+00:00",
+    "symbol": "SONICUSDT",
+    "roi": -0.001464,
+    "roi_pct": -0.1464,
+    "cumulative": 0.1522210000000001,
+    "cumulative_pct": 15.22210000000001
+  },
+  {
+    "trade": 124,
+    "timestamp": "2026-02-11T07:28:00+00:00",
+    "symbol": "MYXUSDT",
+    "roi": -0.001391,
+    "roi_pct": -0.1391,
+    "cumulative": 0.1508300000000001,
+    "cumulative_pct": 15.08300000000001
+  },
+  {
+    "trade": 125,
+    "timestamp": "2026-02-11T08:28:00+00:00",
+    "symbol": "AXSUSDT",
+    "roi": 0.001623,
+    "roi_pct": 0.1623,
+    "cumulative": 0.15245300000000012,
+    "cumulative_pct": 15.245300000000011
+  },
+  {
+    "trade": 126,
+    "timestamp": "2026-02-11T09:28:00+00:00",
+    "symbol": "VANAUSDT",
+    "roi": 0.003217,
+    "roi_pct": 0.3217,
+    "cumulative": 0.1556700000000001,
+    "cumulative_pct": 15.56700000000001
+  },
+  {
+    "trade": 127,
+    "timestamp": "2026-02-11T10:28:00+00:00",
+    "symbol": "BERAUSDT",
+    "roi": 0.000424,
+    "roi_pct": 0.0424,
+    "cumulative": 0.15609400000000012,
+    "cumulative_pct": 15.609400000000011
+  },
+  {
+    "trade": 128,
+    "timestamp": "2026-02-11T12:28:00+00:00",
+    "symbol": "AXSUSDT",
+    "roi": 0.001368,
+    "roi_pct": 0.1368,
+    "cumulative": 0.15746200000000013,
+    "cumulative_pct": 15.746200000000012
+  },
+  {
+    "trade": 129,
+    "timestamp": "2026-02-11T13:28:00+00:00",
+    "symbol": "MYXUSDT",
+    "roi": -0.002146,
+    "roi_pct": -0.21459999999999999,
+    "cumulative": 0.15531600000000012,
+    "cumulative_pct": 15.531600000000012
+  },
+  {
+    "trade": 130,
+    "timestamp": "2026-02-11T14:28:00+00:00",
+    "symbol": "MYXUSDT",
+    "roi": 0.001865,
+    "roi_pct": 0.1865,
+    "cumulative": 0.15718100000000013,
+    "cumulative_pct": 15.718100000000012
+  },
+  {
+    "trade": 131,
+    "timestamp": "2026-02-11T16:28:00+00:00",
+    "symbol": "MYXUSDT",
+    "roi": -0.002328,
+    "roi_pct": -0.2328,
+    "cumulative": 0.15485300000000013,
+    "cumulative_pct": 15.485300000000013
   }
 ]
