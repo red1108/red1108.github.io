@@ -8,6 +8,7 @@ import math
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+from matplotlib import ticker as mticker
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,6 +41,7 @@ def load_returns() -> pd.DataFrame:
   df = df.sort_values("timestamp").reset_index(drop=True)
   df["rebated_roi"] = df["Rebated_ROI"].astype(float)
   df["rebated_net_profit"] = df["Rebated_Net_Profit"].astype(float)
+  df["symbol"] = df["Symbol"].astype(str)
   df["trade"] = df.index + 1
   return df
 
@@ -105,29 +107,36 @@ def compute_metrics(df: pd.DataFrame) -> tuple[pd.DataFrame, list[dict[str, str]
     {"label": "Max Drawdown", "value": f"{max_drawdown * 100:.2f}%", "note": "최대 낙폭"},
   ]
 
-  df["month_key"] = df["timestamp"].dt.to_period("M")
+  df["month_label"] = df["timestamp"].dt.strftime("%b %Y")
   monthly = [
     {
-      "month": period.strftime("%b %Y"),
+      "month": label,
       "return": f"{value * 100:.2f}%",
     }
-    for period, value in df.groupby("month_key")["rebated_roi"].sum().items()
+    for label, value in df.groupby("month_label")["rebated_roi"].sum().items()
   ]
 
   series = [
     {
-      "trade": int(row.trade),
-      "timestamp": row.timestamp.isoformat(),
-      "symbol": row.Symbol,
-      "roi": row.rebated_roi,
-      "roi_pct": row.rebated_roi * 100,
-      "cumulative": row.cumulative,
-      "cumulative_pct": row.cumulative_pct,
+      "trade": int(trade),
+      "timestamp": timestamp.isoformat(),
+      "symbol": symbol,
+      "roi": float(roi_value),
+      "roi_pct": float(roi_value * 100),
+      "cumulative": float(cumulative_value),
+      "cumulative_pct": float(cumulative_pct_value),
     }
-    for row in df.itertuples()
+    for trade, timestamp, symbol, roi_value, cumulative_value, cumulative_pct_value in zip(
+      df["trade"],
+      df["timestamp"],
+      df["symbol"],
+      df["rebated_roi"],
+      df["cumulative"],
+      df["cumulative_pct"],
+    )
   ]
 
-  last_timestamp = df["timestamp"].iloc[-1] if total_trades else None
+  last_timestamp = df["timestamp"].iloc[-1].to_pydatetime() if total_trades else None
   overview = {
     "trade_count": total_trades,
     "duration_days": round(total_hours / 24, 1),
@@ -143,16 +152,28 @@ def save_outputs(df: pd.DataFrame, metrics: list[dict], monthly: list[dict], ser
   (QUANT_ASSETS / "returns.json").write_text(json.dumps(series, indent=2))
   (SITE_DATA / "quant_overview.json").write_text(json.dumps(overview, indent=2))
 
-  plt.style.use("dark_background")
   fig, ax = plt.subplots(figsize=(9, 4.8), dpi=150)
-  ax.plot(df["trade"], df["cumulative_pct"], color="#ff6f3c", linewidth=2.2)
-  ax.fill_between(df["trade"], df["cumulative_pct"], alpha=0.18, color="#ff6f3c")
-  ax.set_title("Cumulative Rebated ROI (Simple)")
-  ax.set_xlabel("Trade #")
-  ax.set_ylabel("Cumulative ROI (%)")
-  ax.grid(alpha=0.25)
+  background = "#05060a"
+  accent = "#ff6f3c"
+  grid_color = "#9fb6ca"
+
+  fig.patch.set_facecolor(background)
+  ax.set_facecolor(background)
+  trades = df["trade"]
+  cumulative_pct = df["cumulative_pct"]
+  ax.plot(trades, cumulative_pct, color=accent, linewidth=2.5)
+  ax.fill_between(trades, cumulative_pct, color=accent, alpha=0.18)
+  ax.set_title("Cumulative Rebated ROI (Simple)", color="#f7f8fa", pad=14)
+  ax.set_xlabel("Trade #", color="#ccd7e2")
+  ax.set_ylabel("Cumulative ROI (%)", color="#ccd7e2")
+  ax.tick_params(colors="#e6edf5", labelsize=9)
+  ax.yaxis.set_major_formatter(mticker.FormatStrFormatter("%.1f"))
+  for spine in ax.spines.values():
+    spine.set_color("#2b2d33")
+  ax.grid(color=grid_color, alpha=0.15)
+  ax.margins(x=0)
   fig.tight_layout()
-  fig.savefig(QUANT_ASSETS / "cumulative.png", transparent=True)
+  fig.savefig(QUANT_ASSETS / "cumulative.png", facecolor=background, transparent=False)
   plt.close(fig)
 
 
