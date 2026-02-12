@@ -288,7 +288,7 @@ function initBlochVisualizer() {
       bgcolor: "rgba(5,6,10,0)",
       camera: {
         up: { x: 0, y: 0, z: 1 },
-        eye: { x: 1.6, y: 1.2, z: 0.9 }
+        eye: { x: 1.05, y: 0.8, z: 0.6 }
       },
       xaxis: axisDefinition(),
       yaxis: axisDefinition(),
