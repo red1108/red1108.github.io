@@ -503,6 +503,46 @@ a {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.bloch-overlay-left {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  background: rgba(6, 8, 14, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.3rem;
+  padding: 1rem 1.25rem;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.45);
+  color: #fff;
+  width: min(260px, 70vw);
+}
+
+.bloch-reset-btn {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.bloch-reset-btn:hover,
+.bloch-reset-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.bloch-trajectory-meta {
+  margin: 0.8rem 0 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
 .bloch-overlay:hover,
 .bloch-overlay:focus-within {
   opacity: 1;

@@ -3,6 +3,10 @@ layout: default
 ---
 <article class="bloch-fullscreen" aria-label="Bloch Sphere Visualizer">
   <div id="bloch-viewport" class="bloch-viewport" aria-live="polite"></div>
+  <div class="bloch-overlay-left">
+    <button type="button" class="bloch-reset-btn" id="reset-trajectory">Reset trajectory</button>
+    <p class="bloch-trajectory-meta">Tracked points: <span id="trajectory-count">1</span></p>
+  </div>
   <div class="bloch-overlay" tabindex="0">
     <div class="bloch-overlay__header">
       <p class="eyebrow">Quantum intuition · Bloch geometry</p>
