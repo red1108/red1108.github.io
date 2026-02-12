@@ -78,13 +78,13 @@ function initBlochVisualizer() {
   };
 
   Plotly.newPlot(viewport, [sphereTrace, gridTrace, guideTrace, stateTrace], layout, config).then(() => {
-    const updateUI = () => {
+    const updateUI = ({ transition = 150 } = {}) => {
       const thetaDeg = Number(thetaSlider.value);
       const phiDeg = Number(phiSlider.value);
       thetaOutput.textContent = `${thetaDeg.toFixed(0)}°`;
       phiOutput.textContent = `${phiDeg.toFixed(0)}°`;
       const state = computeState(thetaDeg, phiDeg, conversionMode);
-      updateStateTrace(viewport, state);
+      updateStateTrace(viewport, state, transition);
       updateAmplitudePanel({ state, amplitudeZero, amplitudeOne, phiDeg, conversionMode, expressionLabel });
     };
 
@@ -104,8 +104,8 @@ function initBlochVisualizer() {
           ? "|ψ⟩ = cos(θ)|0⟩ + e^{iφ} sin(θ)|1⟩"
           : "|ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩";
       }
-      animateGrid(viewport, gridBlueprint, conversionMode);
-      updateUI();
+      animateGrid(viewport, gridBlueprint, conversionMode, 700);
+      updateUI({ transition: 700 });
     });
 
     updateUI();
@@ -165,8 +165,8 @@ const buildSphereSurface = () => {
 
 const buildGridBlueprint = () => {
   const blueprint = [];
-  for (let theta = 15; theta <= 165; theta += 30) {
-    for (let phi = 0; phi < 360; phi += 30) {
+  for (let theta = 10; theta <= 170; theta += 20) {
+    for (let phi = 0; phi < 360; phi += 20) {
       blueprint.push({ theta, phi });
     }
   }
@@ -253,7 +253,7 @@ const mapGrid = (blueprint, conversion) => {
     y.push(point.y);
     z.push(point.z);
     const hue = node.phi;
-    colors.push(hslToHex(hue, 70, conversion ? 62 : 52));
+    colors.push(hslToHex(hue, 55, conversion ? 52 : 42));
   });
   return { x, y, z, colors };
 };
@@ -282,7 +282,7 @@ const computeState = (thetaDeg, phiDeg, conversion) => {
   };
 };
 
-const animateGrid = (viewport, blueprint, conversion) => {
+const animateGrid = (viewport, blueprint, conversion, duration = 600) => {
   const mapped = mapGrid(blueprint, conversion);
   Plotly.animate(
     viewport,
@@ -293,22 +293,25 @@ const animateGrid = (viewport, blueprint, conversion) => {
       traces: [1],
     },
     {
-      transition: { duration: 600, easing: "cubic-in-out" },
-      frame: { duration: 600, redraw: false },
+      transition: { duration, easing: "cubic-in-out" },
+      frame: { duration, redraw: false },
     }
   );
 };
 
-const updateStateTrace = (viewport, state) => {
-  Plotly.restyle(
+const updateStateTrace = (viewport, state, duration = 150) => {
+  Plotly.animate(
     viewport,
     {
-      x: [[state.x]],
-      y: [[state.y]],
-      z: [[state.z]],
-      "marker.color": [[state.color]],
+      data: [
+        { x: [state.x], y: [state.y], z: [state.z], marker: { color: state.color } },
+      ],
+      traces: [3],
     },
-    [3]
+    {
+      transition: { duration, easing: "cubic-in-out" },
+      frame: { duration, redraw: false },
+    }
   );
 };
 
@@ -317,7 +320,7 @@ const updateAmplitudePanel = ({ state, amplitudeZero, amplitudeOne, phiDeg, conv
   amplitudeZero.textContent = state.amplitudes.alpha.toFixed(3);
   const magnitude = state.amplitudes.betaMagnitude.toFixed(3);
   const phase = ((phiDeg % 360) + 360) % 360;
-  amplitudeOne.textContent = `${magnitude} · e^{i${phase.toFixed(0)}°}`;
+  amplitudeOne.textContent = `${magnitude}}`;
   if (expressionLabel) {
     expressionLabel.textContent = conversionMode
       ? "|ψ⟩ = cos(θ)|0⟩ + e^{iφ} sin(θ)|1⟩"
