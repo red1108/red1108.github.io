@@ -300,18 +300,15 @@ const animateGrid = (viewport, blueprint, conversion) => {
 };
 
 const updateStateTrace = (viewport, state) => {
-  Plotly.animate(
+  Plotly.restyle(
     viewport,
     {
-      data: [
-        { x: [state.x], y: [state.y], z: [state.z], marker: { color: state.color } },
-      ],
-      traces: [3],
+      x: [[state.x]],
+      y: [[state.y]],
+      z: [[state.z]],
+      "marker.color": [[state.color]],
     },
-    {
-      transition: { duration: 400, easing: "cubic-in-out" },
-      frame: { duration: 400, redraw: false },
-    }
+    [3]
   );
 };
 
