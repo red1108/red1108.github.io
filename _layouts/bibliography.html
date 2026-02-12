@@ -1,7 +1,16 @@
-<ol class="bibliography">
-{% for entry in bibliography %}
-  <li id="{{ entry.key }}">
-    {{ entry.reference }}
-  </li>
-{% endfor %}
-</ol>
+<section class="publications-showcase">
+  <ol class="pub-list">
+  {% for entry in bibliography %}
+    <li class="pub-card" id="{{ entry.key }}">
+      <div class="pub-card-main">{{ entry.reference }}</div>
+      <div class="pub-card-actions">
+        {% if entry.url %}
+          <a class="pub-link" href="{{ entry.url }}" target="_blank" rel="noopener noreferrer">View paper</a>
+        {% else %}
+          <span class="pub-link-muted">No external link</span>
+        {% endif %}
+      </div>
+    </li>
+  {% endfor %}
+  </ol>
+</section>
