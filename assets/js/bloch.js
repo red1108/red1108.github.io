@@ -2,6 +2,53 @@ const BLOCH_PLOTLY_CDN = "https://cdn.plot.ly/plotly-2.32.0.min.js";
 
 const degToRad = (deg) => (deg * Math.PI) / 180;
 
+const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
+
+const lerpArrays = (start, end, t) => start.map((value, index) => value + (end[index] - value) * t);
+
+const getTraceData = (viewport, index) => {
+  const trace = viewport.data?.[index];
+  if (!trace) return null;
+  return {
+    x: Array.isArray(trace.x) ? trace.x.slice() : [],
+    y: Array.isArray(trace.y) ? trace.y.slice() : [],
+    z: Array.isArray(trace.z) ? trace.z.slice() : [],
+    color: trace.marker?.color,
+  };
+};
+
+const animateTrace = ({ viewport, traceIndex, target, duration = 600 }) => {
+  if (!viewport) return;
+  viewport.__blochAnimations = viewport.__blochAnimations || {};
+  const store = viewport.__blochAnimations;
+  if (store[traceIndex]) {
+    cancelAnimationFrame(store[traceIndex]);
+  }
+  const start = getTraceData(viewport, traceIndex);
+  if (!start) return;
+  const startTime = performance.now();
+  const step = (now) => {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = easeInOutCubic(progress);
+    const currentX = lerpArrays(start.x, target.x, eased);
+    const currentY = lerpArrays(start.y, target.y, eased);
+    const currentZ = lerpArrays(start.z, target.z, eased);
+    const restylePayload = {
+      x: [currentX],
+      y: [currentY],
+      z: [currentZ],
+    };
+    if (target.color) {
+      restylePayload["marker.color"] = [[target.color]];
+    }
+    Plotly.restyle(viewport, restylePayload, [traceIndex]);
+    if (progress < 1) {
+      store[traceIndex] = requestAnimationFrame(step);
+    }
+  };
+  store[traceIndex] = requestAnimationFrame(step);
+};
+
 const hslToHex = (h, s, l) => {
   const a = (s / 100) * Math.min(l / 100, 1 - l / 100);
   const f = (n) => {
@@ -284,35 +331,22 @@ const computeState = (thetaDeg, phiDeg, conversion) => {
 
 const animateGrid = (viewport, blueprint, conversion, duration = 600) => {
   const mapped = mapGrid(blueprint, conversion);
-  Plotly.animate(
+  animateTrace({
     viewport,
-    {
-      data: [
-        { x: mapped.x, y: mapped.y, z: mapped.z, marker: { color: mapped.colors } },
-      ],
-      traces: [1],
-    },
-    {
-      transition: { duration, easing: "cubic-in-out" },
-      frame: { duration, redraw: false },
-    }
-  );
+    traceIndex: 1,
+    target: { x: mapped.x, y: mapped.y, z: mapped.z },
+    duration,
+  });
+  Plotly.restyle(viewport, { "marker.color": [mapped.colors] }, [1]);
 };
 
 const updateStateTrace = (viewport, state, duration = 150) => {
-  Plotly.animate(
+  animateTrace({
     viewport,
-    {
-      data: [
-        { x: [state.x], y: [state.y], z: [state.z], marker: { color: state.color } },
-      ],
-      traces: [3],
-    },
-    {
-      transition: { duration, easing: "cubic-in-out" },
-      frame: { duration, redraw: false },
-    }
-  );
+    traceIndex: 3,
+    target: { x: [state.x], y: [state.y], z: [state.z], color: state.color },
+    duration,
+  });
 };
 
 const updateAmplitudePanel = ({ state, amplitudeZero, amplitudeOne, phiDeg, conversionMode, expressionLabel }) => {
