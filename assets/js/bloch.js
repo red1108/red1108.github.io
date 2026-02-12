@@ -1,6 +1,7 @@
 const BLOCH_PLOTLY_CDN = "https://cdn.plot.ly/plotly-2.32.0.min.js";
 
 const degToRad = (deg) => (deg * Math.PI) / 180;
+const radToDeg = (rad) => (rad * 180) / Math.PI;
 
 const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 
@@ -21,6 +22,122 @@ const toVectorFromAngles = ({ theta, phi }) => {
 const normalizeVector = (vec) => {
   const mag = Math.hypot(vec[0], vec[1], vec[2]) || 1;
   return [vec[0] / mag, vec[1] / mag, vec[2] / mag];
+};
+
+const complex = (re, im = 0) => ({ re, im });
+
+const complexAdd = (a, b) => ({ re: a.re + b.re, im: a.im + b.im });
+
+const complexMul = (a, b) => ({
+  re: a.re * b.re - a.im * b.im,
+  im: a.re * b.im + a.im * b.re,
+});
+
+const complexScale = (value, scalar) => ({ re: value.re * scalar, im: value.im * scalar });
+
+const complexConjugate = (value) => ({ re: value.re, im: -value.im });
+
+const complexMagnitude = (value) => Math.hypot(value.re, value.im);
+
+const normalizeStateVector = (state) => {
+  const alphaMag = complexMagnitude(state.alpha);
+  const betaMag = complexMagnitude(state.beta);
+  const norm = Math.hypot(alphaMag, betaMag) || 1;
+  return {
+    alpha: complexScale(state.alpha, 1 / norm),
+    beta: complexScale(state.beta, 1 / norm),
+  };
+};
+
+const amplitudeThetaFromSlider = (thetaDeg, conversion) =>
+  conversion ? degToRad(thetaDeg) : degToRad(thetaDeg) / 2;
+
+const stateFromAngles = (thetaDeg, phiDeg, conversion) => {
+  const amplitudeTheta = amplitudeThetaFromSlider(thetaDeg, conversion);
+  const alpha = complex(Math.cos(amplitudeTheta), 0);
+  const betaMagnitude = Math.sin(amplitudeTheta);
+  const phiRad = degToRad(phiDeg);
+  const beta = complex(betaMagnitude * Math.cos(phiRad), betaMagnitude * Math.sin(phiRad));
+  return normalizeStateVector({ alpha, beta });
+};
+
+const wrapDegrees = (deg) => ((deg % 360) + 360) % 360;
+
+const formatThetaForSlider = (value) => clamp(Math.round(value), 0, 180);
+const formatPhiForSlider = (value) => Math.round(wrapDegrees(value));
+
+const stateToAngles = (state, conversion) => {
+  let alpha = { ...state.alpha };
+  let beta = { ...state.beta };
+  const alphaPhase = Math.atan2(alpha.im, alpha.re);
+  const cosPhase = Math.cos(-alphaPhase);
+  const sinPhase = Math.sin(-alphaPhase);
+  const rotate = (value) => ({
+    re: value.re * cosPhase - value.im * sinPhase,
+    im: value.re * sinPhase + value.im * cosPhase,
+  });
+  alpha = rotate(alpha);
+  beta = rotate(beta);
+  if (alpha.re < 0) {
+    alpha = complex(-alpha.re, -alpha.im);
+    beta = complex(-beta.re, -beta.im);
+  }
+  const amplitudeTheta = Math.acos(clamp(alpha.re, -1, 1));
+  const thetaDeg = conversion ? radToDeg(amplitudeTheta) : radToDeg(amplitudeTheta * 2);
+  const phiDeg = wrapDegrees(radToDeg(Math.atan2(beta.im, beta.re)));
+  return { theta: clamp(thetaDeg, 0, 180), phi: phiDeg };
+};
+
+const blochPointFromState = (state) => {
+  const alpha = state.alpha;
+  const beta = state.beta;
+  const alphaBetaConj = complexMul(alpha, complexConjugate(beta));
+  const x = 2 * alphaBetaConj.re;
+  const y = 2 * alphaBetaConj.im;
+  const alphaMag2 = complexMagnitude(alpha) ** 2;
+  const betaMag2 = complexMagnitude(beta) ** 2;
+  const z = alphaMag2 - betaMag2;
+  return { x, y, z };
+};
+
+const applyGateMatrix = (state, matrix) => normalizeStateVector({
+  alpha: complexAdd(
+    complexMul(matrix[0][0], state.alpha),
+    complexMul(matrix[0][1], state.beta)
+  ),
+  beta: complexAdd(
+    complexMul(matrix[1][0], state.alpha),
+    complexMul(matrix[1][1], state.beta)
+  ),
+});
+
+const SQRT_HALF = 1 / Math.sqrt(2);
+
+const GATE_MATRICES = {
+  X: [
+    [complex(0, 0), complex(1, 0)],
+    [complex(1, 0), complex(0, 0)],
+  ],
+  Y: [
+    [complex(0, 0), complex(0, -1)],
+    [complex(0, 1), complex(0, 0)],
+  ],
+  Z: [
+    [complex(1, 0), complex(0, 0)],
+    [complex(0, 0), complex(-1, 0)],
+  ],
+  H: [
+    [complex(SQRT_HALF, 0), complex(SQRT_HALF, 0)],
+    [complex(SQRT_HALF, 0), complex(-SQRT_HALF, 0)],
+  ],
+  S: [
+    [complex(1, 0), complex(0, 0)],
+    [complex(0, 0), complex(0, 1)],
+  ],
+  T: [
+    [complex(1, 0), complex(0, 0)],
+    [complex(0, 0), complex(SQRT_HALF, SQRT_HALF)],
+  ],
 };
 
 const getTraceData = (viewport, index) => {
@@ -155,15 +272,18 @@ function initBlochVisualizer() {
   const expressionLabel = document.getElementById("bloch-state-expression");
   const resetTrajectoryButton = document.getElementById("reset-trajectory");
   const trajectoryCountLabel = document.getElementById("trajectory-count");
+  const gateButtons = document.querySelectorAll("[data-gate]");
 
   const gridBlueprint = buildGridBlueprint();
   const trajectory = [];
   let conversionMode = false;
+  let currentState = stateFromAngles(Number(thetaSlider.value), Number(phiSlider.value), conversionMode);
+  let currentPoint = blochPointFromState(currentState);
 
   const sphereTrace = buildSphereSurface();
   const gridTrace = buildGridTrace(gridBlueprint, conversionMode);
   const guideTrace = buildGuideTrace();
-  const stateTrace = buildStateTrace({ x: [0], y: [0], z: [1] });
+  const stateTrace = buildStateTrace({ x: [currentPoint.x], y: [currentPoint.y], z: [currentPoint.z] });
   const trajectoryTrace = buildTrajectoryTrace();
 
   const layout = {
@@ -219,14 +339,18 @@ function initBlochVisualizer() {
     };
 
     resetTrajectory(Number(thetaSlider.value), Number(phiSlider.value));
-    const updateUI = ({ animateState = false, duration = 150 } = {}) => {
+
+    const updateUI = ({ animateState = false, duration = 150, stateOverride = null } = {}) => {
       const thetaDeg = Number(thetaSlider.value);
       const phiDeg = Number(phiSlider.value);
       thetaOutput.textContent = `${thetaDeg.toFixed(0)}°`;
       phiOutput.textContent = `${phiDeg.toFixed(0)}°`;
-      const state = computeState(thetaDeg, phiDeg, conversionMode);
-      updateStateTrace(viewport, state, { animate: animateState, duration });
-      updateAmplitudePanel({ state, amplitudeZero, amplitudeOne, phiDeg, conversionMode, expressionLabel });
+      const nextState = stateOverride || stateFromAngles(thetaDeg, phiDeg, conversionMode);
+      const nextPoint = blochPointFromState(nextState);
+      updateStateTrace(viewport, nextPoint, { animate: animateState, duration, from: currentPoint });
+      currentState = nextState;
+      currentPoint = nextPoint;
+      updateAmplitudePanel({ state: currentState, amplitudeZero, amplitudeOne });
     };
 
     thetaSlider.addEventListener("input", () => {
@@ -258,8 +382,32 @@ function initBlochVisualizer() {
           ? "|ψ⟩ = cos(θ)|0⟩ + e^{iφ} sin(θ)|1⟩"
           : "|ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩";
       }
+      const { theta, phi } = stateToAngles(currentState, conversionMode);
+      thetaSlider.value = formatThetaForSlider(theta).toString();
+      phiSlider.value = formatPhiForSlider(phi).toString();
       animateGrid(viewport, gridBlueprint, conversionMode, 700);
-      updateUI({ animateState: true, duration: 700 });
+      updateUI({ animateState: true, duration: 700, stateOverride: currentState });
+    });
+
+    const handleGate = (gateKey) => {
+      const matrix = GATE_MATRICES[gateKey];
+      if (!matrix) return;
+      const nextState = applyGateMatrix(currentState, matrix);
+      const { theta, phi } = stateToAngles(nextState, conversionMode);
+      thetaSlider.value = formatThetaForSlider(theta).toString();
+      phiSlider.value = formatPhiForSlider(phi).toString();
+      const duration = 800;
+      updateUI({ animateState: true, duration, stateOverride: nextState });
+      setTimeout(() => {
+        appendTrajectory(Number(thetaSlider.value), Number(phiSlider.value));
+      }, duration + 20);
+    };
+
+    gateButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const gateKey = button.dataset.gate;
+        handleGate(gateKey);
+      });
     });
 
     updateUI();
@@ -463,7 +611,7 @@ const computeState = (thetaDeg, phiDeg, conversion) => {
       betaMagnitude: sinTerm,
       betaPhase: phiDeg,
     },
-    color: hslToHex(((phiDeg % 360) + 360) % 360, 70, conversion ? 68 : 60),
+    color: "#ff6f3c",
   };
 };
 
@@ -478,37 +626,52 @@ const animateGrid = (viewport, blueprint, conversion, duration = 600) => {
   Plotly.restyle(viewport, { "marker.color": [mapped.colors] }, [1]);
 };
 
-const updateStateTrace = (viewport, state, { animate = false, duration = 150 } = {}) => {
-  if (animate) {
-    animateTrace({
+const animateStateMarker = (viewport, fromPoint, toPoint, duration = 600) => {
+  const path = sampleGreatCircle([fromPoint.x, fromPoint.y, fromPoint.z], [toPoint.x, toPoint.y, toPoint.z], 60);
+  const frames = path.x.length;
+  const start = performance.now();
+  const step = (now) => {
+    const progress = clamp((now - start) / duration, 0, 1);
+    const index = Math.min(Math.floor(progress * (frames - 1)), frames - 1);
+    Plotly.restyle(
       viewport,
-      traceIndex: 3,
-      target: { x: [state.x], y: [state.y], z: [state.z], color: state.color },
-      duration,
-    });
+      {
+        x: [[path.x[index]]],
+        y: [[path.y[index]]],
+        z: [[path.z[index]]],
+        "marker.color": [["#ff6f3c"]],
+      },
+      [3]
+    );
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  };
+  requestAnimationFrame(step);
+};
+
+const updateStateTrace = (viewport, point, { animate = false, duration = 150, from = null } = {}) => {
+  if (animate && from) {
+    animateStateMarker(viewport, from, point, duration);
     return;
   }
   Plotly.restyle(
     viewport,
     {
-      x: [[state.x]],
-      y: [[state.y]],
-      z: [[state.z]],
-      "marker.color": [[state.color]],
+      x: [[point.x]],
+      y: [[point.y]],
+      z: [[point.z]],
+      "marker.color": [["#ff6f3c"]],
     },
     [3]
   );
 };
 
-const updateAmplitudePanel = ({ state, amplitudeZero, amplitudeOne, phiDeg, conversionMode, expressionLabel }) => {
-  if (!amplitudeZero || !amplitudeOne) return;
-  amplitudeZero.textContent = state.amplitudes.alpha.toFixed(3);
-  const magnitude = state.amplitudes.betaMagnitude.toFixed(3);
-  const phase = ((phiDeg % 360) + 360) % 360;
-  amplitudeOne.textContent = `${magnitude}}`;
-  if (expressionLabel) {
-    expressionLabel.textContent = conversionMode
-      ? "|ψ⟩ = cos(θ)|0⟩ + e^{iφ} sin(θ)|1⟩"
-      : "|ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩";
-  }
+const updateAmplitudePanel = ({ state, amplitudeZero, amplitudeOne }) => {
+  if (!amplitudeZero || !amplitudeOne || !state) return;
+  const alphaMag = complexMagnitude(state.alpha);
+  const betaMag = complexMagnitude(state.beta);
+  const betaPhase = wrapDegrees(radToDeg(Math.atan2(state.beta.im, state.beta.re)));
+  amplitudeZero.textContent = alphaMag.toFixed(3);
+  amplitudeOne.textContent = `${betaMag.toFixed(3)} · e^{i${betaPhase.toFixed(0)}°}`;
 };

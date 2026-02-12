@@ -4,6 +4,17 @@ layout: default
 <article class="bloch-fullscreen" aria-label="Bloch Sphere Visualizer">
   <div id="bloch-viewport" class="bloch-viewport" aria-live="polite"></div>
   <div class="bloch-overlay-left">
+    <div class="bloch-gate-panel">
+      <p class="gate-title">Single-qubit gates</p>
+      <div class="bloch-gate-grid">
+        <button type="button" class="bloch-gate-btn" data-gate="X">X</button>
+        <button type="button" class="bloch-gate-btn" data-gate="Y">Y</button>
+        <button type="button" class="bloch-gate-btn" data-gate="Z">Z</button>
+        <button type="button" class="bloch-gate-btn" data-gate="H">H</button>
+        <button type="button" class="bloch-gate-btn" data-gate="S">S</button>
+        <button type="button" class="bloch-gate-btn" data-gate="T">T</button>
+      </div>
+    </div>
     <button type="button" class="bloch-reset-btn" id="reset-trajectory">Reset trajectory</button>
     <p class="bloch-trajectory-meta">Tracked points: <span id="trajectory-count">1</span></p>
   </div>
