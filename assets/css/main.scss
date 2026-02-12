@@ -467,65 +467,102 @@ a {
   color: #ff8c8c;
 }
 
-.bloch-lab {
-  display: grid;
-  gap: 2.5rem;
+.bloch main.container {
+  width: 100%;
+  max-width: none;
+  padding: 0;
 }
 
-.bloch-hero {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  align-items: start;
+.bloch-fullscreen {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  background: radial-gradient(circle at 30% 20%, rgba(77, 183, 255, 0.08), rgba(5, 6, 10, 0.98));
+  overflow: hidden;
 }
 
-.bloch-hero .eyebrow {
+.bloch-viewport {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+}
+
+.bloch-overlay {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  width: min(430px, 92vw);
+  background: rgba(6, 8, 14, 0.65);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+  color: #fff;
+  opacity: 0.35;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bloch-overlay:hover,
+.bloch-overlay:focus-within {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+.bloch-overlay__header .eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
   color: $muted;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
-.bloch-state-panel {
-  border-radius: 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: radial-gradient(circle at top, rgba(255, 111, 60, 0.22), rgba(7, 9, 15, 0.9));
-  padding: 1.25rem 1.5rem;
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.35);
+.bloch-overlay__header h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.6rem;
+}
+
+.bloch-overlay__header p {
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.bloch-overlay__panel {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1rem 1.2rem;
+  background: radial-gradient(circle at top, rgba(255, 111, 60, 0.25), rgba(10, 12, 18, 0.9));
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.05);
 }
 
 .bloch-state-expression {
-  font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
   font-size: 1rem;
-  margin: 0 0 1rem;
-  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 0.75rem;
 }
 
 .bloch-amplitudes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
 }
 
 .bloch-amplitudes .label {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .bloch-amplitudes .value {
   display: block;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 600;
-  color: #fff;
 }
 
-.bloch-controls {
+.bloch-overlay__controls {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.2rem;
   align-items: end;
 }
 
@@ -533,16 +570,16 @@ a {
   background: rgba(8, 11, 19, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1rem;
-  padding: 1rem 1.25rem;
+  padding: 0.9rem 1.1rem;
 }
 
 .slider-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 0.65rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0.5rem;
 }
 
 .slider-field input[type="range"] {
@@ -563,75 +600,23 @@ a {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.bloch-convert-btn:hover {
+.bloch-convert-btn:hover,
+.bloch-convert-btn:focus-visible {
   transform: translateY(-2px);
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
 }
 
-.bloch-stage {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  align-items: start;
-}
-
-.bloch-canvas-frame {
-  border-radius: 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: radial-gradient(circle at 20% 20%, rgba(77, 183, 255, 0.18), rgba(5, 6, 10, 0.95));
-  padding: 1rem;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.04), 0 25px 45px rgba(0, 0, 0, 0.4);
-}
-
-.bloch-viewport {
-  width: 100%;
-  min-height: 520px;
-}
-
-.bloch-caption {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.85rem;
-  margin: 0.8rem 0 0;
-}
-
-.bloch-copy {
-  background: rgba(9, 12, 21, 0.85);
-  border-radius: 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 1.5rem;
-  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.35);
-}
-
-.bloch-copy ul {
-  padding-left: 1.2rem;
-  color: $muted;
-}
-
-.bloch-notes {
-  background: rgba(12, 15, 24, 0.8);
-  border-radius: 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  padding: 1.5rem;
-}
-
-.bloch-notes ol {
-  padding-left: 1.4rem;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.bloch-notes span {
-  color: $accent;
-}
-
-@media (max-width: 720px) {
-  .bloch-controls {
-    grid-template-columns: 1fr;
+@media (max-width: 960px) {
+  .bloch-overlay {
+    right: 1.25rem;
+    left: 1.25rem;
+    width: auto;
   }
+}
 
-  .bloch-stage {
-    grid-template-columns: 1fr;
+@media (hover: none) {
+  .bloch-overlay {
+    opacity: 1;
   }
 }
 
