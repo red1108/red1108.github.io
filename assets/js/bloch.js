@@ -6,6 +6,23 @@ const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 /
 
 const lerpArrays = (start, end, t) => start.map((value, index) => value + (end[index] - value) * t);
 
+const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+const toVectorFromAngles = ({ theta, phi }) => {
+  const thetaRad = degToRad(theta);
+  const phiRad = degToRad(phi);
+  return [
+    Math.sin(thetaRad) * Math.cos(phiRad),
+    Math.sin(thetaRad) * Math.sin(phiRad),
+    Math.cos(thetaRad),
+  ];
+};
+
+const normalizeVector = (vec) => {
+  const mag = Math.hypot(vec[0], vec[1], vec[2]) || 1;
+  return [vec[0] / mag, vec[1] / mag, vec[2] / mag];
+};
+
 const getTraceData = (viewport, index) => {
   const trace = viewport.data?.[index];
   if (!trace) return null;
@@ -47,6 +64,51 @@ const animateTrace = ({ viewport, traceIndex, target, duration = 600 }) => {
     }
   };
   store[traceIndex] = requestAnimationFrame(step);
+};
+
+const sampleGreatCircle = (startVec, endVec, steps = 24) => {
+  const start = normalizeVector(startVec);
+  let end = normalizeVector(endVec);
+  let dot = clamp(start[0] * end[0] + start[1] * end[1] + start[2] * end[2], -1, 1);
+  if (dot < -0.9995) {
+    const orthogonal = normalizeVector([
+      -start[1],
+      start[0],
+      0,
+    ]);
+    end = normalizeVector([
+      start[0] + orthogonal[0] * 1e-3,
+      start[1] + orthogonal[1] * 1e-3,
+      start[2] + orthogonal[2] * 1e-3,
+    ]);
+    dot = clamp(start[0] * end[0] + start[1] * end[1] + start[2] * end[2], -1, 1);
+  }
+  const omega = Math.acos(dot);
+  const sinOmega = Math.sin(omega);
+  const x = [];
+  const y = [];
+  const z = [];
+  if (sinOmega < 1e-6) {
+    x.push(start[0], end[0]);
+    y.push(start[1], end[1]);
+    z.push(start[2], end[2]);
+    return { x, y, z };
+  }
+  for (let i = 0; i <= steps; i += 1) {
+    const t = i / steps;
+    const scale0 = Math.sin((1 - t) * omega) / sinOmega;
+    const scale1 = Math.sin(t * omega) / sinOmega;
+    const point = [
+      scale0 * start[0] + scale1 * end[0],
+      scale0 * start[1] + scale1 * end[1],
+      scale0 * start[2] + scale1 * end[2],
+    ];
+    const normalized = normalizeVector(point);
+    x.push(normalized[0]);
+    y.push(normalized[1]);
+    z.push(normalized[2]);
+  }
+  return { x, y, z };
 };
 
 const hslToHex = (h, s, l) => {
@@ -91,14 +153,18 @@ function initBlochVisualizer() {
   const amplitudeZero = document.getElementById("amplitude-zero");
   const amplitudeOne = document.getElementById("amplitude-one");
   const expressionLabel = document.getElementById("bloch-state-expression");
+  const resetTrajectoryButton = document.getElementById("reset-trajectory");
+  const trajectoryCountLabel = document.getElementById("trajectory-count");
 
   const gridBlueprint = buildGridBlueprint();
+  const trajectory = [];
   let conversionMode = false;
 
   const sphereTrace = buildSphereSurface();
   const gridTrace = buildGridTrace(gridBlueprint, conversionMode);
   const guideTrace = buildGuideTrace();
   const stateTrace = buildStateTrace({ x: [0], y: [0], z: [1] });
+  const trajectoryTrace = buildTrajectoryTrace();
 
   const layout = {
     margin: { l: 0, r: 0, t: 0, b: 0 },
@@ -124,14 +190,42 @@ function initBlochVisualizer() {
     scrollZoom: true,
   };
 
-  Plotly.newPlot(viewport, [sphereTrace, gridTrace, guideTrace, stateTrace], layout, config).then(() => {
-    const updateUI = ({ transition = 150 } = {}) => {
+  Plotly.newPlot(viewport, [sphereTrace, gridTrace, guideTrace, stateTrace, trajectoryTrace], layout, config).then(() => {
+    const updateTrajectoryTrace = () => {
+      const coords = buildTrajectoryCoordinates(trajectory);
+      Plotly.restyle(viewport, {
+        x: [coords.x],
+        y: [coords.y],
+        z: [coords.z],
+      }, [4]);
+      if (trajectoryCountLabel) {
+        trajectoryCountLabel.textContent = trajectory.length.toString();
+      }
+    };
+
+    const resetTrajectory = (theta, phi) => {
+      trajectory.length = 0;
+      trajectory.push({ theta, phi });
+      updateTrajectoryTrace();
+    };
+
+    const appendTrajectory = (theta, phi) => {
+      const last = trajectory[trajectory.length - 1];
+      if (last && Math.abs(last.theta - theta) < 0.001 && Math.abs(last.phi - phi) < 0.001) {
+        return;
+      }
+      trajectory.push({ theta, phi });
+      updateTrajectoryTrace();
+    };
+
+    resetTrajectory(Number(thetaSlider.value), Number(phiSlider.value));
+    const updateUI = ({ animateState = false, duration = 150 } = {}) => {
       const thetaDeg = Number(thetaSlider.value);
       const phiDeg = Number(phiSlider.value);
       thetaOutput.textContent = `${thetaDeg.toFixed(0)}°`;
       phiOutput.textContent = `${phiDeg.toFixed(0)}°`;
       const state = computeState(thetaDeg, phiDeg, conversionMode);
-      updateStateTrace(viewport, state, transition);
+      updateStateTrace(viewport, state, { animate: animateState, duration });
       updateAmplitudePanel({ state, amplitudeZero, amplitudeOne, phiDeg, conversionMode, expressionLabel });
     };
 
@@ -141,6 +235,19 @@ function initBlochVisualizer() {
     phiSlider.addEventListener("input", () => {
       updateUI();
     });
+
+    const snapshot = () => {
+      appendTrajectory(Number(thetaSlider.value), Number(phiSlider.value));
+    };
+
+    thetaSlider.addEventListener("change", snapshot);
+    phiSlider.addEventListener("change", snapshot);
+
+    if (resetTrajectoryButton) {
+      resetTrajectoryButton.addEventListener("click", () => {
+        resetTrajectory(Number(thetaSlider.value), Number(phiSlider.value));
+      });
+    }
 
     conversionToggle.addEventListener("click", () => {
       conversionMode = !conversionMode;
@@ -152,7 +259,7 @@ function initBlochVisualizer() {
           : "|ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩";
       }
       animateGrid(viewport, gridBlueprint, conversionMode, 700);
-      updateUI({ transition: 700 });
+      updateUI({ animateState: true, duration: 700 });
     });
 
     updateUI();
@@ -289,6 +396,16 @@ const buildStateTrace = (coords) => ({
   },
 });
 
+const buildTrajectoryTrace = () => ({
+  type: "scatter3d",
+  mode: "lines",
+  x: [],
+  y: [],
+  z: [],
+  line: { color: "#ff6f3c", width: 4 },
+  opacity: 0.85,
+});
+
 const mapGrid = (blueprint, conversion) => {
   const x = [];
   const y = [];
@@ -303,6 +420,27 @@ const mapGrid = (blueprint, conversion) => {
     colors.push(hslToHex(hue, 55, conversion ? 52 : 42));
   });
   return { x, y, z, colors };
+};
+
+const buildTrajectoryCoordinates = (trajectory) => {
+  if (trajectory.length < 2) {
+    return { x: [], y: [], z: [] };
+  }
+  const x = [];
+  const y = [];
+  const z = [];
+  for (let i = 1; i < trajectory.length; i += 1) {
+    const startVec = toVectorFromAngles(trajectory[i - 1]);
+    const endVec = toVectorFromAngles(trajectory[i]);
+    const segment = sampleGreatCircle(startVec, endVec, 32);
+    x.push(...segment.x, null);
+    y.push(...segment.y, null);
+    z.push(...segment.z, null);
+  }
+  if (x[x.length - 1] === null) x.pop();
+  if (y[y.length - 1] === null) y.pop();
+  if (z[z.length - 1] === null) z.pop();
+  return { x, y, z };
 };
 
 const computeState = (thetaDeg, phiDeg, conversion) => {
@@ -340,13 +478,26 @@ const animateGrid = (viewport, blueprint, conversion, duration = 600) => {
   Plotly.restyle(viewport, { "marker.color": [mapped.colors] }, [1]);
 };
 
-const updateStateTrace = (viewport, state, duration = 150) => {
-  animateTrace({
+const updateStateTrace = (viewport, state, { animate = false, duration = 150 } = {}) => {
+  if (animate) {
+    animateTrace({
+      viewport,
+      traceIndex: 3,
+      target: { x: [state.x], y: [state.y], z: [state.z], color: state.color },
+      duration,
+    });
+    return;
+  }
+  Plotly.restyle(
     viewport,
-    traceIndex: 3,
-    target: { x: [state.x], y: [state.y], z: [state.z], color: state.color },
-    duration,
-  });
+    {
+      x: [[state.x]],
+      y: [[state.y]],
+      z: [[state.z]],
+      "marker.color": [[state.color]],
+    },
+    [3]
+  );
 };
 
 const updateAmplitudePanel = ({ state, amplitudeZero, amplitudeOne, phiDeg, conversionMode, expressionLabel }) => {
