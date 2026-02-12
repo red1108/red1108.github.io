@@ -476,14 +476,14 @@ a {
 .bloch-fullscreen {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 80px);
+  min-height: min(1200px, calc(140vh - 80px));
   background: radial-gradient(circle at 30% 20%, rgba(77, 183, 255, 0.08), rgba(5, 6, 10, 0.98));
   overflow: hidden;
 }
 
 .bloch-viewport {
   width: 100%;
-  min-height: calc(100vh - 80px);
+  min-height: min(1200px, calc(140vh - 80px));
 }
 
 .bloch-overlay {
