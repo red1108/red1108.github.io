@@ -8,3 +8,14 @@
   links:
     - label: View Dashboard
       url: /quant/
+
+- name: Bloch Sphere Visualizer
+  description: Interactive quantum state explorer with a fully rotatable Bloch sphere and state conversion mode.
+  status: Prototype
+  url: /bloch/
+  tags:
+    - Quantum computing
+    - 3D graphics
+  links:
+    - label: Explore Visualizer
+      url: /bloch/
