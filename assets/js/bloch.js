@@ -66,26 +66,11 @@ const wrapDegrees = (deg) => ((deg % 360) + 360) % 360;
 const formatThetaForSlider = (value) => clamp(Math.round(value), 0, 180);
 const formatPhiForSlider = (value) => Math.round(wrapDegrees(value));
 
-const stateToAngles = (state, conversion) => {
-  let alpha = { ...state.alpha };
-  let beta = { ...state.beta };
-  const alphaPhase = Math.atan2(alpha.im, alpha.re);
-  const cosPhase = Math.cos(-alphaPhase);
-  const sinPhase = Math.sin(-alphaPhase);
-  const rotate = (value) => ({
-    re: value.re * cosPhase - value.im * sinPhase,
-    im: value.re * sinPhase + value.im * cosPhase,
-  });
-  alpha = rotate(alpha);
-  beta = rotate(beta);
-  if (alpha.re < 0) {
-    alpha = complex(-alpha.re, -alpha.im);
-    beta = complex(-beta.re, -beta.im);
-  }
-  const amplitudeTheta = Math.acos(clamp(alpha.re, -1, 1));
-  const thetaDeg = conversion ? radToDeg(amplitudeTheta) : radToDeg(amplitudeTheta * 2);
-  const phiDeg = wrapDegrees(radToDeg(Math.atan2(beta.im, beta.re)));
-  return { theta: clamp(thetaDeg, 0, 180), phi: phiDeg };
+const stateToAngles = (state) => {
+  const point = blochPointFromState(state);
+  const theta = radToDeg(Math.acos(clamp(point.z, -1, 1)));
+  const phi = wrapDegrees(radToDeg(Math.atan2(point.y, point.x || 0)));
+  return { theta, phi };
 };
 
 const blochPointFromState = (state) => {
@@ -347,7 +332,7 @@ function initBlochVisualizer() {
       phiOutput.textContent = `${phiDeg.toFixed(0)}°`;
       const nextState = stateOverride || stateFromAngles(thetaDeg, phiDeg, conversionMode);
       const nextPoint = blochPointFromState(nextState);
-      updateStateTrace(viewport, nextPoint, { animate: animateState, duration, from: currentPoint });
+      updateStateTrace(viewport, nextPoint, { animate: animateState, duration, from: animateState ? currentPoint : null });
       currentState = nextState;
       currentPoint = nextPoint;
       updateAmplitudePanel({ state: currentState, amplitudeZero, amplitudeOne });
@@ -382,7 +367,7 @@ function initBlochVisualizer() {
           ? "|ψ⟩ = cos(θ)|0⟩ + e^{iφ} sin(θ)|1⟩"
           : "|ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩";
       }
-      const { theta, phi } = stateToAngles(currentState, conversionMode);
+      const { theta, phi } = stateToAngles(currentState);
       thetaSlider.value = formatThetaForSlider(theta).toString();
       phiSlider.value = formatPhiForSlider(phi).toString();
       animateGrid(viewport, gridBlueprint, conversionMode, 700);
@@ -393,7 +378,7 @@ function initBlochVisualizer() {
       const matrix = GATE_MATRICES[gateKey];
       if (!matrix) return;
       const nextState = applyGateMatrix(currentState, matrix);
-      const { theta, phi } = stateToAngles(nextState, conversionMode);
+      const { theta, phi } = stateToAngles(nextState);
       thetaSlider.value = formatThetaForSlider(theta).toString();
       phiSlider.value = formatPhiForSlider(phi).toString();
       const duration = 800;
@@ -554,13 +539,18 @@ const buildTrajectoryTrace = () => ({
   opacity: 0.85,
 });
 
+const pointFromAngles = (theta, phi, conversion) => {
+  const state = stateFromAngles(theta, phi, conversion);
+  return blochPointFromState(state);
+};
+
 const mapGrid = (blueprint, conversion) => {
   const x = [];
   const y = [];
   const z = [];
   const colors = [];
   blueprint.forEach((node) => {
-    const point = computeState(node.theta, node.phi, conversion);
+    const point = pointFromAngles(node.theta, node.phi, conversion);
     x.push(point.x);
     y.push(point.y);
     z.push(point.z);
@@ -591,29 +581,6 @@ const buildTrajectoryCoordinates = (trajectory) => {
   return { x, y, z };
 };
 
-const computeState = (thetaDeg, phiDeg, conversion) => {
-  const thetaRad = degToRad(thetaDeg);
-  const amplitudeTheta = conversion ? thetaRad : thetaRad / 2;
-  const cosTerm = Math.cos(amplitudeTheta);
-  const sinTerm = Math.sin(amplitudeTheta);
-  const phiRad = degToRad(phiDeg);
-  const betaReal = sinTerm * Math.cos(phiRad);
-  const betaImag = sinTerm * Math.sin(phiRad);
-  const x = 2 * cosTerm * betaReal;
-  const y = 2 * cosTerm * betaImag;
-  const z = cosTerm * cosTerm - (sinTerm * sinTerm);
-  return {
-    x,
-    y,
-    z,
-    amplitudes: {
-      alpha: cosTerm,
-      betaMagnitude: sinTerm,
-      betaPhase: phiDeg,
-    },
-    color: "#ff6f3c",
-  };
-};
 
 const animateGrid = (viewport, blueprint, conversion, duration = 600) => {
   const mapped = mapGrid(blueprint, conversion);
