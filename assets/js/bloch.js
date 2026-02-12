@@ -170,32 +170,53 @@ const animateTrace = ({ viewport, traceIndex, target, duration = 600 }) => {
 
 const sampleGreatCircle = (startVec, endVec, steps = 24) => {
   const start = normalizeVector(startVec);
-  let end = normalizeVector(endVec);
-  let dot = clamp(start[0] * end[0] + start[1] * end[1] + start[2] * end[2], -1, 1);
-  if (dot < -0.9995) {
-    const orthogonal = normalizeVector([
-      -start[1],
-      start[0],
-      0,
-    ]);
-    end = normalizeVector([
-      start[0] + orthogonal[0] * 1e-3,
-      start[1] + orthogonal[1] * 1e-3,
-      start[2] + orthogonal[2] * 1e-3,
-    ]);
-    dot = clamp(start[0] * end[0] + start[1] * end[1] + start[2] * end[2], -1, 1);
-  }
-  const omega = Math.acos(dot);
-  const sinOmega = Math.sin(omega);
+  const end = normalizeVector(endVec);
+  const dot = clamp(start[0] * end[0] + start[1] * end[1] + start[2] * end[2], -1, 1);
   const x = [];
   const y = [];
   const z = [];
-  if (sinOmega < 1e-6) {
+
+  if (dot < -0.9995) {
+    const pickAxis = () => {
+      const candidateX = normalizeVector([
+        start[1],
+        -start[0],
+        0,
+      ]);
+      const crossMag = Math.hypot(
+        start[1] * 0 - start[2] * (-start[0]),
+        start[2] * 0 - start[0] * 0,
+        start[0] * (-start[0]) - start[1] * start[1]
+      );
+      if (crossMag > 1e-6) return candidateX;
+      return normalizeVector([0, -start[2], start[1]]);
+    };
+    const axis = pickAxis();
+    for (let i = 0; i <= steps; i += 1) {
+      const angle = Math.PI * (i / steps);
+      const cosAngle = Math.cos(angle);
+      const sinAngle = Math.sin(angle);
+      const rotated = [
+        start[0] * cosAngle + (axis[1] * start[2] - axis[2] * start[1]) * sinAngle + axis[0] * (axis[0] * start[0] + axis[1] * start[1] + axis[2] * start[2]) * (1 - cosAngle),
+        start[1] * cosAngle + (axis[2] * start[0] - axis[0] * start[2]) * sinAngle + axis[1] * (axis[0] * start[0] + axis[1] * start[1] + axis[2] * start[2]) * (1 - cosAngle),
+        start[2] * cosAngle + (axis[0] * start[1] - axis[1] * start[0]) * sinAngle + axis[2] * (axis[0] * start[0] + axis[1] * start[1] + axis[2] * start[2]) * (1 - cosAngle),
+      ];
+      x.push(rotated[0]);
+      y.push(rotated[1]);
+      z.push(rotated[2]);
+    }
+    return { x, y, z };
+  }
+
+  if (dot > 0.9995) {
     x.push(start[0], end[0]);
     y.push(start[1], end[1]);
     z.push(start[2], end[2]);
     return { x, y, z };
   }
+
+  const omega = Math.acos(dot);
+  const sinOmega = Math.sin(omega);
   for (let i = 0; i <= steps; i += 1) {
     const t = i / steps;
     const scale0 = Math.sin((1 - t) * omega) / sinOmega;
