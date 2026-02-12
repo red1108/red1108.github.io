@@ -258,6 +258,86 @@ a {
   background: rgba(255, 255, 255, 0.03);
 }
 
+.publications-showcase {
+  margin-top: 1.2rem;
+}
+
+.pub-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.pub-card {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  padding: 1.2rem;
+  background: linear-gradient(150deg, rgba(19, 24, 38, 0.9), rgba(8, 11, 18, 0.95));
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+  display: grid;
+  gap: 0.9rem;
+}
+
+.pub-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.pub-card-main {
+  color: rgba(245, 245, 245, 0.94);
+}
+
+.pub-card-main p {
+  margin: 0;
+}
+
+.pub-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pub-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.42rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 111, 60, 0.55);
+  background: rgba(255, 111, 60, 0.12);
+  color: #ff9f7b;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.pub-link:hover {
+  text-decoration: none;
+  background: rgba(255, 111, 60, 0.24);
+  border-color: rgba(255, 111, 60, 0.85);
+}
+
+.pub-link-muted {
+  color: rgba(134, 139, 142, 0.95);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 720px) {
+  .pub-card {
+    padding: 1rem;
+  }
+
+  .pub-card-actions {
+    justify-content: flex-start;
+  }
+}
+
 .quant-dashboard {
   display: grid;
   gap: 2rem;
