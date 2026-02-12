@@ -5,4 +5,4 @@ permalink: /publications/
 description: Selected peer-reviewed work and preprints.
 ---
 
-{% bibliography %}
+{% bibliography --template bibliography %}
