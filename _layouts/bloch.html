@@ -1,0 +1,70 @@
+---
+layout: default
+---
+<article class="bloch-lab">
+  <header class="bloch-hero">
+    <div>
+      <p class="eyebrow">Quantum intuition · Bloch geometry</p>
+      <h1>Bloch Sphere Visualizer</h1>
+      <p>Slide through <span aria-label="theta">θ</span> and <span aria-label="varphi">φ</span> to sculpt a pure qubit state, then toggle conversion to remap every basis point between the classic <span>θ/2</span> parameterization and the direct <span>θ</span> representation. Drag anywhere on the sphere to orbit freely.</p>
+    </div>
+    <div class="bloch-state-panel">
+      <p class="bloch-state-expression" id="bloch-state-expression">|ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩</p>
+      <div class="bloch-amplitudes" id="bloch-amplitudes">
+        <div>
+          <span class="label">|0⟩ amplitude</span>
+          <span class="value" id="amplitude-zero">1.000</span>
+        </div>
+        <div>
+          <span class="label">|1⟩ amplitude</span>
+          <span class="value" id="amplitude-one">0.000</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="bloch-controls">
+    <div class="slider-field">
+      <div class="slider-header">
+        <span>θ (polar)</span>
+        <output id="theta-output">0°</output>
+      </div>
+      <input type="range" id="theta-slider" min="0" max="180" step="1" value="0" aria-label="Theta" />
+    </div>
+    <div class="slider-field">
+      <div class="slider-header">
+        <span>φ (azimuth)</span>
+        <output id="phi-output">0°</output>
+      </div>
+      <input type="range" id="phi-slider" min="0" max="360" step="1" value="0" aria-label="Phi" />
+    </div>
+    <button type="button" class="bloch-convert-btn" id="conversion-toggle" aria-pressed="false">
+      Conversion: θ/2 mode
+    </button>
+  </section>
+
+  <section class="bloch-stage">
+    <div class="bloch-canvas-frame">
+      <div id="bloch-viewport" class="bloch-viewport" aria-live="polite"></div>
+      <p class="bloch-caption">Interactive Bloch sphere · drag to rotate · scroll to zoom</p>
+    </div>
+    <div class="bloch-copy">
+      <h2>Conversion Insight</h2>
+      <p>In the canonical qubit parameterization, <span>θ/2</span> compresses the state vector so that |0⟩ and |1⟩ sit at antipodal poles even as θ remains within <span>[0, π]</span>. Toggling conversion remaps every reference point to interpret θ directly, stretching the sphere&apos;s texture and animating the grid into its new configuration.</p>
+      <ul>
+        <li>Base lattice points refresh with hues derived from their azimuthal angle.</li>
+        <li>The active state marker pulses with the same palette as the grid point it co-locates with.</li>
+        <li>Both modes preserve normalization: |cos(·)|² + |sin(·)|² = 1.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bloch-notes">
+    <h2>How to explore</h2>
+    <ol>
+      <li>Drag around the sphere to understand how <span>θ</span> (latitude) and <span>φ</span> (longitude) sculpt the state.</li>
+      <li>Use conversion to observe how halving versus preserving θ affects pole placement and the |0⟩/|1⟩ basis.</li>
+      <li>Track the amplitude panel to see the complex coefficients update in real time.</li>
+    </ol>
+  </section>
+</article>
