@@ -517,6 +517,42 @@ a {
   width: min(260px, 70vw);
 }
 
+.bloch-gate-panel {
+  margin-bottom: 1rem;
+}
+
+.gate-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bloch-gate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(60px, 1fr));
+  gap: 0.5rem;
+}
+
+.bloch-gate-btn {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0.85rem;
+  padding: 0.5rem 0;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.bloch-gate-btn:hover,
+.bloch-gate-btn:focus-visible {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .bloch-reset-btn {
   width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.25);
