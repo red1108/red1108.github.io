@@ -9,16 +9,6 @@ const lerpArrays = (start, end, t) => start.map((value, index) => value + (end[i
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
-const toVectorFromAngles = ({ theta, phi }) => {
-  const thetaRad = degToRad(theta);
-  const phiRad = degToRad(phi);
-  return [
-    Math.sin(thetaRad) * Math.cos(phiRad),
-    Math.sin(thetaRad) * Math.sin(phiRad),
-    Math.cos(thetaRad),
-  ];
-};
-
 const normalizeVector = (vec) => {
   const mag = Math.hypot(vec[0], vec[1], vec[2]) || 1;
   return [vec[0] / mag, vec[1] / mag, vec[2] / mag];
@@ -177,29 +167,26 @@ const sampleGreatCircle = (startVec, endVec, steps = 24) => {
   const z = [];
 
   if (dot < -0.9995) {
-    const pickAxis = () => {
-      const candidateX = normalizeVector([
-        start[1],
-        -start[0],
-        0,
-      ]);
-      const crossMag = Math.hypot(
-        start[1] * 0 - start[2] * (-start[0]),
-        start[2] * 0 - start[0] * 0,
-        start[0] * (-start[0]) - start[1] * start[1]
-      );
-      if (crossMag > 1e-6) return candidateX;
-      return normalizeVector([0, -start[2], start[1]]);
-    };
-    const axis = pickAxis();
+    const ref = Math.abs(start[0]) < 0.9 ? [1, 0, 0] : [0, 1, 0];
+    const axis = normalizeVector([
+      start[1] * ref[2] - start[2] * ref[1],
+      start[2] * ref[0] - start[0] * ref[2],
+      start[0] * ref[1] - start[1] * ref[0],
+    ]);
     for (let i = 0; i <= steps; i += 1) {
       const angle = Math.PI * (i / steps);
       const cosAngle = Math.cos(angle);
       const sinAngle = Math.sin(angle);
+      const axisDotStart = axis[0] * start[0] + axis[1] * start[1] + axis[2] * start[2];
+      const cross = [
+        axis[1] * start[2] - axis[2] * start[1],
+        axis[2] * start[0] - axis[0] * start[2],
+        axis[0] * start[1] - axis[1] * start[0],
+      ];
       const rotated = [
-        start[0] * cosAngle + (axis[1] * start[2] - axis[2] * start[1]) * sinAngle + axis[0] * (axis[0] * start[0] + axis[1] * start[1] + axis[2] * start[2]) * (1 - cosAngle),
-        start[1] * cosAngle + (axis[2] * start[0] - axis[0] * start[2]) * sinAngle + axis[1] * (axis[0] * start[0] + axis[1] * start[1] + axis[2] * start[2]) * (1 - cosAngle),
-        start[2] * cosAngle + (axis[0] * start[1] - axis[1] * start[0]) * sinAngle + axis[2] * (axis[0] * start[0] + axis[1] * start[1] + axis[2] * start[2]) * (1 - cosAngle),
+        start[0] * cosAngle + cross[0] * sinAngle + axis[0] * axisDotStart * (1 - cosAngle),
+        start[1] * cosAngle + cross[1] * sinAngle + axis[1] * axisDotStart * (1 - cosAngle),
+        start[2] * cosAngle + cross[2] * sinAngle + axis[2] * axisDotStart * (1 - cosAngle),
       ];
       x.push(rotated[0]);
       y.push(rotated[1]);
@@ -329,22 +316,27 @@ function initBlochVisualizer() {
       }
     };
 
-    const resetTrajectory = (theta, phi) => {
+    const resetTrajectory = (point) => {
       trajectory.length = 0;
-      trajectory.push({ theta, phi });
+      trajectory.push({ ...point });
       updateTrajectoryTrace();
     };
 
-    const appendTrajectory = (theta, phi) => {
+    const appendTrajectory = (point) => {
       const last = trajectory[trajectory.length - 1];
-      if (last && Math.abs(last.theta - theta) < 0.001 && Math.abs(last.phi - phi) < 0.001) {
+      if (
+        last &&
+        Math.abs(last.x - point.x) < 1e-4 &&
+        Math.abs(last.y - point.y) < 1e-4 &&
+        Math.abs(last.z - point.z) < 1e-4
+      ) {
         return;
       }
-      trajectory.push({ theta, phi });
+      trajectory.push({ ...point });
       updateTrajectoryTrace();
     };
 
-    resetTrajectory(Number(thetaSlider.value), Number(phiSlider.value));
+    resetTrajectory(currentPoint);
 
     const updateUI = ({ animateState = false, duration = 150, stateOverride = null } = {}) => {
       const thetaDeg = Number(thetaSlider.value);
@@ -367,7 +359,7 @@ function initBlochVisualizer() {
     });
 
     const snapshot = () => {
-      appendTrajectory(Number(thetaSlider.value), Number(phiSlider.value));
+      appendTrajectory(currentPoint);
     };
 
     thetaSlider.addEventListener("change", snapshot);
@@ -375,7 +367,7 @@ function initBlochVisualizer() {
 
     if (resetTrajectoryButton) {
       resetTrajectoryButton.addEventListener("click", () => {
-        resetTrajectory(Number(thetaSlider.value), Number(phiSlider.value));
+        resetTrajectory(currentPoint);
       });
     }
 
@@ -405,7 +397,7 @@ function initBlochVisualizer() {
       const duration = 800;
       updateUI({ animateState: true, duration, stateOverride: nextState });
       setTimeout(() => {
-        appendTrajectory(Number(thetaSlider.value), Number(phiSlider.value));
+        appendTrajectory(currentPoint);
       }, duration + 20);
     };
 
@@ -589,9 +581,9 @@ const buildTrajectoryCoordinates = (trajectory) => {
   const y = [];
   const z = [];
   for (let i = 1; i < trajectory.length; i += 1) {
-    const startVec = toVectorFromAngles(trajectory[i - 1]);
-    const endVec = toVectorFromAngles(trajectory[i]);
-    const segment = sampleGreatCircle(startVec, endVec, 32);
+    const startVec = [trajectory[i - 1].x, trajectory[i - 1].y, trajectory[i - 1].z];
+    const endVec = [trajectory[i].x, trajectory[i].y, trajectory[i].z];
+    const segment = sampleGreatCircle(startVec, endVec, 48);
     x.push(...segment.x, null);
     y.push(...segment.y, null);
     z.push(...segment.z, null);
