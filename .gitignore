@@ -12,3 +12,4 @@ coverage/
 *.log
 assets/quant/*.png
 Gemfile.lock
+AGENTS.md
