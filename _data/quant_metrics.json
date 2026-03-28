@@ -1,47 +1,47 @@
 [
   {
     "label": "\ucd1d \uac70\ub798 \ud69f\uc218",
-    "value": "131",
-    "note": "\uae30\uac04 13.9\uc77c"
+    "value": "586",
+    "note": "\uae30\uac04 58.2\uc77c"
   },
   {
     "label": "\ub204\uc801 \uc218\uc775\ub960",
-    "value": "15.49%",
+    "value": "44.88%",
     "note": "\ub2e8\ub9ac \uae30\uc900"
   },
   {
     "label": "\uc2b9\ub960",
-    "value": "58.8%",
-    "note": "\uc2b9 77 / \ud328 54"
+    "value": "57.8%",
+    "note": "\uc2b9 339 / \ud328 247"
   },
   {
     "label": "\uc190\uc775\ube44",
-    "value": "2.61",
+    "value": "1.99",
     "note": "\ucd1d\uc774\uc775 / \ucd1d\uc190\uc2e4"
   },
   {
     "label": "\uc6d4 \uc218\uc775\ub960",
-    "value": "33.95%",
+    "value": "23.43%",
     "note": "\uac70\ub798 \uac04\uaca9 \ubc18\uc601"
   },
   {
     "label": "\ub144 \uc218\uc775\ub960",
-    "value": "407.36%",
+    "value": "281.20%",
     "note": "\uac70\ub798 \uac04\uaca9 \ubc18\uc601"
   },
   {
     "label": "Sharpe Ratio",
-    "value": "15.65",
+    "value": "13.03",
     "note": "\uc5f0 \ud658\uc0b0"
   },
   {
     "label": "Sortino Ratio",
-    "value": "35.44",
+    "value": "20.82",
     "note": "\uc5f0 \ud658\uc0b0"
   },
   {
     "label": "Max Drawdown",
-    "value": "-1.03%",
+    "value": "-2.74%",
     "note": "\ucd5c\ub300 \ub099\ud3ed"
   }
 ]
