@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — Mingyu Lee</title>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/components.css">
+<style>
+.research-intro {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--s-6);
+  padding: var(--s-7) 0;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: var(--s-7);
+}
+.research-intro h1 { font-size: 56px; letter-spacing: -0.025em; line-height: 1; }
+.research-intro .lede { font-size: var(--fs-xl); color: var(--ink-2); line-height: 1.5; max-width: 56ch; margin-top: var(--s-3); }
+.thread {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--s-6);
+  padding: var(--s-7) 0;
+  border-top: 1px solid var(--rule);
+  align-items: start;
+}
+.thread__id {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-3); padding-top: 8px;
+}
+.thread__id .num { font-family: var(--serif); font-size: 56px; color: var(--ink); display: block; line-height: 1; letter-spacing: -0.02em; margin-bottom: var(--s-3); }
+.thread h2 { font-size: 32px; margin-bottom: var(--s-4); letter-spacing: -0.012em; }
+.thread .body { font-family: var(--serif); font-size: var(--fs-lg); line-height: 1.65; color: var(--ink-2); max-width: 64ch; }
+.thread .body p + p { margin-top: var(--s-4); }
+.thread .related {
+  margin-top: var(--s-5);
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-3) var(--s-5);
+  font-family: var(--sans); font-size: var(--fs-sm);
+  border-top: 1px dashed var(--rule); padding-top: var(--s-4);
+}
+.thread .related dt { color: var(--ink-3); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; }
+.thread .related dd { margin: 0 0 var(--s-3); }
+.thread .related dd a { color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+.thread .related dd a:hover { color: var(--ink); }
+@media (max-width: 720px) {
+  .research-intro, .thread { grid-template-columns: 1fr; }
+  .thread .related { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="container">
+
+        <header class="site-header">
+      <div class="site-header__brand">
+        <a href="index.html">Mingyu Lee</a>
+        </div>
+      <nav class="site-nav" aria-label="primary">
+        <a href="research.html" class="is-current">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="projects.html">Projects &amp; Demos</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="cv.html" class="cv-link">CV</a>
+      </nav>
+    </header>
+
+    <section class="research-intro">
+      <div><div class="eyebrow">Research</div></div>
+      <div>
+        <h1>Four threads,<br>one workshop.</h1>
+        <p class="lede">
+          The longer version of each thread.
+        </p>
+      </div>
+    </section>
+
+    <article class="thread">
+      <div class="thread__id"><span class="num">01</span>Generative QML &amp; mutual information</div>
+      <div>
+        <h2>Mutual information as a training objective for quantum generators</h2>
+        <div class="body">
+          <p>Most quantum generative models are trained against fidelity or
+          a Wasserstein-style discriminator. Both have known failure modes — fidelity
+          collapses on highly mixed targets, and the Wasserstein critic
+          inherits all the instabilities of its classical counterpart on near-term hardware.</p>
+          <p>An alternative is to maximize the <em>mutual information</em> between a latent
+          quantum register and the generated state. The objective is symmetric in the
+          two registers, well-defined for mixed targets, and admits practical lower bounds
+          via the disentangling QNN we developed in earlier work. The Sci. Reports paper
+          shows this works on toy distributions <em>and</em> on financial return series.</p>
+        </div>
+        <dl class="related">
+          <dt>Papers</dt><dd><a href="publications.html#qmi-gan">Lee et al., Sci. Reports 2025</a></dd>
+          <dt>Projects</dt><dd><a href="projects/qmi-gan.html">QMI-GAN reference impl.</a></dd>
+          <dt>Talks</dt><dd>QIP 2024 (poster) · UNC Kenan-Flagler '23</dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="thread">
+      <div class="thread__id"><span class="num">02</span>Entropy &amp; distance estimation</div>
+      <div>
+        <h2>One disentangling QNN, several quantities</h2>
+        <div class="body">
+          <p>Estimating quantum entropies, fidelities, and trace distances is usually
+          done with a different protocol per quantity — SWAP test, Hadamard test,
+          quantum singular-value transformations. Each requires a fresh circuit and
+          a fresh sampling complexity bound.</p>
+          <p>Our PRA paper shows that a <em>disentangling</em> ansatz, trained once,
+          gives unified estimators for several of these quantities. The paper's
+          contribution is more architectural than algorithmic: it gives a clean
+          primitive that downstream work — including the QMI-GAN above — can call as a black box.</p>
+        </div>
+        <dl class="related">
+          <dt>Papers</dt><dd><a href="publications.html#disentangling">Shin, Lee, Lee, Lee et al., PRA 2024</a></dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="thread">
+      <div class="thread__id"><span class="num">03</span>Hardware-aware variational algorithms</div>
+      <div>
+        <h2>Hardware-aware variational eigensolvers</h2>
+        <div class="body">
+          <p>Reported VQE numbers are usually iteration-bound. That hides where the
+          real differences live: gradient evaluation cost, transpilation, classical
+          optimizer overhead, hardware-noise stochasticity. A method that converges in
+          fewer iterations is not always the better one when the clock is running.</p>
+          <p><span class="mono">AutoVQE</span> is a small, deliberately under-engineered harness
+          that fixes the wall-clock at <span class="mono">2^(n-2)</span> seconds, leaves
+          a single editable <span class="mono">train.py</span>, and asks
+          which design choices actually matter at that budget. Early experiments
+          on small molecules and the transverse-field Ising model.</p>
+        </div>
+        <dl class="related">
+          <dt>Project</dt><dd><a href="projects/autovqe.html">AutoVQE — case study</a></dd>
+          <dt>Status</dt><dd>In progress · pre-print expected '26</dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="thread">
+      <div class="thread__id"><span class="num">04</span>Quantum-inspired finance</div>
+      <div>
+        <h2>What MI-based feature screening buys an alpha researcher</h2>
+        <div class="body">
+          <p>Two of the experiments in the QMI-GAN paper are financial. That is not
+          a coincidence: the same lower-bound machinery used to train the generator
+          also gives a usable, monotonic signal for screening features against a
+          target return series.</p>
+          <p>The Quant Alpha Dashboard is the ongoing receipt of that — a working
+          dashboard for factor IC, regime tagging, and an MI screener that pretends to
+          be nothing fancier than a sorted table.</p>
+        </div>
+        <dl class="related">
+          <dt>Project</dt><dd><a href="projects/quant-dashboard.html">Quant Alpha Dashboard</a></dd>
+          <dt>Affiliation</dt><dd>WorldQuant Brain research consultant ('23)</dd>
+        </dl>
+      </div>
+    </article>
+
+    <footer class="site-footer">
+      <div class="colophon">© 2026 Mingyu Lee. Last updated 2026 · 04.</div>
+      <div><a href="https://github.com/red1108">github</a> · <a href="#">scholar</a> · <a href="mailto:red1108@snu.ac.kr">email</a></div>
+    </footer>
+
+  </div>
+</div>
+</body>
+</html>

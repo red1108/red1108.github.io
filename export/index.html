@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mingyu Lee — Researcher</title>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/components.css">
+</head>
+<body>
+<div class="page">
+  <div class="container">
+
+    <!-- HEADER -->
+        <header class="site-header">
+      <div class="site-header__brand">
+        <a href="index.html">Mingyu Lee</a>
+        </div>
+      <nav class="site-nav" aria-label="primary">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="projects.html">Projects &amp; Demos</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="cv.html" class="cv-link">CV</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="hero__id">
+          <div class="hero__id-text">
+            <div class="hero__role">Undergraduate Researcher · Quantum Complexity &amp; QML</div>
+            <div class="hero__id-aff">Seoul National University · exchange at UC Davis (Jan – Jun 2026)</div>
+          </div>
+        </div>
+        <h1 class="hero__name">Mingyu Lee</h1>
+        <p class="hero__thesis">
+          4th-year undergrad at <em>SNU</em>, exchange at <em>UC Davis</em> (Jan–Jun 2026).
+          Research in <em>quantum complexity</em> and <em>quantum machine learning</em>.
+        </p>
+        <p class="hero__interests">
+          <span class="hero__interests-label">Interests</span>
+          Quantum Computing · Problem Solving · Machine Learning · Quant Investment
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="cv.html">View CV</a>
+          <a class="btn" href="publications.html">Publications</a>
+          <a class="btn btn--ghost" href="mailto:red1108@snu.ac.kr">Contact</a>
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <figure class="hero__portrait-lg">
+          <img src="assets/profile-wide.png" alt="Portrait of Mingyu Lee" />
+        </figure>
+        <aside class="hero__sidecard">
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="https://github.com/red1108">GitHub</a><span class="date">@red1108</span></li>
+            <li><a href="#">Google Scholar</a><span class="date">profile</span></li>
+            <li><a href="#">LinkedIn</a><span class="date">민규 이</span></li>
+            <li><a href="mailto:red1108@snu.ac.kr">Email</a><span class="date">red1108@snu.ac.kr</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- RESEARCH FOCUS -->
+    <details class="section section--collapsible"><summary class="section__summary"><div class="section__head-inner">
+        <div class="section__num">§01 / Research focus</div>
+        <h2 class="section__title">Where I spend my time</h2>
+        <p class="section__lede">
+          Four threads I keep coming back to.
+        </p>
+        </p>
+      </div></summary>
+<div class="section__body">
+
+      <div class="themes">
+        <article class="theme">
+          <div class="theme__num">01</div>
+          <div>
+            <h3 class="theme__title">Quantum generative models &amp; mutual information</h3>
+            <p class="theme__body">
+              QGANs whose objective is the <em>mutual information</em> between latent
+              and generated registers. Why MI is a more honest target than
+              fidelity, and what it buys us when the data is financial.
+            </p>
+            <div class="theme__refs">
+              <a href="publications.html#qmi-gan">Sci. Reports '25</a>
+              <a href="projects/qmi-gan.html">project →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="theme">
+          <div class="theme__num">02</div>
+          <div>
+            <h3 class="theme__title">Quantum neural networks for entropy &amp; distance</h3>
+            <p class="theme__body">
+              A disentangling QNN architecture that estimates quantum entropies
+              and distance measures from the same primitive — without separate
+              circuits per quantity.
+            </p>
+            <div class="theme__refs">
+              <a href="publications.html#disentangling">Phys. Rev. A '24</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="theme">
+          <div class="theme__num">03</div>
+          <div>
+            <h3 class="theme__title">Hardware-aware variational algorithms</h3>
+            <p class="theme__body">
+              How much of VQE's success is the ansatz, and how much is the wall-clock
+              budget? Building a small, reproducible harness — <span class="mono">AutoVQE</span> —
+              to find out.
+            </p>
+            <div class="theme__refs">
+              <a href="projects/autovqe.html">project →</a>
+              <span class="dim">in progress</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="theme">
+          <div class="theme__num">04</div>
+          <div>
+            <h3 class="theme__title">Quantum-inspired methods in systematic finance</h3>
+            <p class="theme__body">
+              Where ideas from quantum information — entropy bounds, sample
+              complexity, distributional distance — sharpen ordinary alpha
+              research. Mostly in the form of dashboards I keep editing.
+            </p>
+            <div class="theme__refs">
+              <a href="projects/quant-dashboard.html">dashboard →</a>
+              <a href="#">WorldQuant Brain</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+</details>
+
+    <!-- PUBLICATIONS -->
+    <details class="section section--collapsible"><summary class="section__summary"><div class="section__head-inner">
+        <div class="section__num">§02 / Selected publications</div>
+        <h2 class="section__title">Publications</h2>
+        <p class="section__lede">
+          Peer-reviewed work. Full list on the
+          <a href="publications.html">publications page</a>.
+        </p>
+        </p>
+      </div></summary>
+<div class="section__body">
+
+      <div class="pubs">
+        <article class="pub" id="qmi-gan">
+          <div class="pub__year">2025</div>
+          <div class="pub__main">
+            <span class="pub__authors"><span class="self">M. Lee</span>, M. Shin, J. Lee, K. Jeong</span>.
+            <span class="pub__title">Mutual information maximizing quantum generative adversarial networks</span>.
+            <span class="pub__venue">Nature Scientific Reports</span> <strong>15</strong>(1), 32835.
+          </div>
+          <div class="pub__links">
+            <a href="#">DOI</a><a href="#">PDF</a><a href="#">code</a>
+          </div>
+        </article>
+
+        <article class="pub" id="disentangling">
+          <div class="pub__year">2024</div>
+          <div class="pub__main">
+            <span class="pub__authors">M. Shin, S. Lee, J. Lee, <span class="self">M. Lee</span>, D. Ji, H. Yeo, K. Jeong</span>.
+            <span class="pub__title">Disentangling quantum neural networks for unified estimation of quantum entropies and distance measures</span>.
+            <span class="pub__venue">Physical Review A</span> <strong>110</strong>, 062418.
+          </div>
+          <div class="pub__links">
+            <a href="#">DOI</a><a href="#">PDF</a>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="pub__year">2020</div>
+          <div class="pub__main">
+            <span class="pub__authors"><span class="self">M. Lee</span></span>.
+            <span class="pub__title">Improving performance of pyramid CNN used in image deblurring</span>.
+            <span class="pub__venue">Samsung Humantech Paper Award</span> (Bronze).
+          </div>
+          <div class="pub__links"><a href="#">PDF</a></div>
+        </article>
+      </div>
+    </div>
+</details>
+
+    <!-- PROJECTS -->
+    <details class="section section--collapsible"><summary class="section__summary"><div class="section__head-inner">
+        <div class="section__num">§03 / Projects &amp; research artifacts</div>
+        <h2 class="section__title">A few things I'm building</h2>
+        <p class="section__lede">
+          Things I'm building.
+        </p>
+        </p>
+      </div></summary>
+<div class="section__body">
+
+      <div class="projects">
+        <article class="project">
+          <div class="project__status is-paper"><span class="dot"></span>Published artifact</div>
+          <h3 class="project__title">QMI-GAN</h3>
+          <p class="project__problem">
+            Reference implementation for the mutual-information-maximizing
+            QGAN. Includes the financial-time-series experiments from the
+            Sci. Reports paper.
+          </p>
+          <div class="project__methods">
+            <span class="m">Pennylane</span><span class="m">PyTorch</span><span class="m">MI estimation</span>
+          </div>
+          <a class="project__cta link-arrow" href="projects/qmi-gan.html">Open case study</a>
+        </article>
+
+        <article class="project">
+          <div class="project__status is-active"><span class="dot"></span>In progress</div>
+          <h3 class="project__title">AutoVQE</h3>
+          <p class="project__problem">
+            A minimal, reproducible harness for hardware-aware VQE. Fixed
+            wall-clock budget per problem; one editable <span class="mono">train.py</span>.
+            Inspired by Karpathy's <span class="mono">autoresearch</span>.
+          </p>
+          <div class="project__methods">
+            <span class="m">Qiskit</span><span class="m">VQE</span><span class="m">harness</span>
+          </div>
+          <a class="project__cta link-arrow" href="projects/autovqe.html">Open case study</a>
+        </article>
+
+        <article class="project">
+          <div class="project__status is-active"><span class="dot"></span>Live dashboard</div>
+          <h3 class="project__title">Quant Alpha Dashboard</h3>
+          <p class="project__problem">
+            A working dashboard for systematic alpha research — factor IC, regime
+            tagging, and an MI-based feature screener carried over from the
+            QGAN work.
+          </p>
+          <div class="project__methods">
+            <span class="m">Python</span><span class="m">Plotly</span><span class="m">factor models</span>
+          </div>
+          <a class="project__cta link-arrow" href="projects/quant-dashboard.html">Open case study</a>
+        </article>
+      </div>
+      <div style="text-align: right; margin-top: var(--s-5);">
+        <a class="link-arrow sans" style="font-size: var(--fs-sm); color: var(--ink-2);" href="projects.html">All projects</a>
+      </div>
+    </div>
+</details>
+
+    <!-- NOTES -->
+    <!-- (Writings section removed) -->
+
+    <!-- UPDATES -->
+    <details class="section section--collapsible"><summary class="section__summary"><div class="section__head-inner">
+        <div class="section__num">§04 / Recent</div>
+        <h2 class="section__title">Updates</h2>
+      </div></summary>
+<div class="section__body">
+      <ul class="updates">
+        <li class="update">
+          <span class="update__date">2025 · 11</span>
+          <span class="update__kind">Award</span>
+          <span class="update__body">Bronze prize (8th place) at <strong>ICPC Seoul Regional 2025</strong>; received the President's Award of NIA.</span>
+        </li>
+        <li class="update">
+          <span class="update__date">2025 · 11</span>
+          <span class="update__kind">Honor</span>
+          <span class="update__body">Selected for the <strong>Korea–U.S. Advanced Industries Youth Exchange Scholarship</strong>, 4th cohort.</span>
+        </li>
+        <li class="update">
+          <span class="update__date">2025 · 10</span>
+          <span class="update__kind">Paper</span>
+          <span class="update__body"><strong>QMI-GAN</strong> appeared in <em>Nature Scientific Reports</em>.</span>
+        </li>
+        <li class="update">
+          <span class="update__date">2024 · 12</span>
+          <span class="update__kind">Paper</span>
+          <span class="update__body">Disentangling QNNs paper appeared in <em>Physical Review A</em>.</span>
+        </li>
+        <li class="update">
+          <span class="update__date">2024 · 02</span>
+          <span class="update__kind">Service</span>
+          <span class="update__body">Began mandatory military service, ROK Air Force (until Nov 2025).</span>
+        </li>
+        <li class="update">
+          <span class="update__date">2024 · 01</span>
+          <span class="update__kind">Talk</span>
+          <span class="update__body">Poster, <strong>QIP 2024</strong>, Taipei.</span>
+        </li>
+      </ul>
+    </div>
+</details>
+
+    <!-- CONTACT -->
+    <section class="section section--contact">
+      <div class="section__head">
+        <div class="section__num">§05 / Contact</div>
+        <h2 class="section__title">Get in touch</h2>
+      </div>
+      <div class="contact-card">
+        <p class="contact-card__lede">
+          Always happy to talk about anything!
+        </p>
+        <div class="contact-card__addr">
+          <a href="mailto:red1108@snu.ac.kr">red1108@snu.ac.kr</a>
+          <span>Research Institute of Mathematics</span>
+          <span>Seoul National University</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="colophon">
+        © 2026 Mingyu Lee. Set in Source Serif 4 &amp; Inter Tight.
+        Built with Jekyll on GitHub Pages. Last updated 2026 · 04.
+      </div>
+      <div>
+        <a href="https://github.com/red1108">github</a> ·
+        <a href="#">scholar</a> ·
+        <a href="mailto:red1108@snu.ac.kr">email</a>
+      </div>
+    </footer>
+
+  </div>
+</div>
+<script>
+// Smooth slide animation for collapsible sections
+document.querySelectorAll('details.section--collapsible').forEach(d => {
+  const body = d.querySelector('.section__body');
+  const summary = d.querySelector('summary');
+  if (!body || !summary) return;
+  summary.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (d.open) {
+      const startH = body.scrollHeight;
+      body.style.height = startH + 'px';
+      requestAnimationFrame(() => {
+        body.style.transition = 'height 280ms cubic-bezier(0.22,0.8,0.36,1), opacity 200ms ease';
+        body.style.opacity = '0';
+        body.style.height = '0px';
+      });
+      body.addEventListener('transitionend', function onEnd(ev) {
+        if (ev.propertyName !== 'height') return;
+        d.open = false;
+        body.style.transition = '';
+        body.style.height = '';
+        body.style.opacity = '';
+        body.removeEventListener('transitionend', onEnd);
+      });
+    } else {
+      d.open = true;
+      const targetH = body.scrollHeight;
+      body.style.height = '0px';
+      body.style.opacity = '0';
+      requestAnimationFrame(() => {
+        body.style.transition = 'height 320ms cubic-bezier(0.22,0.8,0.36,1), opacity 260ms ease 60ms';
+        body.style.height = targetH + 'px';
+        body.style.opacity = '1';
+      });
+      body.addEventListener('transitionend', function onEnd(ev) {
+        if (ev.propertyName !== 'height') return;
+        body.style.transition = '';
+        body.style.height = '';
+        body.style.opacity = '';
+        body.removeEventListener('transitionend', onEnd);
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>

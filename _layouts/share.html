@@ -2,7 +2,7 @@
 layout: default
 ---
 <article class="share-article">
-  <header>
+  <header class="share-header">
     <p class="muted">Updated {{ page.last_modified_at | default: page.date | date: '%B %d, %Y' }}</p>
     <h1>{{ page.title }}</h1>
     <p class="summary">{{ page.summary }}</p>
@@ -18,7 +18,7 @@ layout: default
       {{ page.content | toc_only }}
     </aside>
   {% endif %}
-  <section class="share-content">
+  <section class="share-content prose">
     {{ content }}
   </section>
   <footer>

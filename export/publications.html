@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publications — Mingyu Lee</title>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/components.css">
+<style>
+.pubs-head { padding: var(--s-7) 0 var(--s-6); border-bottom: 1px solid var(--rule); }
+.pubs-head h1 { font-size: 56px; letter-spacing: -0.025em; line-height: 1; }
+.pubs-head .lede { color: var(--ink-2); font-size: var(--fs-lg); margin-top: var(--s-3); max-width: 60ch; }
+.pubs-toc {
+  display: flex; gap: var(--s-5);
+  font-family: var(--sans); font-size: var(--fs-sm);
+  margin-top: var(--s-5);
+  flex-wrap: wrap;
+}
+.pubs-toc a { color: var(--ink-2); border-bottom: 1px solid var(--rule); padding-bottom: 2px; }
+.pubs-toc a:hover { color: var(--ink); }
+.pubs-section { margin-top: var(--s-8); }
+.pubs-section h2 {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 500; margin-bottom: var(--s-4);
+}
+.pub--full {
+  display: grid; grid-template-columns: 88px 1fr 140px;
+  gap: var(--s-5); padding: var(--s-5) 0;
+  border-top: 1px solid var(--rule); align-items: baseline;
+}
+.pub--full:last-child { border-bottom: 1px solid var(--rule); }
+.pub--full .pub__main { font-size: var(--fs-md); }
+.pub--full .pub__abstract {
+  font-family: var(--serif); font-size: var(--fs-sm); color: var(--ink-2);
+  margin-top: var(--s-2); max-width: 64ch; line-height: 1.55;
+}
+.talk { display: grid; grid-template-columns: 88px 1fr; gap: var(--s-5); padding: var(--s-3) 0; border-top: 1px dashed var(--rule); align-items: baseline; }
+.talk:last-child { border-bottom: 1px dashed var(--rule); }
+.talk__date { font-family: var(--sans); font-size: var(--fs-xs); color: var(--ink-3); letter-spacing: 0.04em; }
+.talk__body { font-family: var(--serif); font-size: var(--fs-md); color: var(--ink-2); line-height: 1.5; }
+.talk__body strong { color: var(--ink); font-weight: 500; }
+.talk__body em { color: var(--ink-3); }
+@media (max-width: 720px) {
+  .pub--full { grid-template-columns: 1fr; gap: 4px; }
+  .pub--full .pub__links { margin-top: 6px; }
+  .talk { grid-template-columns: 1fr; gap: 2px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="container">
+
+        <header class="site-header">
+      <div class="site-header__brand">
+        <a href="index.html">Mingyu Lee</a>
+        </div>
+      <nav class="site-nav" aria-label="primary">
+        <a href="research.html">Research</a>
+        <a href="publications.html" class="is-current">Publications</a>
+        <a href="projects.html">Projects &amp; Demos</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="cv.html" class="cv-link">CV</a>
+      </nav>
+    </header>
+
+    <section class="pubs-head">
+      <div class="eyebrow">Publications</div>
+      <h1>Papers, talks, posters.</h1>
+      <p class="lede">Peer-reviewed, contributed, invited.</p>
+      <nav class="pubs-toc">
+        <a href="#peer-reviewed">Peer-reviewed</a>
+        <a href="#contributed">Contributed talks</a>
+        <a href="#invited">Invited</a>
+        <a href="#posters">Posters</a>
+        <a href="#prior">Prior work</a>
+      </nav>
+    </section>
+
+    <section class="pubs-section" id="peer-reviewed">
+      <h2>Peer-reviewed articles</h2>
+
+      <article class="pub pub--full" id="qmi-gan">
+        <div class="pub__year">2025</div>
+        <div class="pub__main">
+          <div><span class="pub__authors"><span class="self">M. Lee</span>, M. Shin, J. Lee, K. Jeong</span>.</div>
+          <div class="pub__title" style="margin-top: 2px;">Mutual information maximizing quantum generative adversarial networks.</div>
+          <div style="margin-top: 2px;"><span class="pub__venue">Nature Scientific Reports</span> <strong>15</strong>(1), 32835.</div>
+          <p class="pub__abstract">
+            We propose training a quantum generator with a mutual-information-maximizing
+            objective rather than fidelity. The bound is implemented via a disentangling
+            QNN. We evaluate the model on synthetic distributions and on a financial
+            return series benchmark, where it converges with fewer parameters than
+            comparable baselines.
+          </p>
+        </div>
+        <div class="pub__links" style="flex-direction: column; align-items: flex-end; gap: 6px;">
+          <a href="#">DOI · 10.1038/...</a>
+          <a href="#">PDF</a>
+          <a href="#">arXiv</a>
+          <a href="#">code</a>
+          <a href="#">BibTeX</a>
+        </div>
+      </article>
+
+      <article class="pub pub--full" id="disentangling">
+        <div class="pub__year">2024</div>
+        <div class="pub__main">
+          <div><span class="pub__authors">M. Shin, S. Lee, J. Lee, <span class="self">M. Lee</span>, D. Ji, H. Yeo, K. Jeong</span>.</div>
+          <div class="pub__title" style="margin-top: 2px;">Disentangling quantum neural networks for unified estimation of quantum entropies and distance measures.</div>
+          <div style="margin-top: 2px;"><span class="pub__venue">Physical Review A</span> <strong>110</strong>, 062418.</div>
+          <p class="pub__abstract">
+            A single disentangling ansatz, trained once, supports estimators for von Neumann
+            entropy, quantum relative entropy, and trace distance — without the protocol
+            switching usually required to estimate each separately.
+          </p>
+        </div>
+        <div class="pub__links" style="flex-direction: column; align-items: flex-end; gap: 6px;">
+          <a href="#">DOI · 10.1103/...</a>
+          <a href="#">PDF</a>
+          <a href="#">arXiv</a>
+          <a href="#">BibTeX</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="pubs-section" id="contributed">
+      <h2>Contributed talks</h2>
+      <div class="talk"><div class="talk__date">2023 · 12</div><div class="talk__body"><strong>M. Lee</strong>. Mutual Information Maximizing Quantum GANs and Its Applications. <em>2nd CQNC Winter Kick-off Workshop.</em></div></div>
+      <div class="talk"><div class="talk__date">2023 · 11</div><div class="talk__body"><strong>M. Lee</strong>, M. Shin, J. Lee, K. Jeong. MI-Maximizing QGANs and Applications. <em>KSIAM Annual Meeting.</em></div></div>
+      <div class="talk"><div class="talk__date">2023 · 11</div><div class="talk__body">S. Jang, G. Bae, M. Lee. Transformer-based ETF portfolio for liquidity providers. <em>KIIE Autumn Annual Conf.</em></div></div>
+      <div class="talk"><div class="talk__date">2023 · 01</div><div class="talk__body"><strong>M. Lee</strong>. Introduction to Shadow Tomography and Its Application. <em>1st CQNC Winter Kick-off Workshop.</em></div></div>
+    </section>
+
+    <section class="pubs-section" id="invited">
+      <h2>Invited talks</h2>
+      <div class="talk"><div class="talk__date">2023 · 11</div><div class="talk__body"><strong>M. Lee</strong>, M. Shin, J. Lee, K. Jeong. MI-Maximizing QGANs and Applications in Finance. <em>Quantum FinTech Webinars Series</em>, Rethinc. Labs / Frank Hawkins Kenan Institute, UNC Kenan-Flagler.</div></div>
+    </section>
+
+    <section class="pubs-section" id="posters">
+      <h2>Posters</h2>
+      <div class="talk"><div class="talk__date">2024 · 01</div><div class="talk__body"><strong>M. Lee</strong>, M. Shin, J. Lee, K. Jeong. MI-Maximizing QGANs and Applications. <em>QIP 2024</em>, Taipei.</div></div>
+    </section>
+
+    <section class="pubs-section" id="prior">
+      <h2>Prior work</h2>
+      <div class="talk"><div class="talk__date">2020</div><div class="talk__body"><strong>M. Lee</strong>. Improving Performance of Pyramid CNN used in Image Deblurring. <em>Samsung Humantech Paper Award (Bronze).</em></div></div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="colophon">© 2026 Mingyu Lee.</div>
+      <div><a href="https://github.com/red1108">github</a> · <a href="#">scholar</a> · <a href="mailto:red1108@snu.ac.kr">email</a></div>
+    </footer>
+  </div>
+</div>
+</body>
+</html>
