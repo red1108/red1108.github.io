@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teaching — Mingyu Lee</title>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/components.css">
+<style>
+.t-head { padding: var(--s-7) 0 var(--s-6); border-bottom: 1px solid var(--rule); margin-bottom: var(--s-7); }
+.t-head h1 { font-size: 56px; letter-spacing: -0.025em; line-height: 1; }
+.t-head .lede { color: var(--ink-2); font-size: var(--fs-lg); margin-top: var(--s-3); max-width: 60ch; }
+.course { display: grid; grid-template-columns: 200px 1fr; gap: var(--s-6); padding: var(--s-6) 0; border-top: 1px solid var(--rule); align-items: start; }
+.course .term { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+.course h2 { font-size: 28px; letter-spacing: -0.012em; margin-bottom: var(--s-2); }
+.course .role { font-family: var(--serif); font-style: italic; font-size: var(--fs-md); color: var(--ink-3); margin-bottom: var(--s-3); }
+.course .body { font-family: var(--serif); font-size: var(--fs-md); color: var(--ink-2); line-height: 1.6; max-width: 60ch; }
+.course .links { font-family: var(--sans); font-size: var(--fs-xs); color: var(--ink-3); margin-top: var(--s-3); display: flex; gap: var(--s-4); }
+.course .links a { color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+.mentoring { background: var(--paper-2); padding: var(--s-7); margin-top: var(--s-7); }
+.mentoring h3 { font-family: var(--serif); font-size: var(--fs-xl); margin-bottom: var(--s-3); }
+.mentoring p { font-family: var(--serif); color: var(--ink-2); line-height: 1.6; max-width: 64ch; font-size: var(--fs-md); }
+@media (max-width: 720px) { .course { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="page"><div class="container">
+
+      <header class="site-header">
+      <div class="site-header__brand">
+        <a href="index.html">Mingyu Lee</a>
+        </div>
+      <nav class="site-nav" aria-label="primary">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="projects.html">Projects &amp; Demos</a>
+        <a href="teaching.html" class="is-current">Teaching</a>
+        <a href="cv.html" class="cv-link">CV</a>
+      </nav>
+    </header>
+
+  <section class="t-head">
+    <div class="eyebrow">Teaching</div>
+    <h1>Teaching &amp; mentoring.</h1>
+    <p class="lede">Formal teaching and mentoring.</p>
+  </section>
+
+  <article class="course">
+    <div class="term">Spring 2022 · SNU</div>
+    <div>
+      <h2>Discrete Mathematics</h2>
+      <div class="role">Teaching Assistant · Department of Computer Science &amp; Engineering</div>
+      <p class="body">Recitation sessions, problem-set design, and grading for the introductory discrete-math course. Roughly 60 students; standard syllabus covering combinatorics, graph theory, and proof technique.</p>
+      <div class="links"><a href="#">syllabus</a><a href="#">problem-set archive</a></div>
+    </div>
+  </article>
+
+  <article class="course">
+    <div class="term">2023 · CQNC</div>
+    <div>
+      <h2>Shadow Tomography — workshop tutorial</h2>
+      <div class="role">Speaker · 1st CQNC Winter Kick-off Workshop</div>
+      <p class="body">A two-hour tutorial on shadow tomography, walking through Aaronson's argument and the practical sampling complexity. Slides and a companion note are available below.</p>
+      <div class="links"><a href="#">slides (pdf)</a><a href="#">companion note</a></div>
+    </div>
+  </article>
+
+  <div class="mentoring">
+    <h3>Mentoring</h3>
+    <p>Always happy to chat — drop me a line.</p>
+  </div>
+
+  <footer class="site-footer">
+    <div class="colophon">© 2026 Mingyu Lee.</div>
+    <div><a href="https://github.com/red1108">github</a> · <a href="mailto:red1108@snu.ac.kr">email</a></div>
+  </footer>
+</div></div>
+</body>
+</html>

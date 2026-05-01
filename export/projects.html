@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects &amp; Demos — Mingyu Lee</title>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/components.css">
+<style>
+.proj-head { padding: var(--s-7) 0; border-bottom: 1px solid var(--rule); margin-bottom: var(--s-7); }
+.proj-head h1 { font-size: 56px; letter-spacing: -0.025em; line-height: 1; }
+.proj-head .lede { color: var(--ink-2); font-size: var(--fs-lg); margin-top: var(--s-3); max-width: 60ch; }
+.proj-row {
+  display: grid; grid-template-columns: 200px 1fr 200px;
+  gap: var(--s-6); padding: var(--s-6) 0;
+  border-top: 1px solid var(--rule); align-items: start;
+}
+.proj-row:last-of-type { border-bottom: 1px solid var(--rule); }
+.proj-row__year { font-family: var(--sans); font-size: var(--fs-sm); color: var(--ink-3); letter-spacing: 0.04em; }
+.proj-row__year .status { display: block; margin-top: var(--s-2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; }
+.proj-row__main h3 { font-family: var(--serif); font-size: 28px; font-weight: 500; letter-spacing: -0.012em; margin-bottom: var(--s-3); }
+.proj-row__main h3 a { color: var(--ink); }
+.proj-row__main p { font-family: var(--serif); font-size: var(--fs-md); color: var(--ink-2); line-height: 1.6; max-width: 60ch; }
+.proj-row__main .tags { margin-top: var(--s-4); display: flex; gap: 6px; flex-wrap: wrap; }
+.proj-row__type { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); text-align: right; }
+.filter-bar {
+  display: flex; gap: var(--s-3); flex-wrap: wrap;
+  font-family: var(--sans); font-size: var(--fs-sm);
+  margin-bottom: var(--s-5);
+}
+.filter-bar .label { color: var(--ink-3); margin-right: var(--s-2); }
+.filter-bar a { color: var(--ink-2); padding: 3px 10px; border: 1px solid var(--rule); border-radius: 999px; }
+.filter-bar a.is-on { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+@media (max-width: 720px) {
+  .proj-row { grid-template-columns: 1fr; gap: var(--s-3); }
+  .proj-row__type { text-align: left; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="container">
+        <header class="site-header">
+      <div class="site-header__brand">
+        <a href="index.html">Mingyu Lee</a>
+        </div>
+      <nav class="site-nav" aria-label="primary">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="projects.html" class="is-current">Projects &amp; Demos</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="cv.html" class="cv-link">CV</a>
+      </nav>
+    </header>
+
+    <section class="proj-head">
+      <div class="eyebrow">Projects &amp; Demos</div>
+      <h1>Research artifacts.</h1>
+      <p class="lede">Code, dashboards, and small harnesses.</p>
+    </section>
+
+    <div class="filter-bar">
+      <span class="label">Filter:</span>
+      <a href="#" class="is-on">All</a>
+      <a href="#">Quantum ML</a>
+      <a href="#">Quant finance</a>
+      <a href="#">Tools / harness</a>
+      <a href="#">Coursework</a>
+    </div>
+
+    <article class="proj-row">
+      <div class="proj-row__year">2025<span class="status">Published artifact</span></div>
+      <div class="proj-row__main">
+        <h3><a href="projects/qmi-gan.html">QMI-GAN — reference implementation</a></h3>
+        <p>Reference implementation for the mutual-information-maximizing QGAN, with the financial-time-series experiments from the Sci. Reports paper. Pennylane + PyTorch; runs end-to-end on a laptop.</p>
+        <div class="tags"><span class="tag">Pennylane</span><span class="tag">PyTorch</span><span class="tag">MI estimation</span><span class="tag">finance</span></div>
+      </div>
+      <div class="proj-row__type">Quantum ML</div>
+    </article>
+
+    <article class="proj-row">
+      <div class="proj-row__year">2026<span class="status">In progress</span></div>
+      <div class="proj-row__main">
+        <h3><a href="projects/autovqe.html">AutoVQE</a></h3>
+        <p>A minimal harness for hardware-aware VQE. One fixed <span class="mono">prepare.py</span>, one editable <span class="mono">train.py</span>, a single results log, and a <span class="mono">2^(n−2)</span>-second wall-clock budget per problem. Designed to be driven by a coding agent.</p>
+        <div class="tags"><span class="tag">Qiskit</span><span class="tag">VQE</span><span class="tag">harness</span></div>
+      </div>
+      <div class="proj-row__type">Tools / harness</div>
+    </article>
+
+    <article class="proj-row">
+      <div class="proj-row__year">2024<span class="status">Live</span></div>
+      <div class="proj-row__main">
+        <h3><a href="projects/quant-dashboard.html">Quant Alpha Dashboard</a></h3>
+        <p>A dashboard for systematic alpha research. Factor IC, regime tagging, and an MI-based feature screener carried over from the QGAN work. Updated when I find time on weekends.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Plotly</span><span class="tag">factor models</span></div>
+      </div>
+      <div class="proj-row__type">Quant finance</div>
+    </article>
+
+    <article class="proj-row">
+      <div class="proj-row__year">2023<span class="status">Archive</span></div>
+      <div class="proj-row__main">
+        <h3><a href="#">Shadow Tomography demo notebook</a></h3>
+        <p>Companion to the CQNC talk. Walks through Aaronson's argument and shows the protocol on a 4-qubit toy state.</p>
+        <div class="tags"><span class="tag">Pennylane</span><span class="tag">teaching</span></div>
+      </div>
+      <div class="proj-row__type">Quantum ML</div>
+    </article>
+
+    <article class="proj-row">
+      <div class="proj-row__year">2022<span class="status">Archive</span></div>
+      <div class="proj-row__main">
+        <h3><a href="#">CMPE 250 — DSA project set</a></h3>
+        <p>Five Java projects from a graduate-level DS&amp;A course: discrete-event simulation, Dijkstra, Prim's MST, Dinic's max-flow, and weighted job scheduling.</p>
+        <div class="tags"><span class="tag">Java</span><span class="tag">algorithms</span></div>
+      </div>
+      <div class="proj-row__type">Coursework</div>
+    </article>
+
+    <footer class="site-footer">
+      <div class="colophon">© 2026 Mingyu Lee.</div>
+      <div><a href="https://github.com/red1108">github</a> · <a href="#">scholar</a> · <a href="mailto:red1108@snu.ac.kr">email</a></div>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV — Mingyu Lee</title>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/components.css">
+<style>
+.cv-head { padding: var(--s-7) 0 var(--s-6); border-bottom: 2px solid var(--ink); margin-bottom: var(--s-7); display: grid; grid-template-columns: 1fr auto; gap: var(--s-6); align-items: end; }
+.cv-head h1 { font-size: 56px; letter-spacing: -0.025em; line-height: 1; }
+.cv-head .role { font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3); margin-bottom: var(--s-2); }
+.cv-head .contact { font-family: var(--sans); font-size: var(--fs-sm); color: var(--ink-2); display: flex; flex-direction: column; gap: 4px; text-align: right; }
+.cv-head .contact a { color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+.cv-head .actions { margin-top: var(--s-3); display: flex; gap: var(--s-2); justify-content: flex-end; }
+.cv-section { display: grid; grid-template-columns: 200px 1fr; gap: var(--s-6); padding: var(--s-6) 0; border-top: 1px solid var(--rule); }
+.cv-section h2 { font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; padding-top: 4px; }
+.cv-entry { display: grid; grid-template-columns: 1fr 110px; gap: var(--s-4); padding: var(--s-3) 0; border-bottom: 1px dashed var(--rule); align-items: baseline; }
+.cv-entry:last-child { border-bottom: 0; }
+.cv-entry h3 { font-family: var(--serif); font-size: var(--fs-lg); font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.cv-entry .sub { font-family: var(--serif); font-style: italic; font-size: var(--fs-sm); color: var(--ink-2); }
+.cv-entry .desc { font-family: var(--serif); font-size: var(--fs-sm); color: var(--ink-2); margin-top: var(--s-2); line-height: 1.55; }
+.cv-entry .date { font-family: var(--sans); font-size: var(--fs-xs); color: var(--ink-3); letter-spacing: 0.04em; text-align: right; font-variant-numeric: tabular-nums; }
+.cv-list { font-family: var(--serif); font-size: var(--fs-md); color: var(--ink-2); line-height: 1.55; }
+.cv-list li { padding: 6px 0; border-bottom: 1px dashed var(--rule); display: grid; grid-template-columns: 1fr 110px; gap: var(--s-4); align-items: baseline; }
+.cv-list li:last-child { border-bottom: 0; }
+.cv-list li .date { font-family: var(--sans); font-size: var(--fs-xs); color: var(--ink-3); text-align: right; }
+.cv-list li strong { color: var(--ink); font-weight: 500; }
+.cv-skills dl { display: grid; grid-template-columns: 140px 1fr; gap: var(--s-3) var(--s-5); font-family: var(--serif); font-size: var(--fs-md); }
+.cv-skills dt { color: var(--ink-3); font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding-top: 4px; }
+.cv-skills dd { margin: 0; color: var(--ink-2); }
+.cv-skills dd .mono { color: var(--ink); }
+@media (max-width: 720px) {
+  .cv-head { grid-template-columns: 1fr; }
+  .cv-head .contact { text-align: left; } .cv-head .actions { justify-content: flex-start; }
+  .cv-section { grid-template-columns: 1fr; }
+  .cv-entry { grid-template-columns: 1fr; gap: 4px; }
+  .cv-entry .date { text-align: left; }
+}
+</style>
+</head>
+<body>
+<div class="page"><div class="container">
+
+      <header class="site-header">
+      <div class="site-header__brand">
+        <a href="index.html">Mingyu Lee</a>
+        </div>
+      <nav class="site-nav" aria-label="primary">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="projects.html">Projects &amp; Demos</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="cv.html" class="cv-link is-current">CV</a>
+      </nav>
+    </header>
+
+  <section class="cv-head">
+    <div>
+      <div class="role">Curriculum Vitae · last updated Feb 2026</div>
+      <h1>Mingyu Lee</h1>
+    </div>
+    <div class="contact">
+      <a href="mailto:red1108@snu.ac.kr">red1108@snu.ac.kr</a>
+      <a href="https://github.com/red1108">github / red1108</a>
+      <span>Seoul, KR · Davis, CA</span>
+      <div class="actions"><a href="#" class="btn btn--ghost">Download PDF</a></div>
+    </div>
+  </section>
+
+  <section class="cv-section">
+    <h2>Education</h2>
+    <div>
+      <div class="cv-entry">
+        <div>
+          <h3>Seoul National University</h3>
+          <div class="sub">B.Sc. Computer Science &amp; Engineering · double major Mathematical Sciences</div>
+          <div class="desc">GPA 4.05 / 4.30 · major GPA 4.05 / 4.30 · Seoul, Korea</div>
+        </div>
+        <div class="date">2021 —</div>
+      </div>
+      <div class="cv-entry">
+        <div>
+          <h3>Gyeonggi Science High School for the Gifted</h3>
+          <div class="sub">Computer Science track · Suwon, Korea</div>
+        </div>
+        <div class="date">2018 — 2021</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cv-section">
+    <h2>Research</h2>
+    <div>
+      <div class="cv-entry">
+        <div>
+          <h3>Research Institute of Mathematics, Seoul National University</h3>
+          <div class="sub">Undergraduate Researcher</div>
+          <div class="desc">Quantum machine learning — generative models, entropy &amp; distance estimation, financial applications.</div>
+        </div>
+        <div class="date">Jul 2022 —</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cv-section">
+    <h2>Experience</h2>
+    <div>
+      <div class="cv-entry">
+        <div><h3>Republic of Korea Air Force</h3><div class="sub">Mandatory military service · Pyeongtaek-si</div></div>
+        <div class="date">Feb 2024 — Nov 2025</div>
+      </div>
+      <div class="cv-entry">
+        <div><h3>NCSOFT</h3><div class="sub">Research Intern · AI-based ETF managing system</div></div>
+        <div class="date">Jul — Aug 2023</div>
+      </div>
+      <div class="cv-entry">
+        <div><h3>Seoul National University</h3><div class="sub">Teaching Assistant · Discrete Mathematics</div></div>
+        <div class="date">Mar — Jun 2022</div>
+      </div>
+      <div class="cv-entry">
+        <div><h3>Rainbow Brain, Inc.</h3><div class="sub">Internship · e-commerce data analysis</div></div>
+        <div class="date">Jan — Mar 2022</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cv-section">
+    <h2>Selected publications</h2>
+    <ul class="cv-list">
+      <li><span><strong>M. Lee</strong>, M. Shin, J. Lee, K. Jeong. Mutual information maximizing quantum generative adversarial networks. <em>Nature Scientific Reports</em> <strong>15</strong>(1), 32835.</span><span class="date">2025</span></li>
+      <li><span>M. Shin, S. Lee, J. Lee, <strong>M. Lee</strong>, et al. Disentangling quantum neural networks for unified estimation of quantum entropies and distance measures. <em>Physical Review A</em> <strong>110</strong>, 062418.</span><span class="date">2024</span></li>
+      <li><span><strong>M. Lee</strong>. Improving performance of pyramid CNN used in image deblurring. <em>Samsung Humantech Paper Award (Bronze).</em></span><span class="date">2020</span></li>
+    </ul>
+  </section>
+
+  <section class="cv-section">
+    <h2>Awards</h2>
+    <ul class="cv-list">
+      <li><span><strong>ICPC Seoul Regional 2025</strong> — Bronze prize, 8th. President's Award of NIA.</span><span class="date">Nov 2025</span></li>
+      <li><span><strong>ICPC Seoul Regional 2023</strong> — Encouragement, 14th. Director's Award of NIA.</span><span class="date">Nov 2023</span></li>
+      <li><span><strong>UCPC final round</strong> — 7th place.</span><span class="date">Jul 2023</span></li>
+      <li><span><strong>Quantum Hackathon Korea 2023</strong> — 1st place. Minister of Science and ICT Award.</span><span class="date">Jun 2023</span></li>
+      <li><span>WorldQuant Brain research consultant.</span><span class="date">Apr 2023</span></li>
+      <li><span>QHack certificate of achievement (advanced) · Xanadu QHack Power-Up Awards.</span><span class="date">Feb 2023</span></li>
+      <li><span>Samsung Collegiate Programming Cup (SCPC) — 5th prize.</span><span class="date">Sep 2022</span></li>
+      <li><span>Samsung Humantech Paper Award — Bronze.</span><span class="date">Feb 2021</span></li>
+    </ul>
+  </section>
+
+  <section class="cv-section">
+    <h2>Honors</h2>
+    <ul class="cv-list">
+      <li><span>Korea–U.S. Advanced Industries Youth Exchange Scholarship · 4th cohort.</span><span class="date">Nov 2025 —</span></li>
+      <li><span>SNU Semiconductor Characterization College Scholarship.</span><span class="date">Feb 2024 —</span></li>
+      <li><span>Young Engineers Honor Society (YEHS), NAEK.</span><span class="date">Nov 2023 —</span></li>
+      <li><span>Samsung Software Membership.</span><span class="date">Oct 2022 —</span></li>
+      <li><span>Presidential Science Scholarship (Computer Science).</span><span class="date">Mar 2022 —</span></li>
+    </ul>
+  </section>
+
+  <section class="cv-section cv-skills">
+    <h2>Skills</h2>
+    <div>
+      <dl>
+        <dt>Advanced</dt><dd><span class="mono">C/C++</span> · <span class="mono">Python</span></dd>
+        <dt>Working</dt><dd>MATLAB · PyTorch · Qiskit · Pennylane · TypeScript · Java · R · React</dd>
+        <dt>Codeforces</dt><dd>rating 2177 (Master), max 2279 — <a href="https://codeforces.com/profile/red1108">red1108</a></dd>
+        <dt>AtCoder</dt><dd>rating 1915 (1 Kyu), max 1929 — <a href="https://atcoder.jp/users/red1108">red1108</a></dd>
+        <dt>Languages</dt><dd>Korean (native) · English (working)</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="cv-section">
+    <h2>Interests</h2>
+    <ul class="cv-list">
+      <li><span>Quantum computation and quantum information.</span><span class="date"></span></li>
+      <li><span>Quantitative research and trading.</span><span class="date"></span></li>
+      <li><span>Machine learning and its applications.</span><span class="date"></span></li>
+    </ul>
+  </section>
+
+  <footer class="site-footer">
+    <div class="colophon">© 2026 Mingyu Lee. CV last compiled Feb 2026.</div>
+    <div><a href="https://github.com/red1108">github</a> · <a href="mailto:red1108@snu.ac.kr">email</a></div>
+  </footer>
+</div></div>
+</body>
+</html>

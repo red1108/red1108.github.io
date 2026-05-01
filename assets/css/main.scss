@@ -5,6 +5,8 @@ $bg: #05060a;
 $text: #f5f5f5;
 $accent: #ff6f3c;
 $muted: #868b8e;
+$measure: 760px;
+$wide-measure: 900px;
 
 * {
   box-sizing: border-box;
@@ -24,6 +26,26 @@ body {
   min-height: 100%;
 }
 
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  margin: 0 0 0.8rem;
+}
+
+h2 {
+  font-size: clamp(1.45rem, 2.1vw, 2rem);
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
 img {
   max-width: 100%;
 }
@@ -39,7 +61,7 @@ a {
 .container {
   width: min(1200px, 92%);
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: clamp(2rem, 4vw, 4rem) 0;
 }
 
 .site-header {
@@ -245,6 +267,202 @@ a {
   margin-bottom: 1rem;
 }
 
+main.container > section + section {
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.page,
+.share-article {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  min-width: 0;
+}
+
+.page > *,
+.share-article > * {
+  min-width: 0;
+}
+
+.page-header,
+.share-header,
+.toc,
+.related,
+.share-nav {
+  width: 100%;
+  max-width: $measure;
+}
+
+.page-header h1,
+.share-header h1 {
+  margin-top: 0.25rem;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.summary {
+  max-width: $measure;
+  color: rgba(245, 245, 245, 0.78);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  overflow-wrap: break-word;
+}
+
+.prose {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.prose > :where(p, ul, ol, blockquote, h2, h3, h4, h5, h6, table, pre, .highlight, .highlighter-rouge) {
+  max-width: $measure;
+  min-width: 0;
+}
+
+.prose > :where(p, ul, ol, blockquote, table, pre, .highlight, .highlighter-rouge) {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+.prose > :where(h2, h3, h4) {
+  margin-top: 2.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.prose > :where(h2, h3, h4):first-child {
+  margin-top: 0;
+}
+
+.prose > hr {
+  width: min(100%, #{$measure});
+  margin: 2.4rem 0;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prose > blockquote {
+  border-left: 3px solid rgba(255, 111, 60, 0.55);
+  padding: 0.95rem 1.2rem;
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(245, 245, 245, 0.86);
+}
+
+.prose > table {
+  display: block;
+  width: fit-content;
+  max-width: min(100%, #{$measure});
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.prose > .responsive-table {
+  width: 100%;
+}
+
+.prose th,
+.prose td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+
+.prose > pre,
+.prose > .highlight,
+.prose > .highlighter-rouge {
+  width: 100%;
+  max-width: min(100%, #{$measure});
+  min-width: 0;
+  overflow-x: auto;
+  border-radius: 0.8rem;
+  background: rgba(5, 6, 10, 0.72);
+}
+
+.prose pre {
+  padding: 1rem 1.1rem;
+}
+
+.prose code {
+  overflow-wrap: anywhere;
+}
+
+.prose .highlight {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.prose .highlight pre,
+.prose pre.highlight {
+  margin: 0;
+  min-width: 0;
+  width: max-content;
+  max-width: none;
+}
+
+.prose .rouge-table {
+  display: table;
+  width: max-content;
+  max-width: none;
+  margin: 0;
+}
+
+.prose .rouge-table td,
+.prose .rouge-table th {
+  border-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.prose :where(img, video) {
+  display: block;
+  width: auto;
+  max-width: min(100%, #{$wide-measure});
+  max-height: min(70vh, 720px);
+  margin: 2.4rem auto;
+  object-fit: contain;
+  border-radius: 0.75rem;
+}
+
+.prose :where(figure, iframe, embed, object) {
+  display: block;
+  width: min(100%, #{$wide-measure});
+  margin: 2.4rem auto;
+}
+
+.prose iframe,
+.prose embed,
+.prose object {
+  min-height: clamp(280px, 52vw, 560px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.9rem;
+  background: rgba(5, 6, 10, 0.65);
+}
+
+.prose figcaption {
+  max-width: $measure;
+  margin: 0.75rem auto 0;
+  color: $muted;
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.prose .katex {
+  font-size: 1.02em;
+}
+
+.prose .katex-display {
+  max-width: min(100%, #{$measure});
+  margin: 1.8rem 0 2rem;
+  padding: 0.4rem 0 0.65rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+}
+
+.prose .katex-display > .katex {
+  font-size: clamp(1rem, 1.15vw, 1.16rem);
+  white-space: nowrap;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -305,6 +523,8 @@ a {
 
 .pub-card-main {
   color: rgba(245, 245, 245, 0.94);
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .pub-card-main p {
@@ -406,6 +626,10 @@ a {
   justify-content: center;
   gap: 0.35rem;
   margin-bottom: 0.5rem;
+}
+
+.quant-zoom-hint[hidden] {
+  display: none;
 }
 
 .quant-chart {
@@ -781,6 +1005,107 @@ a {
     right: 1.25rem;
     left: 1.25rem;
     width: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .responsive-table {
+    display: grid;
+    gap: 1rem;
+    overflow: visible;
+    border-collapse: separate;
+  }
+
+  .responsive-table thead {
+    display: none;
+  }
+
+  .responsive-table tbody,
+  .responsive-table tr,
+  .responsive-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .responsive-table tr {
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.85rem;
+    background: rgba(9, 14, 26, 0.72);
+  }
+
+  .responsive-table td {
+    display: grid;
+    grid-template-columns: minmax(90px, 34%) 1fr;
+    gap: 0.75rem;
+    padding: 0.35rem 0;
+    border-bottom: 0;
+  }
+
+  .responsive-table td::before {
+    content: attr(data-label);
+    color: $muted;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .bloch-fullscreen {
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .bloch-viewport {
+    height: 56vh;
+    min-height: 360px;
+    order: 1;
+  }
+
+  .bloch-overlay,
+  .bloch-overlay-left {
+    position: relative;
+    inset: auto;
+    width: auto;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    opacity: 1;
+    transform: none;
+  }
+
+  .bloch-overlay {
+    order: 2;
+    margin-top: -1rem;
+    padding: 1.15rem;
+  }
+
+  .bloch-overlay-left {
+    order: 3;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .bloch-overlay:hover,
+  .bloch-overlay:focus-within {
+    transform: none;
+  }
+
+  .bloch-state-expression {
+    font-size: 0.92rem;
+    overflow-wrap: anywhere;
+  }
+
+  .bloch-amplitudes {
+    grid-template-columns: 1fr;
+  }
+
+  .bloch-amplitudes .value {
+    font-size: 1.15rem;
+  }
+
+  .bloch-overlay__controls {
+    grid-template-columns: 1fr;
   }
 }
 
