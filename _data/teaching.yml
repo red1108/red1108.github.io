@@ -2,8 +2,14 @@
   institution: Seoul National University
   term: Spring 2026
   instructor: Mingyu Lee
-  role: Instructor
+  role: Organizer and Lecturer
   url: /teaching/building-blocks-of-quantum-algorithms/
+
+- course: Decoded Quantum Interferometry
+  institution: Quantum Algorithms · QISCA
+  term: Winter 2026
+  role: Invited Lecturer
+  url: https://myeongjinshin.github.io/quantum-algorithm-winter26/
 
 - course: Discrete Mathematics
   institution: Seoul National University
