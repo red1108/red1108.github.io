@@ -2,52 +2,44 @@
 layout: default
 ---
 {% assign cv = site.data.cv %}
-<section class="cv-header">
+<section class="cv-head">
   <div>
-    <p class="eyebrow">{{ cv.header.role }}</p>
+    <div class="role">Curriculum Vitae · last updated {{ cv.header.updated }}</div>
     <h1>{{ cv.header.name }}</h1>
-    <p class="muted">{{ cv.header.location }}</p>
-    <ul class="cv-contact">
-      {% for contact in cv.header.contacts %}
-        <li><a href="{{ contact.url }}">{{ contact.label }}</a></li>
-      {% endfor %}
-    </ul>
-    <div class="cta-group">
-      <a class="btn btn-primary" href="{{ '/assets/docs/mingyu-lee-cv.pdf' | relative_url }}" target="_blank" rel="noopener">Download PDF</a>
-      <a class="btn btn-ghost" href="{{ '/assets/docs/mingyu-lee-cv.pdf' | relative_url }}" target="_blank" rel="noopener">Open PDF</a>
-      <a class="btn btn-ghost" href="#" onclick="window.print(); return false;">Print</a>
+  </div>
+  <div class="contact">
+    {% for contact in cv.header.contacts limit: 3 %}
+      <a href="{{ contact.url }}">{{ contact.label }}</a>
+    {% endfor %}
+    <span>{{ cv.header.location }}</span>
+    <div class="actions">
+      <a href="{{ '/assets/docs/mingyu-lee-cv.pdf' | relative_url }}" class="btn btn--ghost">Download PDF</a>
+      <a href="#" class="btn btn--ghost" onclick="window.print(); return false;">Print</a>
     </div>
-    <p class="muted">Last updated: {{ cv.header.updated }}</p>
   </div>
 </section>
 
-<section class="cv-sections">
-  {% for section in cv.sections %}
-    <div class="cv-section">
-      <h2 class="section-title">{{ section.title }}</h2>
-      <ul class="cv-items">
-        {% for item in section.items %}
-        <li class="cv-item">
-          <div class="cv-item-header">
-            <div>
-              <h3>{{ item.institution }}</h3>
-              {% if item.role %}<p class="muted">{{ item.role }}</p>{% endif %}
-            </div>
-            <div class="cv-item-meta">
-              {% if item.period %}<span>{{ item.period }}</span>{% endif %}
-              {% if item.location %}<span>{{ item.location }}</span>{% endif %}
-            </div>
-          </div>
-          {% if item.details %}
-            <ul class="cv-bullets">
-              {% for detail in item.details %}
-                <li>{{ detail }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        </li>
-        {% endfor %}
-      </ul>
+{% for section in cv.sections %}
+<section class="cv-section">
+  <h2>{{ section.title }}</h2>
+  <div>
+    {% for item in section.items %}
+    <div class="cv-entry">
+      <div>
+        <h3>{{ item.institution }}</h3>
+        {% if item.role %}<div class="sub">{{ item.role }}</div>{% endif %}
+        {% if item.location %}<div class="desc">{{ item.location }}</div>{% endif %}
+        {% if item.details %}
+        <ul class="cv-bullets">
+          {% for detail in item.details %}
+            <li>{{ detail }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% if item.period %}<div class="date">{{ item.period }}</div>{% endif %}
     </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
 </section>
+{% endfor %}

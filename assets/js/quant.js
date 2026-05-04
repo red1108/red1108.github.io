@@ -3,6 +3,43 @@ const clearChartContainer = (node) => {
   node.innerHTML = "";
 };
 
+const readCssVar = (name, fallback) => {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return value || fallback;
+};
+
+const hexToRgb = (hex) => {
+  const normalized = hex.replace("#", "");
+  if (normalized.length !== 6) return null;
+  const value = Number.parseInt(normalized, 16);
+  return {
+    r: (value >> 16) & 255,
+    g: (value >> 8) & 255,
+    b: value & 255,
+  };
+};
+
+const withAlpha = (color, alpha) => {
+  const rgb = hexToRgb(color);
+  if (!rgb) return color;
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+};
+
+const getQuantTheme = () => {
+  const serif = readCssVar("--serif", "Georgia, serif");
+  const sans = readCssVar("--sans", "system-ui, sans-serif");
+  return {
+    paper: readCssVar("--paper", "#f6f1e7"),
+    paper2: readCssVar("--paper-2", "#efe7d6"),
+    ink: readCssVar("--ink", "#1a1816"),
+    ink2: readCssVar("--ink-2", "#3a3631"),
+    ink3: readCssVar("--ink-3", "#6b655c"),
+    rule: readCssVar("--rule", "#d6cab0"),
+    serif,
+    sans,
+  };
+};
+
 const computeRoiDensity = (values) => {
   if (!Array.isArray(values) || values.length === 0) {
     return null;
@@ -162,7 +199,7 @@ async function renderQuantChart() {
     const series = sortByTrade(Array.isArray(rawSeries) ? rawSeries : []);
     if (!series.length) throw new Error("No returns data available");
 
-    const chartBackground = "#05060a";
+    const theme = getQuantTheme();
     const trades = series.map((row) => row.trade);
     const cumulative = series.map((row) => row.cumulative_pct);
     const roiPct = series.map((row) => row.roi_pct);
@@ -171,20 +208,40 @@ async function renderQuantChart() {
       y: cumulative,
       type: "scatter",
       mode: "lines",
-      line: { color: "#ff6f3c", width: 3 },
+      line: { color: theme.ink, width: 1.6 },
+      fillcolor: withAlpha(theme.ink, 0.06),
       fill: "tozeroy",
       name: "Simple cumulative ROI",
       customdata: roiPct,
       hovertemplate: "Trade %{x}<br>ROI %{customdata:.3f}%<extra></extra>"
     };
     const layout = {
-      margin: { l: 50, r: 20, t: 30, b: 50 },
-      yaxis: { title: "Cumulative ROI (%)", tickformat: ".1f", fixedrange: true },
-      xaxis: { title: "Trade #" },
+      margin: { l: 54, r: 18, t: 20, b: 48 },
+      yaxis: {
+        title: "Cumulative ROI (%)",
+        tickformat: ".1f",
+        fixedrange: true,
+        gridcolor: theme.rule,
+        zerolinecolor: theme.rule,
+        linecolor: theme.rule,
+        tickfont: { family: theme.sans, color: theme.ink3 }
+      },
+      xaxis: {
+        title: "Trade #",
+        gridcolor: theme.rule,
+        zerolinecolor: theme.rule,
+        linecolor: theme.rule,
+        tickfont: { family: theme.sans, color: theme.ink3 }
+      },
       dragmode: "zoom",
-      paper_bgcolor: chartBackground,
-      plot_bgcolor: chartBackground,
-      font: { color: "#f5f5f5" }
+      paper_bgcolor: theme.paper,
+      plot_bgcolor: theme.paper,
+      font: { color: theme.ink2, family: theme.serif },
+      hoverlabel: {
+        bgcolor: theme.paper2,
+        bordercolor: theme.rule,
+        font: { color: theme.ink, family: theme.sans }
+      }
     };
     const config = { responsive: true, displayModeBar: false, doubleClick: "reset" };
 
@@ -208,15 +265,30 @@ async function renderQuantChart() {
     const histogramState = { initialized: false };
     const histogramConfig = { responsive: true, displayModeBar: false };
     const histogramLayoutBase = {
-      margin: { l: 60, r: 20, t: 40, b: 55 },
+      margin: { l: 54, r: 18, t: 20, b: 48 },
       xaxis: {
         title: "ROI (%)",
-        tickformat: ".2f"
+        tickformat: ".2f",
+        gridcolor: theme.rule,
+        zerolinecolor: theme.rule,
+        linecolor: theme.rule,
+        tickfont: { family: theme.sans, color: theme.ink3 }
       },
-      yaxis: { title: "Density" },
-      paper_bgcolor: chartBackground,
-      plot_bgcolor: chartBackground,
-      font: { color: "#f5f5f5" }
+      yaxis: {
+        title: "Density",
+        gridcolor: theme.rule,
+        zerolinecolor: theme.rule,
+        linecolor: theme.rule,
+        tickfont: { family: theme.sans, color: theme.ink3 }
+      },
+      paper_bgcolor: theme.paper,
+      plot_bgcolor: theme.paper,
+      font: { color: theme.ink2, family: theme.serif },
+      hoverlabel: {
+        bgcolor: theme.paper2,
+        bordercolor: theme.rule,
+        font: { color: theme.ink, family: theme.sans }
+      }
     };
 
     const updateHistogram = (rows) => {
@@ -236,7 +308,8 @@ async function renderQuantChart() {
         y: density.y,
         type: "scatter",
         mode: "lines",
-        line: { color: "#4db7ff", width: 3 },
+        line: { color: theme.ink2, width: 1.4 },
+        fillcolor: withAlpha(theme.ink2, 0.05),
         fill: "tozeroy",
         name: "ROI distribution per each trade",
         hovertemplate: "ROI %{x:.3f}%<br>Density %{y:.4f}<extra></extra>"

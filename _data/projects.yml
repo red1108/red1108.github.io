@@ -1,21 +1,55 @@
 - name: Quant Portfolio Dashboard
-  description: Live results from the automated investment bot I built.
-  status: Live
-  url: /quant/
+  year: 2024
+  description: Live simple-ROI record for a cross-exchange arbitrage strategy, regenerated from CSV and rendered as paper-toned figures.
+  status: Live artifact
+  type: Quant finance
+  url: /projects/quant-dashboard/
   tags:
-    - Quant research
-    - Data viz
+    - Python
+    - Plotly
+    - ROI ledger
   links:
-    - label: View Dashboard
-      url: /quant/
+    - label: Open artifact
+      url: /projects/quant-dashboard/
 
 - name: Bloch Sphere Visualizer
-  description: Interactive quantum state explorer with a fully rotatable Bloch sphere and state conversion mode.
+  year: 2026
+  description: A single-qubit state lab panel with θ/φ controls, gate actions, and a trajectory trace.
   status: Prototype
-  url: /bloch/
+  type: Quantum computing
+  url: /projects/bloch-sphere/
   tags:
-    - Quantum computing
-    - 3D graphics
+    - Plotly 3D
+    - Qubit states
+    - Interactive lab
   links:
-    - label: Explore Visualizer
-      url: /bloch/
+    - label: Open artifact
+      url: /projects/bloch-sphere/
+
+- name: AutoVQE
+  year: 2026
+  description: A minimal harness for hardware-aware VQE with a fixed wall-clock budget and one editable training file.
+  status: In progress
+  type: Tools / harness
+  url: /projects/autovqe/
+  tags:
+    - Qiskit
+    - VQE
+    - Harness
+  links:
+    - label: Open case study
+      url: /projects/autovqe/
+
+- name: QMI-GAN
+  year: 2025
+  description: Reference direction for mutual-information-maximizing quantum generative adversarial networks.
+  status: Published artifact
+  type: Quantum ML
+  url: /publications/#lee2025miqgan
+  tags:
+    - Pennylane
+    - MI estimation
+    - Generative models
+  links:
+    - label: Read paper
+      url: /publications/#lee2025miqgan

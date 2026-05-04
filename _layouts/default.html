@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang }}">
 {% include head.html %}
-<body class="{{ page.layout }}">
-  {% include nav.html %}
-  <main class="container">
-    {{ content }}
-  </main>
-  {% include footer.html %}
+<body class="layout-{{ page.layout }}{% if page.artifact %} artifact-{{ page.artifact }}{% endif %}">
+  <div class="page">
+    <div class="container">
+      {% include nav.html %}
+      <main>
+        {{ content }}
+      </main>
+      {% include footer.html %}
+    </div>
+  </div>
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
   {% if page.layout == 'shares' or page.layout == 'share' %}
     <script src="{{ '/assets/js/shares.js' | relative_url }}" defer></script>
