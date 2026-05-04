@@ -21,7 +21,7 @@ eyebrow: Teaching · Spring 2026
         </ul>
       </dd>
       <dt>Plan</dt>
-      <dd>Online · 5-10 people · basic knowledge through Grover search · 8 weeks.</dd>
+      <dd>8 weeks.</dd>
     </dl>
   </section>
 
