@@ -1,47 +1,47 @@
 [
   {
-    "label": "\ucd1d \uac70\ub798 \ud69f\uc218",
+    "label": "Total Trades",
     "value": "586",
-    "note": "\uae30\uac04 58.2\uc77c"
+    "note": "58.2-day window"
   },
   {
-    "label": "\ub204\uc801 \uc218\uc775\ub960",
+    "label": "Cumulative Return",
     "value": "44.88%",
-    "note": "\ub2e8\ub9ac \uae30\uc900"
+    "note": "Simple, non-compounded ROI"
   },
   {
-    "label": "\uc2b9\ub960",
+    "label": "Win Rate",
     "value": "57.8%",
-    "note": "\uc2b9 339 / \ud328 247"
+    "note": "339 wins / 247 losses"
   },
   {
-    "label": "\uc190\uc775\ube44",
+    "label": "Profit Factor",
     "value": "1.99",
-    "note": "\ucd1d\uc774\uc775 / \ucd1d\uc190\uc2e4"
+    "note": "Gross profit / gross loss"
   },
   {
-    "label": "\uc6d4 \uc218\uc775\ub960",
+    "label": "Monthly Pace",
     "value": "23.43%",
-    "note": "\uac70\ub798 \uac04\uaca9 \ubc18\uc601"
+    "note": "Mean trade ROI scaled by frequency"
   },
   {
-    "label": "\ub144 \uc218\uc775\ub960",
+    "label": "Annualized Pace",
     "value": "281.20%",
-    "note": "\uac70\ub798 \uac04\uaca9 \ubc18\uc601"
+    "note": "Mean trade ROI scaled by frequency"
   },
   {
     "label": "Sharpe Ratio",
     "value": "13.03",
-    "note": "\uc5f0 \ud658\uc0b0"
+    "note": "Annualized risk-adjusted return"
   },
   {
     "label": "Sortino Ratio",
     "value": "20.82",
-    "note": "\uc5f0 \ud658\uc0b0"
+    "note": "Annualized downside risk"
   },
   {
     "label": "Max Drawdown",
     "value": "-2.74%",
-    "note": "\ucd5c\ub300 \ub099\ud3ed"
+    "note": "Peak-to-trough decline"
   }
 ]

@@ -84,15 +84,15 @@ const computeMetrics = (rows) => {
   const sorted = sortByTrade(rows);
   if (sorted.length === 0) {
     return [
-      { label: "총 거래 횟수", value: "0", note: "기간 0.0일" },
-      { label: "누적 수익률", value: "0.00%", note: "단리 기준" },
-      { label: "승률", value: "0.0%", note: "승 0 / 패 0" },
-      { label: "손익비", value: "0.00", note: "총이익 / 총손실" },
-      { label: "월 수익률", value: "0.00%", note: "거래 간격 반영" },
-      { label: "년 수익률", value: "0.00%", note: "거래 간격 반영" },
-      { label: "Sharpe Ratio", value: "N/A", note: "연 환산" },
-      { label: "Sortino Ratio", value: "N/A", note: "연 환산" },
-      { label: "Max Drawdown", value: "0.00%", note: "최대 낙폭" }
+      { label: "Total Trades", value: "0", note: "0.0-day window" },
+      { label: "Cumulative Return", value: "0.00%", note: "Simple, non-compounded ROI" },
+      { label: "Win Rate", value: "0.0%", note: "0 wins / 0 losses" },
+      { label: "Profit Factor", value: "0.00", note: "Gross profit / gross loss" },
+      { label: "Monthly Pace", value: "0.00%", note: "Mean trade ROI scaled by frequency" },
+      { label: "Annualized Pace", value: "0.00%", note: "Mean trade ROI scaled by frequency" },
+      { label: "Sharpe Ratio", value: "N/A", note: "Annualized risk-adjusted return" },
+      { label: "Sortino Ratio", value: "N/A", note: "Annualized downside risk" },
+      { label: "Max Drawdown", value: "0.00%", note: "Peak-to-trough decline" }
     ];
   }
 
@@ -140,15 +140,15 @@ const computeMetrics = (rows) => {
   const toPercent = (value, digits = 2) => `${(value * 100).toFixed(digits)}%`;
 
   return [
-    { label: "총 거래 횟수", value: totalTrades.toLocaleString("en-US"), note: `기간 ${(totalHours / 24).toFixed(1)}일` },
-    { label: "누적 수익률", value: toPercent(totalReturn), note: "단리 기준" },
-    { label: "승률", value: toPercent(winRate, 1), note: `승 ${wins} / 패 ${losses}` },
-    { label: "손익비", value: Number.isFinite(profitFactor) ? profitFactor.toFixed(2) : "∞", note: "총이익 / 총손실" },
-    { label: "월 수익률", value: toPercent(monthlyReturn), note: "거래 간격 반영" },
-    { label: "년 수익률", value: toPercent(annualReturn), note: "거래 간격 반영" },
-    { label: "Sharpe Ratio", value: Number.isNaN(sharpe) ? "N/A" : sharpe.toFixed(2), note: "연 환산" },
-    { label: "Sortino Ratio", value: Number.isNaN(sortino) ? "N/A" : sortino.toFixed(2), note: "연 환산" },
-    { label: "Max Drawdown", value: toPercent(maxDrawdown), note: "최대 낙폭" }
+    { label: "Total Trades", value: totalTrades.toLocaleString("en-US"), note: `${(totalHours / 24).toFixed(1)}-day window` },
+    { label: "Cumulative Return", value: toPercent(totalReturn), note: "Simple, non-compounded ROI" },
+    { label: "Win Rate", value: toPercent(winRate, 1), note: `${wins} wins / ${losses} losses` },
+    { label: "Profit Factor", value: Number.isFinite(profitFactor) ? profitFactor.toFixed(2) : "∞", note: "Gross profit / gross loss" },
+    { label: "Monthly Pace", value: toPercent(monthlyReturn), note: "Mean trade ROI scaled by frequency" },
+    { label: "Annualized Pace", value: toPercent(annualReturn), note: "Mean trade ROI scaled by frequency" },
+    { label: "Sharpe Ratio", value: Number.isNaN(sharpe) ? "N/A" : sharpe.toFixed(2), note: "Annualized risk-adjusted return" },
+    { label: "Sortino Ratio", value: Number.isNaN(sortino) ? "N/A" : sortino.toFixed(2), note: "Annualized downside risk" },
+    { label: "Max Drawdown", value: toPercent(maxDrawdown), note: "Peak-to-trough decline" }
   ];
 };
 
@@ -298,7 +298,7 @@ async function renderQuantChart() {
         Plotly.purge(histogramTarget);
         histogramState.initialized = false;
         clearChartContainer(histogramTarget);
-        histogramTarget.insertAdjacentHTML("beforeend", '<p class="quant-error">선택된 구간 데이터가 없습니다.</p>');
+        histogramTarget.insertAdjacentHTML("beforeend", '<p class="quant-error">No data in the selected range.</p>');
         return;
       }
       const density = computeRoiDensity(roiValues);
