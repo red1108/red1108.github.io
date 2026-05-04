@@ -6,7 +6,8 @@
   "@type": "Person",
   "name": "{{ site.author.name | escape }}",
   "url": "{{ site.url }}",
-  "description": "{{ site.description | escape }}",
+  "description": "{{ page.description | default: site.description | escape }}",
+  "alternateName": ["Mingyu Lee", "이민규", "red1108"],
   "sameAs": [
     {% assign wrote_same_as = false %}
     {% if site.social.github %}"https://github.com/{{ site.social.github }}"{% assign wrote_same_as = true %}{% endif %}
