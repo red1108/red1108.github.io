@@ -8,10 +8,17 @@
   "url": "{{ site.url }}",
   "description": "{{ site.description | escape }}",
   "sameAs": [
-    "https://github.com/{{ site.social.github }}",
-    "{{ site.social.scholar }}",
-    "{{ site.social.orcid }}",
-    "https://www.linkedin.com/in/{{ site.social.linkedin }}"
+    {% assign wrote_same_as = false %}
+    {% if site.social.github %}"https://github.com/{{ site.social.github }}"{% assign wrote_same_as = true %}{% endif %}
+    {% if site.social.scholar %}{% if wrote_same_as %}, {% endif %}"{{ site.social.scholar }}"{% assign wrote_same_as = true %}{% endif %}
+    {% if site.social.orcid %}{% if wrote_same_as %}, {% endif %}"{{ site.social.orcid }}"{% assign wrote_same_as = true %}{% endif %}
+    {% if site.social.linkedin %}
+      {% assign linkedin_url = site.social.linkedin %}
+      {% unless linkedin_url contains '://' %}
+        {% assign linkedin_url = 'https://www.linkedin.com/in/' | append: site.social.linkedin %}
+      {% endunless %}
+      {% if wrote_same_as %}, {% endif %}"{{ linkedin_url }}"
+    {% endif %}
   ]
 }
 </script>

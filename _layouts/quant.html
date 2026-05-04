@@ -6,79 +6,94 @@ layout: default
 {% assign duration_days = quant_overview.duration_days | default: 0 %}
 {% assign trade_count = quant_overview.trade_count | default: 0 %}
 {% assign last_updated = quant_overview.last_updated | default: '' %}
-<article class="quant-dashboard">
-  <header class="quant-dashboard__intro">
-    <p class="eyebrow">Cross-exchange arbitrage · Simple ROI</p>
-    <h1>Quant Dashboard</h1>
-    <p>모든 데이터는 총 {{ duration_days | round: 1 }}일간의 {{ trade_count }}번의 실제 트레이딩을 통해 계산된 결과입니다. 모든 계산은 복리가 아닌 단리 기준이며, 트레이딩 기간 동안의 평균 성과로 계산되었습니다.</p>
-    <p>마지막 업데이트: {{ last_updated }}</p>
-    <p>Collaborator: <a href="https://myeongjinshin.github.io/" target="_blank" rel="noopener">Myeongjin Shin</a>.</p>
-  </header>
 
-  <section class="quant-dashboard__chart">
-    <figure class="quant-chart-frame">
-      <figcaption>Simple cumulative ROI</figcaption>
-      <div id="quant-dynamic-chart" class="quant-chart" aria-live="polite">
-        <div class="quant-skeleton" aria-hidden="true">
-          <div class="quant-skeleton__grid"></div>
-        </div>
-      </div>
-    </figure>
-    <p id="quant-zoom-hint" class="quant-zoom-hint" aria-live="polite" hidden>
-      Selected period data has been refreshed. Double-click to zoom back out.
-    </p>
-    <figure class="quant-chart-frame">
-      <figcaption>ROI distribution per each trade</figcaption>
-      <div id="quant-roi-hist" class="quant-chart" aria-live="polite">
-        <div class="quant-skeleton" aria-hidden="true">
-          <div class="quant-skeleton__grid"></div>
-        </div>
-      </div>
-    </figure>
+<article class="artifact-page quant-artifact">
+  <section class="case-head">
+    <div class="crumbs"><a href="{{ '/projects/' | relative_url }}">Projects</a> · Quant finance · live artifact</div>
+    <h1>Quant Portfolio Dashboard</h1>
+    <p class="deck">A compact record of realized simple ROI across {{ trade_count }} trades.</p>
   </section>
 
-  <section class="quant-dashboard__metrics">
-    <h2 id="strategy-performance-heading">Strategy Performance</h2>
-    <div class="metric-grid">
-      {% for metric in quant_metrics %}
-      <article class="metric-card">
-        <p class="metric-label">{{ metric.label }}</p>
-        <p class="metric-value">{{ metric.value }}</p>
-        {% if metric.note %}
-        <p class="metric-note">{{ metric.note }}</p>
-        {% endif %}
-      </article>
-      {% endfor %}
-    </div>
-  </section>
+  <div class="case-grid">
+    <aside class="case-meta">
+      <dl>
+        <dt>Status</dt><dd>Live · {{ last_updated }}</dd>
+        <dt>Window</dt><dd>{{ duration_days | round: 1 }} days</dd>
+        <dt>Metric basis</dt><dd>Simple ROI, non-compounded</dd>
+        <dt>Collaborator</dt><dd><a href="https://myeongjinshin.github.io/" target="_blank" rel="noopener">Myeongjin Shin</a></dd>
+        <dt>Data source</dt><dd><span class="mono">data/quant/returns.csv</span></dd>
+      </dl>
+    </aside>
 
-  <section class="quant-dashboard__details">
-    <div class="quant-monthly">
+    <div class="case-content">
+      <h2>Artifact</h2>
+      <p>The dashboard keeps the raw trading record visible: cumulative return, per-trade ROI density, and the metrics implied by the selected range.</p>
+
+      <section class="artifact-frame quant-panel" aria-labelledby="quant-chart-title">
+        <div class="artifact-frame__head">
+          <span class="label" id="quant-chart-title">Figure 1 · Simple cumulative ROI</span>
+          <span class="meta">Drag to select a trade range.</span>
+        </div>
+        <div class="artifact-frame__body">
+          <div id="quant-dynamic-chart" class="quant-chart" aria-live="polite">
+            <div class="quant-skeleton" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="artifact-frame__caption">
+          <span>Double-click the figure to return to the full period.</span>
+          <span id="quant-zoom-hint" class="meta" aria-live="polite" hidden>Selected period.</span>
+        </div>
+      </section>
+
+      <section class="artifact-frame quant-panel" aria-labelledby="quant-density-title">
+        <div class="artifact-frame__head">
+          <span class="label" id="quant-density-title">Figure 2 · ROI density</span>
+          <span class="meta">Kernel density estimate.</span>
+        </div>
+        <div class="artifact-frame__body artifact-frame__body--short">
+          <div id="quant-roi-hist" class="quant-chart quant-chart--short" aria-live="polite">
+            <div class="quant-skeleton" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <h2 id="strategy-performance-heading">Strategy Performance</h2>
+      <div class="metric-grid">
+        {% for metric in quant_metrics %}
+        <article class="metric-card">
+          <p class="metric-label">{{ metric.label }}</p>
+          <p class="metric-value">{{ metric.value }}</p>
+          {% if metric.note %}<p class="metric-note">{{ metric.note }}</p>{% endif %}
+        </article>
+        {% endfor %}
+      </div>
+
       <h2>Monthly ROI</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Month</th>
-            <th>Return</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for row in site.data.quant_monthly %}
-          <tr>
-            <td>{{ row.month }}</td>
-            <td>{{ row.return }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <div class="quant-notes">
+      <div class="ruled-table quant-monthly">
+        <table>
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Return</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in site.data.quant_monthly %}
+            <tr>
+              <td>{{ row.month }}</td>
+              <td>{{ row.return }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
       <h2>Methodology</h2>
       <ul>
-        <li>All metrics derive from simple (non-compounded) ROI per trade.</li>
-        <li>Monthly/annual figures scale the observed average ROI across the testing window.</li>
+        <li>All metrics derive from simple, non-compounded ROI per trade.</li>
+        <li>Monthly and annual figures scale the observed average ROI across the testing window.</li>
         <li>Sharpe, Sortino, and drawdown reference the same simple equity curve.</li>
       </ul>
     </div>
-  </section>
+  </div>
 </article>

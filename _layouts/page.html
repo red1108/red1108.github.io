@@ -1,10 +1,10 @@
 ---
 layout: default
 ---
-<article class="page">
+<article class="page-standard">
   <header class="page-header">
+    <div class="eyebrow">{{ page.eyebrow | default: page.title }}</div>
     <h1>{{ page.title }}</h1>
-    {% if page.description %}<p class="summary">{{ page.description }}</p>{% endif %}
   </header>
   <section class="page-content prose">
     {{ content }}

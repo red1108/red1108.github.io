@@ -1,10 +1,11 @@
-<div class="pub-card" id="{{ entry.key }}">
-  <div class="pub-card-main">{{ reference }}</div>
-  <div class="pub-card-actions">
+<article class="pub-card pub--full" id="{{ entry.key }}">
+  <div class="pub__year">{{ entry.year }}</div>
+  <div class="pub-card-main pub__main">{{ reference }}</div>
+  <div class="pub-card-actions pub__links">
     {% if entry.url %}
-      <a class="pub-link" href="{{ entry.url }}" target="_blank" rel="noopener noreferrer">View paper</a>
+      <a class="pub-link" href="{{ entry.url }}" target="_blank" rel="noopener noreferrer">paper</a>
     {% else %}
-      <span class="pub-link-muted">No external link</span>
+      <span class="pub-link-muted">archive</span>
     {% endif %}
   </div>
-</div>
+</article>

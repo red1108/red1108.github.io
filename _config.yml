@@ -78,6 +78,7 @@ exclude:
   - scripts
   - node_modules
   - README.md
+  - export
   - package-lock.json
 future: true
 keep_files:

@@ -103,13 +103,13 @@ def compute_metrics(df: pd.DataFrame) -> tuple[pd.DataFrame, list[dict[str, str]
     {"label": "Max Drawdown", "value": f"{max_drawdown * 100:.2f}%", "note": "최대 낙폭"},
   ]
 
-  df["month_label"] = df["timestamp"].dt.strftime("%b %Y")
+  df["month_period"] = df["timestamp"].dt.tz_convert(None).dt.to_period("M")
   monthly = [
     {
-      "month": label,
+      "month": period.strftime("%b %Y"),
       "return": f"{value * 100:.2f}%",
     }
-    for label, value in df.groupby("month_label")["roi"].sum().items()
+    for period, value in df.groupby("month_period", sort=True)["roi"].sum().items()
   ]
 
   series = [
@@ -147,27 +147,30 @@ def save_outputs(df: pd.DataFrame, metrics: list[dict], monthly: list[dict], ser
   (SITE_DATA / "quant_overview.json").write_text(json.dumps(overview, indent=2))
 
   fig, ax = plt.subplots(figsize=(9, 4.8), dpi=150)
-  background = "#05060a"
-  accent = "#ff6f3c"
-  grid_color = "#9fb6ca"
+  paper = "#f6f1e7"
+  paper_2 = "#efe7d6"
+  ink = "#1a1816"
+  ink_2 = "#3a3631"
+  ink_3 = "#6b655c"
+  rule = "#d6cab0"
 
-  fig.patch.set_facecolor(background)
-  ax.set_facecolor(background)
+  fig.patch.set_facecolor(paper)
+  ax.set_facecolor(paper)
   trades = df["trade"]
   cumulative_pct = df["cumulative_pct"]
-  ax.plot(trades, cumulative_pct, color=accent, linewidth=2.5)
-  ax.fill_between(trades, cumulative_pct, color=accent, alpha=0.18)
-  ax.set_title("Cumulative Rebated ROI (Simple)", color="#f7f8fa", pad=14)
-  ax.set_xlabel("Trade #", color="#ccd7e2")
-  ax.set_ylabel("Cumulative ROI (%)", color="#ccd7e2")
-  ax.tick_params(colors="#e6edf5", labelsize=9)
+  ax.plot(trades, cumulative_pct, color=ink, linewidth=1.4)
+  ax.fill_between(trades, cumulative_pct, color=ink_3, alpha=0.10)
+  ax.set_title("Simple cumulative ROI", color=ink, pad=14, fontfamily="serif")
+  ax.set_xlabel("Trade #", color=ink_2)
+  ax.set_ylabel("Cumulative ROI (%)", color=ink_2)
+  ax.tick_params(colors=ink_3, labelsize=9)
   ax.yaxis.set_major_formatter(mticker.FormatStrFormatter("%.1f"))
   for spine in ax.spines.values():
-    spine.set_color("#2b2d33")
-  ax.grid(color=grid_color, alpha=0.15)
+    spine.set_color(rule)
+  ax.grid(color=rule, alpha=1.0, linewidth=0.6)
   ax.margins(x=0)
   fig.tight_layout()
-  fig.savefig(QUANT_ASSETS / "cumulative.png", facecolor=background, transparent=False)
+  fig.savefig(QUANT_ASSETS / "cumulative.png", facecolor=paper_2, transparent=False)
   plt.close(fig)
 
 

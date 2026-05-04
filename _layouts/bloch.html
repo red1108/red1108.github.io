@@ -1,60 +1,91 @@
 ---
 layout: default
 ---
-<article class="bloch-fullscreen" aria-label="Bloch Sphere Visualizer">
-  <div id="bloch-viewport" class="bloch-viewport" aria-live="polite"></div>
-  <div class="bloch-overlay-left">
-    <div class="bloch-gate-panel">
-      <p class="gate-title">Single-qubit gates</p>
-      <div class="bloch-gate-grid">
-        <button type="button" class="bloch-gate-btn" data-gate="X">X</button>
-        <button type="button" class="bloch-gate-btn" data-gate="Y">Y</button>
-        <button type="button" class="bloch-gate-btn" data-gate="Z">Z</button>
-        <button type="button" class="bloch-gate-btn" data-gate="H">H</button>
-        <button type="button" class="bloch-gate-btn" data-gate="S">S</button>
-        <button type="button" class="bloch-gate-btn" data-gate="T">T</button>
-      </div>
-    </div>
-    <button type="button" class="bloch-reset-btn" id="reset-trajectory">Reset trajectory</button>
-    <p class="bloch-trajectory-meta">Tracked points: <span id="trajectory-count">1</span></p>
-  </div>
-  <div class="bloch-overlay" tabindex="0">
-    <div class="bloch-overlay__header">
-      <p class="eyebrow">Quantum intuition · Bloch geometry</p>
-      <h1>Bloch Sphere Visualizer</h1>
-      <p>Drag to orbit the sphere, scroll to zoom, and reshape |ψ⟩ with θ and φ. Hover this capsule to reveal the controls.</p>
-    </div>
-    <div class="bloch-overlay__panel">
-      <p class="bloch-state-expression" id="bloch-state-expression">|ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩</p>
-      <div class="bloch-amplitudes">
-        <div>
-          <span class="label">|0⟩ amplitude</span>
-          <span class="value" id="amplitude-zero">1.000</span>
+<article class="artifact-page bloch-artifact">
+  <section class="case-head">
+    <div class="crumbs"><a href="{{ '/projects/' | relative_url }}">Projects</a> · Quantum intuition · interactive artifact</div>
+    <h1>Bloch Sphere Visualizer</h1>
+    <p class="deck">A small lab panel for dragging a single-qubit state around the sphere.</p>
+  </section>
+
+  <div class="case-grid">
+    <aside class="case-meta">
+      <dl>
+        <dt>Status</dt><dd>Prototype · 2026</dd>
+        <dt>Controls</dt><dd>θ, φ, gates, trajectory</dd>
+        <dt>Renderer</dt><dd>Plotly 3D</dd>
+        <dt>State</dt><dd><span id="trajectory-count">1</span> tracked point</dd>
+      </dl>
+    </aside>
+
+    <div class="case-content">
+      <h2>Artifact</h2>
+      <p>The visualizer is intentionally quiet: a paper-toned sphere, a single state marker, and controls that read like lab notes rather than an app overlay.</p>
+
+      <section class="artifact-frame bloch-lab" aria-label="Bloch Sphere Visualizer">
+        <div class="artifact-frame__head">
+          <span class="label">Figure 1 · Bloch sphere</span>
+          <span class="meta">Drag to orbit; scroll to zoom.</span>
         </div>
-        <div>
-          <span class="label">|1⟩ amplitude</span>
-          <span class="value" id="amplitude-one">0.000</span>
+        <div class="bloch-lab__grid">
+          <div class="bloch-lab__viewport">
+            <div id="bloch-viewport" class="bloch-viewport" aria-live="polite"></div>
+          </div>
+          <div class="bloch-lab__panel">
+            <div class="bloch-state-panel">
+              <p class="bloch-state-expression mono" id="bloch-state-expression">|ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩</p>
+              <div class="bloch-amplitudes">
+                <div>
+                  <span class="label">|0⟩ amplitude</span>
+                  <span class="value" id="amplitude-zero">1.000</span>
+                </div>
+                <div>
+                  <span class="label">|1⟩ amplitude</span>
+                  <span class="value" id="amplitude-one">0.000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bloch-controls">
+              <div class="slider-field">
+                <div class="slider-header">
+                  <span>θ (polar)</span>
+                  <output id="theta-output">0°</output>
+                </div>
+                <input type="range" id="theta-slider" min="0" max="180" step="1" value="0" aria-label="Theta" />
+              </div>
+              <div class="slider-field">
+                <div class="slider-header">
+                  <span>φ (azimuth)</span>
+                  <output id="phi-output">0°</output>
+                </div>
+                <input type="range" id="phi-slider" min="0" max="360" step="1" value="0" aria-label="Phi" />
+              </div>
+            </div>
+
+            <div class="bloch-gate-panel">
+              <p class="gate-title">Single-qubit gates</p>
+              <div class="bloch-gate-grid">
+                <button type="button" class="bloch-gate-btn" data-gate="X">X</button>
+                <button type="button" class="bloch-gate-btn" data-gate="Y">Y</button>
+                <button type="button" class="bloch-gate-btn" data-gate="Z">Z</button>
+                <button type="button" class="bloch-gate-btn" data-gate="H">H</button>
+                <button type="button" class="bloch-gate-btn" data-gate="S">S</button>
+                <button type="button" class="bloch-gate-btn" data-gate="T">T</button>
+              </div>
+            </div>
+
+            <div class="bloch-actions">
+              <button type="button" class="btn btn--ghost" id="conversion-toggle" aria-pressed="false">Conversion: θ/2 mode</button>
+              <button type="button" class="btn btn--ghost" id="reset-trajectory">Reset trajectory</button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="bloch-overlay__controls">
-      <div class="slider-field">
-        <div class="slider-header">
-          <span>θ (polar)</span>
-          <output id="theta-output">0°</output>
+        <div class="artifact-frame__caption">
+          <span>The marker records gate applications and slider commits as a trajectory.</span>
+          <span class="meta">Fig 1 / 1</span>
         </div>
-        <input type="range" id="theta-slider" min="0" max="180" step="1" value="0" aria-label="Theta" />
-      </div>
-      <div class="slider-field">
-        <div class="slider-header">
-          <span>φ (azimuth)</span>
-          <output id="phi-output">0°</output>
-        </div>
-        <input type="range" id="phi-slider" min="0" max="360" step="1" value="0" aria-label="Phi" />
-      </div>
-      <button type="button" class="bloch-convert-btn" id="conversion-toggle" aria-pressed="false">
-        Conversion: θ/2 mode
-      </button>
+      </section>
     </div>
   </div>
 </article>

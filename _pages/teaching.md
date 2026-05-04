@@ -2,28 +2,29 @@
 layout: page
 title: Teaching
 permalink: /teaching/
-description: Courses taught and materials.
+description: Formal teaching and mentoring.
+eyebrow: Teaching
 ---
 
-<table class="responsive-table">
-  <thead>
-    <tr>
-      <th>Term</th>
-      <th>Course</th>
-      <th>Institution</th>
-      <th>Role</th>
-      <th>Materials</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for entry in site.data.teaching %}
-      <tr>
-        <td data-label="Term">{{ entry.term }}</td>
-        <td data-label="Course">{{ entry.course }}</td>
-        <td data-label="Institution">{{ entry.institution }}</td>
-        <td data-label="Role">{{ entry.role }}</td>
-        <td data-label="Materials"><a href="{{ entry.materials }}">Resources</a></td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<section class="teaching-list">
+  {% for entry in site.data.teaching %}
+  <article class="teaching-item">
+    <div class="teaching-item__top">
+      <h2>
+        {% if entry.url %}
+          <a href="{{ entry.url | relative_url }}">{{ entry.course }}</a>
+        {% else %}
+          {{ entry.course }}
+        {% endif %}
+      </h2>
+      <div class="teaching-item__person">{{ entry.instructor | default: entry.role }}</div>
+    </div>
+    <div class="teaching-item__bottom">
+      <div class="teaching-item__meta">{{ entry.term }} · {{ entry.institution }}</div>
+      {% if entry.url %}
+        <a class="teaching-item__link link-arrow" href="{{ entry.url | relative_url }}">Course page</a>
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</section>

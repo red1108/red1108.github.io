@@ -1,5 +1,42 @@
 const BLOCH_PLOTLY_CDN = "https://cdn.plot.ly/plotly-2.32.0.min.js";
 
+const readCssVar = (name, fallback) => {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return value || fallback;
+};
+
+const hexToRgb = (hex) => {
+  const normalized = hex.replace("#", "");
+  if (normalized.length !== 6) return null;
+  const value = Number.parseInt(normalized, 16);
+  return {
+    r: (value >> 16) & 255,
+    g: (value >> 8) & 255,
+    b: value & 255,
+  };
+};
+
+const withAlpha = (color, alpha) => {
+  const rgb = hexToRgb(color);
+  if (!rgb) return color;
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+};
+
+let blochTheme = null;
+
+const getBlochTheme = () => {
+  if (blochTheme) return blochTheme;
+  blochTheme = {
+    paper: readCssVar("--paper", "#f6f1e7"),
+    paper2: readCssVar("--paper-2", "#efe7d6"),
+    rule: readCssVar("--rule", "#d6cab0"),
+    ink: readCssVar("--ink", "#1a1816"),
+    ink2: readCssVar("--ink-2", "#3a3631"),
+    ink3: readCssVar("--ink-3", "#6b655c"),
+  };
+  return blochTheme;
+};
+
 const degToRad = (deg) => (deg * Math.PI) / 180;
 const radToDeg = (rad) => (rad * 180) / Math.PI;
 
@@ -254,6 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function initBlochVisualizer() {
   const viewport = document.getElementById("bloch-viewport");
   if (!viewport) return;
+  const theme = getBlochTheme();
 
   const thetaSlider = document.getElementById("theta-slider");
   const phiSlider = document.getElementById("phi-slider");
@@ -273,19 +311,19 @@ function initBlochVisualizer() {
   let currentState = stateFromAngles(Number(thetaSlider.value), Number(phiSlider.value), conversionMode);
   let currentPoint = blochPointFromState(currentState);
 
-  const sphereTrace = buildSphereSurface();
-  const gridTrace = buildGridTrace(gridBlueprint, conversionMode);
-  const guideTrace = buildGuideTrace();
-  const stateTrace = buildStateTrace({ x: [currentPoint.x], y: [currentPoint.y], z: [currentPoint.z] });
-  const trajectoryTrace = buildTrajectoryTrace();
+  const sphereTrace = buildSphereSurface(theme);
+  const gridTrace = buildGridTrace(gridBlueprint, conversionMode, theme);
+  const guideTrace = buildGuideTrace(theme);
+  const stateTrace = buildStateTrace({ x: [currentPoint.x], y: [currentPoint.y], z: [currentPoint.z] }, theme);
+  const trajectoryTrace = buildTrajectoryTrace(theme);
 
   const layout = {
     margin: { l: 0, r: 0, t: 0, b: 0 },
-    paper_bgcolor: "#05060a",
-    plot_bgcolor: "#05060a",
+    paper_bgcolor: theme.paper,
+    plot_bgcolor: theme.paper,
     scene: {
       aspectmode: "cube",
-      bgcolor: "rgba(5,6,10,0)",
+      bgcolor: theme.paper,
       camera: {
         up: { x: 0, y: 0, z: 1 },
         eye: { x: 1.05, y: 0.8, z: 0.6 }
@@ -422,7 +460,7 @@ const axisDefinition = (overrides = {}) => ({
   ...overrides,
 });
 
-const buildSphereSurface = () => {
+const buildSphereSurface = (theme = getBlochTheme()) => {
   const thetaSteps = 40;
   const phiSteps = 40;
   const theta = [];
@@ -457,8 +495,8 @@ const buildSphereSurface = () => {
     opacity: 0.16,
     showscale: false,
     colorscale: [
-      [0, "rgba(255,255,255,0.12)"],
-      [1, "rgba(77,183,255,0.25)"]
+      [0, withAlpha(theme.paper2, 0.28)],
+      [1, withAlpha(theme.rule, 0.42)]
     ],
   };
 };
@@ -473,8 +511,8 @@ const buildGridBlueprint = () => {
   return blueprint;
 };
 
-const buildGridTrace = (blueprint, conversion) => {
-  const mapped = mapGrid(blueprint, conversion);
+const buildGridTrace = (blueprint, conversion, theme = getBlochTheme()) => {
+  const mapped = mapGrid(blueprint, conversion, theme);
   return {
     type: "scatter3d",
     mode: "markers",
@@ -484,12 +522,12 @@ const buildGridTrace = (blueprint, conversion) => {
     marker: {
       size: 3.5,
       color: mapped.colors,
-      line: { width: 0.2, color: "rgba(255,255,255,0.6)" },
+      line: { width: 0.2, color: withAlpha(theme.paper, 0.8) },
     },
   };
 };
 
-const buildGuideTrace = () => {
+const buildGuideTrace = (theme = getBlochTheme()) => {
   const axisPoints = {
     x: [-1, 1, null, 0, 0, null, 0, 0],
     y: [0, 0, null, -1, 1, null, 0, 0],
@@ -524,11 +562,11 @@ const buildGuideTrace = () => {
     x: guideX,
     y: guideY,
     z: guideZ,
-    line: { color: "rgba(255,255,255,0.18)", width: 2 },
+    line: { color: withAlpha(theme.ink3, 0.46), width: 1.4 },
   };
 };
 
-const buildStateTrace = (coords) => ({
+const buildStateTrace = (coords, theme = getBlochTheme()) => ({
   type: "scatter3d",
   mode: "markers",
   x: coords.x,
@@ -536,19 +574,19 @@ const buildStateTrace = (coords) => ({
   z: coords.z,
   marker: {
     size: 10,
-    color: "#ff6f3c",
-    line: { width: 2, color: "rgba(255,255,255,0.8)" },
+    color: theme.ink,
+    line: { width: 1.2, color: theme.paper },
     opacity: 1,
   },
 });
 
-const buildTrajectoryTrace = () => ({
+const buildTrajectoryTrace = (theme = getBlochTheme()) => ({
   type: "scatter3d",
   mode: "lines",
   x: [],
   y: [],
   z: [],
-  line: { color: "#ff6f3c", width: 4 },
+  line: { color: theme.ink2, width: 2.5 },
   opacity: 0.85,
 });
 
@@ -557,7 +595,7 @@ const pointFromAngles = (theta, phi, conversion) => {
   return blochPointFromState(state);
 };
 
-const mapGrid = (blueprint, conversion) => {
+const mapGrid = (blueprint, conversion, theme = getBlochTheme()) => {
   const x = [];
   const y = [];
   const z = [];
@@ -567,8 +605,7 @@ const mapGrid = (blueprint, conversion) => {
     x.push(point.x);
     y.push(point.y);
     z.push(point.z);
-    const hue = node.phi;
-    colors.push(hslToHex(hue, 55, conversion ? 52 : 42));
+    colors.push(withAlpha(conversion ? theme.ink2 : theme.ink3, conversion ? 0.72 : 0.48));
   });
   return { x, y, z, colors };
 };
@@ -596,7 +633,8 @@ const buildTrajectoryCoordinates = (trajectory) => {
 
 
 const animateGrid = (viewport, blueprint, conversion, duration = 600) => {
-  const mapped = mapGrid(blueprint, conversion);
+  const theme = getBlochTheme();
+  const mapped = mapGrid(blueprint, conversion, theme);
   animateTrace({
     viewport,
     traceIndex: 1,
@@ -607,6 +645,7 @@ const animateGrid = (viewport, blueprint, conversion, duration = 600) => {
 };
 
 const animateStateMarker = (viewport, fromPoint, toPoint, duration = 600) => {
+  const theme = getBlochTheme();
   const path = sampleGreatCircle([fromPoint.x, fromPoint.y, fromPoint.z], [toPoint.x, toPoint.y, toPoint.z], 60);
   const frames = path.x.length;
   const start = performance.now();
@@ -619,7 +658,7 @@ const animateStateMarker = (viewport, fromPoint, toPoint, duration = 600) => {
         x: [[path.x[index]]],
         y: [[path.y[index]]],
         z: [[path.z[index]]],
-        "marker.color": [["#ff6f3c"]],
+        "marker.color": [[theme.ink]],
       },
       [3]
     );
@@ -631,6 +670,7 @@ const animateStateMarker = (viewport, fromPoint, toPoint, duration = 600) => {
 };
 
 const updateStateTrace = (viewport, point, { animate = false, duration = 150, from = null } = {}) => {
+  const theme = getBlochTheme();
   if (animate && from) {
     animateStateMarker(viewport, from, point, duration);
     return;
@@ -641,7 +681,7 @@ const updateStateTrace = (viewport, point, { animate = false, duration = 150, fr
       x: [[point.x]],
       y: [[point.y]],
       z: [[point.z]],
-      "marker.color": [["#ff6f3c"]],
+      "marker.color": [[theme.ink]],
     },
     [3]
   );
