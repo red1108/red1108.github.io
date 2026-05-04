@@ -92,15 +92,15 @@ def compute_metrics(df: pd.DataFrame) -> tuple[pd.DataFrame, list[dict[str, str]
   max_drawdown = drawdown.min() if not drawdown.empty else 0.0
 
   metrics = [
-    {"label": "총 거래 횟수", "value": f"{total_trades:,}", "note": f"기간 {total_hours/24:.1f}일"},
-    {"label": "누적 수익률", "value": f"{total_return * 100:.2f}%", "note": "단리 기준"},
-    {"label": "승률", "value": f"{win_rate * 100:.1f}%", "note": f"승 {int((roi>0).sum())} / 패 {int((roi<=0).sum())}"},
-    {"label": "손익비", "value": "∞" if math.isinf(profit_factor) else f"{profit_factor:.2f}", "note": "총이익 / 총손실"},
-    {"label": "월 수익률", "value": f"{monthly_return * 100:.2f}%", "note": "거래 간격 반영"},
-    {"label": "년 수익률", "value": f"{annual_return * 100:.2f}%", "note": "거래 간격 반영"},
-    {"label": "Sharpe Ratio", "value": f"{sharpe:.2f}" if not math.isnan(sharpe) else "N/A", "note": "연 환산"},
-    {"label": "Sortino Ratio", "value": f"{sortino:.2f}" if not math.isnan(sortino) else "N/A", "note": "연 환산"},
-    {"label": "Max Drawdown", "value": f"{max_drawdown * 100:.2f}%", "note": "최대 낙폭"},
+    {"label": "Total Trades", "value": f"{total_trades:,}", "note": f"{total_hours/24:.1f}-day window"},
+    {"label": "Cumulative Return", "value": f"{total_return * 100:.2f}%", "note": "Simple, non-compounded ROI"},
+    {"label": "Win Rate", "value": f"{win_rate * 100:.1f}%", "note": f"{int((roi>0).sum())} wins / {int((roi<=0).sum())} losses"},
+    {"label": "Profit Factor", "value": "∞" if math.isinf(profit_factor) else f"{profit_factor:.2f}", "note": "Gross profit / gross loss"},
+    {"label": "Monthly Pace", "value": f"{monthly_return * 100:.2f}%", "note": "Mean trade ROI scaled by frequency"},
+    {"label": "Annualized Pace", "value": f"{annual_return * 100:.2f}%", "note": "Mean trade ROI scaled by frequency"},
+    {"label": "Sharpe Ratio", "value": f"{sharpe:.2f}" if not math.isnan(sharpe) else "N/A", "note": "Annualized risk-adjusted return"},
+    {"label": "Sortino Ratio", "value": f"{sortino:.2f}" if not math.isnan(sortino) else "N/A", "note": "Annualized downside risk"},
+    {"label": "Max Drawdown", "value": f"{max_drawdown * 100:.2f}%", "note": "Peak-to-trough decline"},
   ]
 
   df["month_period"] = df["timestamp"].dt.tz_convert(None).dt.to_period("M")

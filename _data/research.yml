@@ -10,9 +10,9 @@
     - Quantum neural networks
     - Entropy estimation
     - Variational algorithms
-- title: Quantum & Systematic Finance Methods
-  summary: Applying quantum-inspired modeling and AI-based ETF portfolio research from NCSOFT internship and competition work to liquidity-aware strategies.
+- title: AI-based ETF Managing
+  summary: Developing transformer-based time-series models for low-cost ETF portfolio management and index tracking, extending AI-based ETF portfolio research from NCSOFT internship and competition work toward liquidity-aware strategies.
   interests:
     - Portfolio research
-    - Quantum finance
-    - Algorithmic trading
+    - AI-based ETF management
+    - Index tracking
