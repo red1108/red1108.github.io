@@ -77,7 +77,13 @@ eyebrow: Teaching · Spring 2026
             <td>2026 · 04 · 24</td>
             <td>Quantum Min/Max Searching</td>
             <td><a href="{{ '/assets/docs/teaching/spring-2026-quantum-algorithms/lecture-03-quantum-min-max-searching.pdf' | relative_url }}">PDF</a></td>
-            <td></td>
+            <td>
+              <span class="reference-links">
+                <a href="https://arxiv.org/abs/quant-ph/9605034">[BBHT96]</a>
+                <a href="https://arxiv.org/abs/quant-ph/9607014">[DH96]</a>
+                <a href="https://arxiv.org/abs/1907.03315">[MIK19]</a>
+              </span>
+            </td>
           </tr>
           <tr>
             <td>4</td>
