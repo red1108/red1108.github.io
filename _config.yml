@@ -30,7 +30,6 @@ plugins:
   - jekyll-archives
   - jekyll-scholar
   - jekyll-include-cache
-  - jekyll-redirect-from
   - jekyll-toc
 toc:
   min_level: 2
@@ -90,7 +89,6 @@ exclude:
   - scripts
   - node_modules
   - README.md
-  - export
   - package-lock.json
 future: true
 keep_files:

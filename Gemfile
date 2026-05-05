@@ -10,7 +10,6 @@ gem "jekyll-paginate", "~> 1.1"
 gem "jekyll-archives", "~> 2.2"
 gem "jekyll-scholar", "~> 7.0"
 gem "jekyll-include-cache", "~> 0.2"
-gem "jekyll-redirect-from", "~> 0.16"
 gem "jekyll-toc", "~> 0.18"
 gem "kramdown-math-katex", "~> 1.0"
 
