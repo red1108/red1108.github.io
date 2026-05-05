@@ -1224,6 +1224,12 @@ ol.bibliography > li {
   width: 140px;
 }
 
+.reference-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
 .lecture-viewer {
   color: var(--ink-2);
 }
