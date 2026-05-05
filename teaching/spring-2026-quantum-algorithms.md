@@ -62,7 +62,7 @@ eyebrow: Teaching · Spring 2026
             <td>1</td>
             <td>2026 · 04 · 03</td>
             <td>Quantum Complexity</td>
-            <td><a href="{{ '/assets/docs/teaching/building-blocks-of-quantum-algorithms/lecture-01-quantum-complexity.pdf' | relative_url }}">PDF</a></td>
+            <td><a href="{{ '/assets/docs/teaching/spring-2026-quantum-algorithms/lecture-01-quantum-complexity.pdf' | relative_url }}">PDF</a></td>
             <td><a href="https://www.danielgrier.com/courses/CSE291/Fa24/">Grier, CSE291</a></td>
           </tr>
           <tr>
@@ -76,7 +76,7 @@ eyebrow: Teaching · Spring 2026
             <td>3</td>
             <td>2026 · 04 · 24</td>
             <td>Quantum Min/Max Searching</td>
-            <td><a href="{{ '/assets/docs/teaching/building-blocks-of-quantum-algorithms/lecture-03-quantum-min-max-searching.pdf' | relative_url }}">PDF</a></td>
+            <td><a href="{{ '/assets/docs/teaching/spring-2026-quantum-algorithms/lecture-03-quantum-min-max-searching.pdf' | relative_url }}">PDF</a></td>
             <td></td>
           </tr>
           <tr>
