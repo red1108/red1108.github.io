@@ -359,7 +359,7 @@ main {
   display: grid;
   grid-template-columns: 1.9fr 1fr;
   gap: var(--s-7);
-  align-items: end;
+  align-items: center;
   padding: var(--s-5) 0 var(--s-8);
   border-bottom: 1px solid var(--rule);
 }
