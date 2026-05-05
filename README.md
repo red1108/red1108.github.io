@@ -3,7 +3,7 @@
 Static site built with Jekyll + Bundler and a Python-assisted quant dashboard for publishing research, teaching, news, and shareable notes.
 
 ## Features
-- **Structured content**: Home hero, Research, Publications (jekyll-scholar), Teaching, News, Projects, Shares collection with filters, Quant dashboard under `/quant/`.
+- **Structured content**: Home hero, Research, Publications (jekyll-scholar), Teaching, News, Projects, Shares collection with filters, and project artifact pages.
 - **Data-aware Shares**: Collection items expose rich front matter (tags, categories, languages, summaries) with MathJax/KaTeX support.
 - **Quant pipeline**: CSV input → Python script → metrics JSON, monthly table JSON, interactive JSON, PNG chart.
 - **SEO-ready**: `jekyll-seo-tag`, canonical URLs, Open Graph/Twitter, JSON-LD (Person + BlogPosting), sitemap, robots, alt text everywhere.
@@ -15,7 +15,7 @@ Static site built with Jekyll + Bundler and a Python-assisted quant dashboard fo
 ├── _config.yml                 # Site metadata, collections, plugins
 ├── _data/                      # Navigation, research, projects, quant metrics
 ├── _includes/                  # Head, navigation, footer, JSON-LD, share card
-├── _layouts/                   # Base + page-specific layouts (home, shares, quant)
+├── _layouts/                   # Base + page-specific layouts (home, shares, quant, bloch)
 ├── _pages/                     # Content pages (research, teaching, news, projects)
 ├── _shares/                    # Knowledge base entries
 ├── _bibliography/              # BibTeX file for jekyll-scholar
@@ -23,7 +23,6 @@ Static site built with Jekyll + Bundler and a Python-assisted quant dashboard fo
 ├── assets/quant/               # Build artifacts (returns.json, PNG)
 ├── data/quant/returns.csv      # Source returns data for quant dashboard
 ├── scripts/build_quant.py      # Python build step
-├── quant.md                    # Quant dashboard page
 ├── shares.md                   # Collection index page
 ├── .github/workflows/deploy.yml# Build + deploy pipeline
 ```
@@ -77,7 +76,7 @@ Ensure repository name is `username.github.io` and GitHub Pages is set to "GitHu
 3. Run `python scripts/build_quant.py` locally or rely on CI. The script:
    - Parses timestamps, sorts trades, and computes linear cumulative ROI, Sharpe/Sortino, win rate, profit factor, and time-adjusted monthly/yearly returns using a 365×24 hour baseline.
    - Emits `_data/quant_metrics.json`, `_data/quant_monthly.json`, `assets/quant/returns.json`, and `assets/quant/cumulative.png` (trade-index chart fallback).
-4. `/quant/` consumes the JSON data for the metric grid, table, and Plotly chart (x-axis is trade count, y-axis is cumulative Rebated ROI %).
+4. `/projects/quant-dashboard/` consumes the JSON data for the metric grid, table, and Plotly chart (x-axis is trade count, y-axis is cumulative Rebated ROI %).
 
 ## SEO checklist (built-in)
 - Canonical URLs + meta description on every page via `head.html` + `jekyll-seo-tag`.
@@ -85,7 +84,7 @@ Ensure repository name is `username.github.io` and GitHub Pages is set to "GitHu
 - Sitemap + robots ready out-of-the-box.
 - Open Graph/Twitter tags from `jekyll-seo-tag`.
 - Accessible alt text for hero/profile/quant imagery.
-- Clean permalinks (`/:categories/:title/`, `/shares/:title/`, `/quant/`).
+- Clean permalinks (`/:categories/:title/`, `/shares/:title/`, `/projects/:title/`).
 
 ## Testing
 - `bundle exec jekyll build` (ensures layout + Liquid correctness).
