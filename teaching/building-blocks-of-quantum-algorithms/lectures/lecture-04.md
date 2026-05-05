@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Lecture 4
-permalink: /teaching/building-blocks-of-quantum-algorithms/lectures/lecture-04/
+permalink: /teaching/spring-2026-quantum-algorithms/lectures/lecture-04/
 description:
 eyebrow: Building Blocks of Quantum Algorithms
 ---
