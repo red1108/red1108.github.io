@@ -2,7 +2,7 @@
 layout: page
 title: Building Blocks of Quantum Algorithms
 permalink: /teaching/spring-2026-quantum-algorithms/
-description:
+description: A Spring 2026 QISCA study on core techniques behind quantum algorithms and quantum complexity.
 eyebrow: Teaching · Spring 2026
 ---
 

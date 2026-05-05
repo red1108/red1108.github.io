@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Lecture 4
+title: "Lecture 4: Quantum Walks"
 permalink: /teaching/spring-2026-quantum-algorithms/lectures/lecture-04/
-description:
+description: Slides for Lecture 4 on random walks, satisfiability, and quantum walks in Building Blocks of Quantum Algorithms.
 eyebrow: Building Blocks of Quantum Algorithms
 ---
 
