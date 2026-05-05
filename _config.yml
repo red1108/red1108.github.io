@@ -39,6 +39,18 @@ paginate: 5
 paginate_path: "/shares/page:num/"
 defaults:
   - scope:
+      path: "assets/**/*.pdf"
+    values:
+      sitemap: false
+  - scope:
+      path: "assets/**/*.html"
+    values:
+      sitemap: false
+  - scope:
+      path: "google*.html"
+    values:
+      sitemap: false
+  - scope:
       path: ""
       type: "shares"
     values:
