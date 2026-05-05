@@ -41,7 +41,7 @@ eyebrow: Teaching · Spring 2026
 
   <section>
     <h2>Announcements</h2>
-    <p>Lecture 4 has been postponed to May 7.</p>
+    <p>Lecture 4 has been postponed to May 8.</p>
   </section>
 
   <section class="course-lectures">
@@ -81,7 +81,7 @@ eyebrow: Teaching · Spring 2026
           </tr>
           <tr>
             <td>4</td>
-            <td>2026 · 05 · 07</td>
+            <td>2026 · 05 · 08</td>
             <td>Random walks, satisfiability, and quantum walks</td>
             <td><a href="{{ '/teaching/spring-2026-quantum-algorithms/lectures/lecture-04/' | relative_url }}">Slides</a></td>
             <td></td>
