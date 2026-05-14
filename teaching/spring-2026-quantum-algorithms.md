@@ -92,6 +92,13 @@ eyebrow: Teaching · Spring 2026
             <td><a href="{{ '/teaching/spring-2026-quantum-algorithms/lectures/lecture-04/' | relative_url }}">Slides</a></td>
             <td></td>
           </tr>
+          <tr>
+            <td>5</td>
+            <td>2026 · 05 · 15</td>
+            <td>Quantum k-NN, swap test, analog-to-digital conversion, sorting, and collision checking</td>
+            <td><a href="{{ '/teaching/spring-2026-quantum-algorithms/lectures/lecture-05/' | relative_url }}">Slides</a></td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
     </div>
