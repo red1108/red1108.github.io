@@ -8,3 +8,4 @@ Allow: /
 
 Sitemap: {{ '/sitemap.xml' | absolute_url }}
 Sitemap: {{ '/sitemap-google.xml' | absolute_url }}
+Sitemap: {{ '/sitemap.txt' | absolute_url }}
