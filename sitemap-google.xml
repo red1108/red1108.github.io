@@ -1,0 +1,24 @@
+---
+layout: null
+permalink: /sitemap-google.xml
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- assign public_pages = site.pages | where_exp: "item", "item.sitemap != false" -%}
+{%- for item in public_pages %}
+{%- unless item.url == "/404.html" or item.url == "/sitemap.xml" or item.url == "/sitemap-google.xml" or item.url contains "/assets/" %}
+  <url>
+    <loc>{{ item.url | absolute_url | xml_escape }}</loc>
+  </url>
+{%- endunless %}
+{%- endfor -%}
+{%- assign public_documents = site.documents | where_exp: "item", "item.sitemap != false" | where_exp: "item", "item.url" -%}
+{%- for item in public_documents %}
+{%- unless item.url contains "/assets/" %}
+  <url>
+    <loc>{{ item.url | absolute_url | xml_escape }}</loc>
+  </url>
+{%- endunless %}
+{%- endfor %}
+</urlset>

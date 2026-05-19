@@ -1,4 +1,10 @@
+---
+layout: null
+permalink: /robots.txt
+sitemap: false
+---
 User-agent: *
 Allow: /
 
-Sitemap: https://red1108.github.io/sitemap.xml
+Sitemap: {{ '/sitemap.xml' | absolute_url }}
+Sitemap: {{ '/sitemap-google.xml' | absolute_url }}
