@@ -109,6 +109,17 @@ eyebrow: Teaching · Spring 2026
               </span>
             </td>
           </tr>
+          <tr>
+            <td>6</td>
+            <td>2026 · 05 · 24</td>
+            <td>HHL</td>
+            <td>TBD</td>
+            <td>
+              <span class="reference-links">
+                <a href="https://arxiv.org/abs/0811.3171">[HHL09]</a>
+              </span>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
