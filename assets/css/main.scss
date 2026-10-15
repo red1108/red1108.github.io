@@ -2001,3 +2001,109 @@ ol.bibliography > li {
     height: 420px;
   }
 }
+
+/* Quantum Complexity Zoo: paper field notebook and elastic atlas. */
+.artifact-complexity-zoo .container { max-width: 1480px; }
+.zoo { --zoo-accent: #476e60; --zoo-muted: #847d70; padding-bottom: 56px; }
+.zoo-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; padding: 58px 0 38px; }
+.zoo-heading h1 { font-size: clamp(42px, 5vw, 72px); line-height: 1.04; margin: 18px 0; letter-spacing: -2px; }
+.zoo-heading h1 em { color: var(--zoo-accent); font-weight: 400; }
+.zoo-heading p { color: var(--ink-3); font-size: 18px; }
+.zoo-heading__note { display: flex; align-items: center; gap: 16px; font-family: var(--sans); font-size: 13px; line-height: 1.7; color: var(--ink-3); padding-bottom: 8px; }
+.zoo-seal { display: grid; place-items: center; width: 66px; height: 66px; border: 1px solid var(--rule); border-radius: 48% 52% 57% 43%; color: var(--zoo-accent); font-size: 36px; font-family: var(--serif); }
+.zoo-workbench { border: 1px solid var(--rule); background: #faf7ef; }
+.zoo-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding: 14px 20px; border-bottom: 1px solid var(--rule); }
+.zoo-kicker { font: 10px var(--mono); letter-spacing: 1.4px; color: var(--ink-3); }
+#zoo-count { color: var(--zoo-muted); padding-left: 12px; font-size: 9px; letter-spacing: 0.7px; }
+.zoo-tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.zoo button, .zoo select, .zoo input { font-family: var(--sans); }
+.zoo button { color: var(--ink-2); background: transparent; border: 1px solid var(--rule); border-radius: 3px; padding: 6px 11px; font-size: 12px; cursor: pointer; }
+.zoo button:hover:not(:disabled) { border-color: var(--zoo-accent); background: #e8eee5; }
+.zoo button:disabled { opacity: 0.35; cursor: default; }
+.zoo :focus-visible { outline: 2px solid var(--zoo-accent); outline-offset: 3px; }
+.zoo-tools label { display: flex; align-items: center; gap: 4px; font: 12px var(--sans); margin-right: 8px; }
+.zoo input[type=checkbox], .zoo input[type=range] { accent-color: var(--zoo-accent); }
+.zoo-grid { display: grid; grid-template-columns: minmax(0,1fr) 280px; }
+.zoo-stage { height: 710px; position: relative; min-width: 0; overflow: hidden; background-image: radial-gradient(#cbc5b780 0.6px,transparent 0.6px); background-size: 24px 24px; }
+#zoo-canvas { width: 100%; height: 100%; display: block; touch-action: none; }
+#zoo-canvas.is-dragging { cursor: grabbing !important; }
+.zoo-stage__stamp { position: absolute; top: 22px; left: 24px; pointer-events: none; display: flex; align-items: center; gap: 15px; }
+#zoo-stage-year { font: 32px var(--serif); color: #918976; }
+#zoo-stage-type { font: 9px var(--mono); letter-spacing: 1px; color: var(--ink-3); max-width: 160px; }
+.zoo-stage__hint { position: absolute; bottom: 15px; left: 0; width: 100%; text-align: center; pointer-events: none; color: #8a8273; font: 9px var(--mono); letter-spacing: 1px; }
+.zoo-inspector { border-left: 1px solid var(--rule); padding: 24px 22px; height: 710px; overflow-y: auto; background: #f4efe3c0; }
+.zoo-inspector h2 { font-size: 27px; margin: 18px 0 14px; overflow-wrap: anywhere; }
+.zoo-inspector h3 { font: 500 13px var(--sans); margin: 14px 0 8px; }
+.zoo-inspector p { font-size: 14px; line-height: 1.65; color: var(--ink-2); margin-bottom: 12px; overflow-wrap: anywhere; }
+.zoo-inspector .katex { font-size: 1em; }
+.zoo-detail__note, .zoo-inspector .zoo-paper__note { font-size: 11px; color: var(--ink-3); }
+.zoo-compare-label { display: block; font: 11px var(--sans); margin: 22px 0 8px; }
+.zoo select { width: 100%; padding: 9px; background: #faf7ef; color: var(--ink-2); border: 1px solid var(--rule); border-radius: 3px; font-size: 12px; }
+.zoo-inspector .zoo-relation { font-size: 12px; margin-top: 12px; }
+.zoo-paper { margin-top: 28px; border-top: 1px solid var(--rule); padding-top: 20px; }
+.zoo-paper h3 { font-size: 17px; font-family: var(--serif); }
+.zoo-inspector .zoo-paper__authors { font: 11px/1.6 var(--sans); color: var(--ink-3); }
+.zoo-inspector .zoo-paper__venue { font: 10px/1.5 var(--mono); color: var(--ink-3); }
+.zoo-tooltip { position: absolute; pointer-events: none; z-index: 5; width: min(315px,calc(100% - 16px)); padding: 16px 18px; background: #fffdf6f5; border: 1px solid var(--rule); border-radius: 5px; box-shadow: 0 8px 30px #3a33221c; font-size: 14px; }
+.zoo-tooltip strong { font: 500 17px var(--sans); color: var(--zoo-accent); }
+.zoo-tooltip p { margin: 8px 0; font-size: 13px; overflow-wrap: anywhere; }
+.zoo-tooltip .katex { font-size: 1em; }
+.zoo-tooltip span:last-child { font: 10px var(--sans); color: var(--ink-3); }
+.zoo [hidden] { display: none !important; }
+.zoo-legend { display: flex; flex-wrap: wrap; gap: 12px 24px; border-top: 1px solid var(--rule); padding: 16px 20px 8px; }
+.zoo-legend > span { display: flex; align-items: center; gap: 8px; font: 11px var(--sans); color: var(--ink-3); }
+.zoo-line { width: 25px; height: 0; border-top: 1px solid #588b80; display: inline-block; }
+.zoo-line--strict { border-top: 3px solid #588b80; }
+.zoo-line--unknown { border-top: 1px dashed #988b93; }
+.zoo-dot { width: 6px; height: 6px; border-radius: 50%; background: #665e4c; display: inline-block; }
+.zoo-reading-note { padding: 8px 20px 16px; font: 11px/1.6 var(--sans); color: var(--ink-3); max-width: 110ch; }
+.zoo-history { padding: 30px 0 28px; border-bottom: 1px solid var(--rule); }
+.zoo-history__head { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.zoo-history__head h2 { font-size: 25px; margin: 8px 0 20px; }
+#zoo-date { font: 17px var(--mono); white-space: nowrap; }
+.zoo-transport { display: flex; gap: 10px; align-items: center; }
+.zoo-transport button { min-height: 38px; }
+#zoo-play { min-width: 110px; background: var(--zoo-accent); border-color: var(--zoo-accent); color: #faf7ef; }
+#zoo-timeline { flex: 1; min-width: 60px; cursor: pointer; }
+.zoo-history__ticks { position: relative; height: 14px; margin: 8px 44px 22px 172px; font: 10px var(--mono); color: var(--ink-3); }
+.zoo-history__ticks span { position: absolute; transform: translateX(-50%); }
+.zoo .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.zoo-jump-label { display: block; font: 11px var(--sans); margin-bottom: 7px; }
+#zoo-event-select { max-width: 620px; }
+.zoo-directory { padding-top: 28px; }
+.zoo-directory__head { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 20px; }
+.zoo-directory__head h2 { font-size: 25px; }
+#zoo-search { width: 200px; max-width: 100%; border: 0; border-bottom: 1px solid var(--rule); background: transparent; padding: 8px 0; font-size: 13px; border-radius: 0; }
+.zoo-class-list { display: flex; gap: 9px; flex-wrap: wrap; }
+.zoo-class-list button { padding: 9px 14px; color: var(--class-color); border-color: var(--class-color); border-radius: 20px; }
+.zoo-class-list button[aria-pressed=true] { background: var(--class-color); color: #fffdf6; }
+.zoo-explanation { margin-top: 24px; border-top: 1px solid var(--rule); padding-top: 15px; }
+.zoo-explanation summary { font: 13px var(--sans); cursor: pointer; }
+.zoo-explanation p { font-size: 13px; line-height: 1.7; max-width: 95ch; color: var(--ink-3); margin-top: 12px; }
+#zoo-problems { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+@media (max-width: 1000px) {
+  .zoo-grid { grid-template-columns: minmax(0,1fr) 240px; }
+  .zoo-inspector { padding: 20px 15px; }
+  .zoo-heading__note { display: none; }
+  .zoo-stage, .zoo-inspector { height: 620px; }
+}
+@media (max-width: 720px) {
+  .artifact-complexity-zoo .container { padding: 0 16px; }
+  .zoo-heading { padding-top: 32px; }
+  .zoo-heading h1 { letter-spacing: -1px; }
+  .zoo-heading p { font-size: 15px; }
+  .zoo-grid { display: block; }
+  .zoo-stage { height: min(125vw,580px); min-height: 390px; }
+  .zoo-inspector { border-left: 0; border-top: 1px solid var(--rule); height: auto; max-height: 460px; padding: 20px; }
+  .zoo-toolbar { padding: 12px; }
+  .zoo-tools { gap: 5px; }
+  .zoo-tools label { margin-right: 4px; }
+  .zoo-history__head h2 { font-size: 21px; }
+  #zoo-date { font-size: 12px; }
+  #zoo-play { min-width: 80px; padding: 6px; }
+  .zoo-history__ticks { margin-left: 135px; }
+  .zoo-stage__stamp { top: 16px; left: 16px; }
+  #zoo-stage-year { font-size: 25px; }
+  .zoo-legend { gap: 10px; }
+  #zoo-search { width: 150px; }
+}

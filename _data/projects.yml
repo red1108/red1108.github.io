@@ -1,3 +1,14 @@
+- name: Quantum Complexity Zoo
+  year: 2026
+  date: 2026-10-15
+  description: An interactive atlas of complexity classes, nested elastic membranes, and the papers that revealed their relationships.
+  type: Quantum computing
+  url: /projects/quantum-complexity-zoo/
+  tags:
+    - Complexity theory
+    - Interactive atlas
+    - History
+
 - name: AutoAgent
   year: 2026
   date: 2026-04-04

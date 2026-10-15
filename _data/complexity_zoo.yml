@@ -1,0 +1,967 @@
+---
+classes:
+- id: R
+  label: R
+  name: Decidable languages
+  family: computability
+  hint:
+    x: 0.46
+    "y": 0.52
+  definition: Languages $L$ for which some Turing machine halts on every input $x$
+    and accepts iff $x \in L$.
+- id: RE
+  label: RE
+  name: Recursively enumerable languages
+  family: computability
+  hint:
+    x: 0.5
+    "y": 0.5
+  definition: Languages $L$ for which some Turing machine accepts exactly the inputs
+    $x \in L$ (it may run forever on $x \notin L$).
+- id: EXP
+  label: EXP
+  name: Exponential time
+  family: deterministic
+  hint:
+    x: 0.45
+    "y": 0.52
+  definition: "$\\mathsf{EXP} = \\bigcup_{k} \\mathsf{DTIME}\\left(2^{n^k}\\right)$:
+    languages decided deterministically in time $2^{\\mathrm{poly}(n)}$."
+- id: P
+  label: P
+  name: Polynomial time
+  family: deterministic
+  hint:
+    x: 0.47
+    "y": 0.58
+  definition: "$\\mathsf{P} = \\bigcup_{k} \\mathsf{DTIME}\\left(n^k\\right)$: languages
+    decided by a deterministic Turing machine in polynomial time."
+- id: NP
+  label: NP
+  name: Nondeterministic polynomial time
+  family: deterministic
+  hint:
+    x: 0.37
+    "y": 0.58
+  definition: "$x \\in L \\iff \\exists\\, w \\in \\{0,1\\}^{\\mathrm{poly}(|x|)}$
+    with $V(x, w) = 1$, for a deterministic polynomial-time verifier $V$."
+- id: NEXP
+  label: NEXP
+  name: Nondeterministic exponential time
+  family: deterministic
+  hint:
+    x: 0.45
+    "y": 0.5
+  definition: "$\\mathsf{NEXP} = \\bigcup_{k} \\mathsf{NTIME}\\left(2^{n^k}\\right)$:
+    like $\\mathsf{NP}$, but with exponentially long certificates and verification
+    time."
+- id: PH
+  label: PH
+  name: Polynomial hierarchy
+  family: deterministic
+  hint:
+    x: 0.33
+    "y": 0.52
+  definition: "$\\mathsf{PH} = \\bigcup_{k} \\Sigma_k^{p}$, where $\\Sigma_1^{p} =
+    \\mathsf{NP}$ and $\\Sigma_{k+1}^{p} = \\mathsf{NP}^{\\Sigma_k^{p}}$."
+- id: PSPACE
+  label: PSPACE
+  name: Polynomial space
+  family: deterministic
+  hint:
+    x: 0.45
+    "y": 0.5
+  definition: "$\\mathsf{PSPACE} = \\bigcup_{k} \\mathsf{SPACE}\\left(n^k\\right)$:
+    languages decided using polynomial memory (and unbounded time)."
+- id: BPP
+  label: BPP
+  name: Bounded-error probabilistic polynomial time
+  family: randomized
+  hint:
+    x: 0.52
+    "y": 0.6
+  definition: A polynomial-time randomized algorithm $A$ with $\Pr[A(x) = L(x)] \ge
+    2/3$ for every input $x$.
+- id: PP
+  label: PP
+  name: Probabilistic polynomial time
+  family: randomized
+  hint:
+    x: 0.58
+    "y": 0.5
+  definition: A polynomial-time randomized algorithm $A$ with $\Pr[A(x) = L(x)] >
+    1/2$ for every input $x$ (unbounded error).
+- id: AM
+  label: AM
+  name: Arthur–Merlin
+  family: interactive
+  hint:
+    x: 0.37
+    "y": 0.54
+  definition: Arthur sends random coins $r$, Merlin answers with $m$, Arthur decides
+    by a deterministic poly-time predicate $V(x, r, m)$. Completeness $\ge 2/3$, soundness
+    $\le 1/3$.
+- id: MA
+  label: MA
+  name: Merlin–Arthur
+  family: interactive
+  hint:
+    x: 0.44
+    "y": 0.58
+  definition: 'Merlin sends a classical proof $w$; Arthur runs a $\mathsf{BPP}$ verifier.
+    $x \in L \Rightarrow \exists w: \Pr[\text{accept}] \ge 2/3$; $x \notin L \Rightarrow
+    \forall w: \Pr[\text{accept}] \le 1/3$.'
+- id: IP
+  label: IP
+  name: Interactive proofs
+  family: interactive
+  hint:
+    x: 0.42
+    "y": 0.48
+  definition: A randomized poly-time verifier exchanges $\mathrm{poly}(n)$ messages
+    with an all-powerful prover. Completeness $\ge 2/3$, soundness $\le 1/3$ against
+    every prover.
+- id: MIP
+  label: MIP
+  name: Multi-prover interactive proofs
+  family: interactive
+  hint:
+    x: 0.42
+    "y": 0.46
+  definition: Like $\mathsf{IP}$, but with two (or polynomially many) provers who
+    cannot communicate with each other.
+- id: BQP
+  label: BQP
+  name: Bounded-error quantum polynomial time
+  family: quantum
+  hint:
+    x: 0.6
+    "y": 0.58
+  definition: Decided by a uniform family of $\mathrm{poly}(n)$-size quantum circuits
+    $\{Q_n\}$ with $\Pr[Q_{|x|}(x) = L(x)] \ge 2/3$.
+- id: QMA
+  label: QMA
+  name: Quantum Merlin–Arthur
+  family: quantum
+  hint:
+    x: 0.58
+    "y": 0.53
+  definition: 'Merlin sends a quantum proof $|\psi\rangle$ on $\mathrm{poly}(n)$ qubits;
+    Arthur runs a $\mathsf{BQP}$ verifier. $x \in L \Rightarrow \exists |\psi\rangle:
+    \Pr[\text{accept}] \ge 2/3$; $x \notin L \Rightarrow \forall |\psi\rangle: \Pr[\text{accept}]
+    \le 1/3$.'
+- id: QIP
+  label: QIP
+  name: Quantum interactive proofs
+  family: quantum-interactive
+  hint:
+    x: 0.56
+    "y": 0.46
+  definition: Like $\mathsf{IP}$, but the verifier is a poly-time quantum circuit
+    and the messages are quantum states.
+- id: QCMA
+  label: QCMA
+  name: Quantum Classical Merlin–Arthur
+  family: quantum
+  hint:
+    x: 0.54
+    "y": 0.56
+  definition: Like $\mathsf{QMA}$, but the proof is a classical string $w \in \{0,1\}^{\mathrm{poly}(n)}$
+    checked by a quantum verifier.
+- id: QMA2
+  label: QMA(2)
+  name: QMA with two unentangled provers
+  family: quantum
+  hint:
+    x: 0.66
+    "y": 0.46
+  definition: Like $\mathsf{QMA}$, but the proof is promised to be a product state
+    $|\psi_1\rangle \otimes |\psi_2\rangle$ from two unentangled Merlins.
+- id: PostBQP
+  label: PostBQP
+  name: Postselected BQP
+  family: quantum
+  hint:
+    x: 0.6
+    "y": 0.5
+  definition: "$\\mathsf{BQP}$ with postselection: the circuit may condition on an
+    outcome that occurs with probability $> 0$, however small."
+- id: MIPstar
+  label: MIP*
+  name: Multi-prover interactive proofs with entangled provers
+  family: quantum-interactive
+  hint:
+    x: 0.72
+    "y": 0.44
+  definition: Classical polynomial-time interactive verification with non-communicating
+    provers sharing an arbitrary finite-dimensional entangled state. Completeness
+    $\ge 2/3$ and soundness $\le 1/3$.
+problems:
+- id: HALT
+  label: HALT
+  name: Halting problem
+  hint:
+    x: 0.84
+    "y": 0.6
+  description: Given a Turing machine $M$ and input $x$, does $M$ halt on $x$?
+  kind: language
+- id: SAT
+  label: SAT
+  name: Boolean satisfiability
+  hint:
+    x: 0.3
+    "y": 0.62
+  description: Does a Boolean formula $\varphi$ have a satisfying assignment? $\mathsf{NP}$-complete.
+  kind: language
+- id: FACTORING
+  label: FACTORING
+  name: Integer factoring
+  hint:
+    x: 0.52
+    "y": 0.62
+  description: Given $N$ and $k$, does $N$ have a prime factor $\le k$? This is a
+    decision version of factoring.
+  kind: language
+- id: GI
+  label: GI
+  name: Graph isomorphism
+  hint:
+    x: 0.34
+    "y": 0.66
+  description: Given two graphs $G$ and $H$, is there a bijection of vertices preserving
+    adjacency?
+  kind: language
+- id: TQBF
+  label: TQBF
+  name: True quantified Boolean formulas
+  hint:
+    x: 0.4
+    "y": 0.3
+  description: Is $\exists x_1 \forall x_2 \exists x_3 \cdots\, \varphi(x_1, x_2,
+    \ldots)$ true? $\mathsf{PSPACE}$-complete.
+  kind: language
+- id: MAJSAT
+  label: MAJSAT
+  name: Majority satisfiability
+  hint:
+    x: 0.64
+    "y": 0.42
+  description: Is $\varphi$ satisfied by more than half of all assignments? $\mathsf{PP}$-complete.
+  kind: language
+- id: PRIMES
+  label: PRIMES
+  name: Primality testing
+  hint:
+    x: 0.47
+    "y": 0.6
+  description: Given an integer $N$, is $N$ prime? Membership statements below are
+    restricted to the selected timeline position.
+  kind: language
+- id: LH
+  label: k-LH
+  name: k-local Hamiltonian
+  hint:
+    x: 0.62
+    "y": 0.54
+  description: Given $H = \sum_i H_i$ with each $H_i$ acting on $k$ qubits, is $\lambda_{\min}(H)
+    \le a$ or $\ge b$ (with $b - a \ge 1/\mathrm{poly}(n)$)? $\mathsf{QMA}$-complete.
+  kind: promise
+events:
+- date: '1937'
+  type: define
+  class: R
+  title: Computable languages (R)
+  paper:
+    authors: A. M. Turing
+    title: On computable numbers, with an application to the Entscheidungsproblem
+    venue: Proc. London Math. Soc.
+    url: https://doi.org/10.1112/plms/s2-42.1.230
+  date_basis: publication
+  note: The cited journal volume is dated 1937; the paper was received and read in
+    1936. Year precision is intentional.
+- date: '1937'
+  type: define
+  class: RE
+  sub:
+  - R
+  title: Recognizable languages (RE)
+  paper:
+    authors: A. M. Turing
+    title: On computable numbers, with an application to the Entscheidungsproblem
+    venue: Proc. London Math. Soc.
+    url: https://doi.org/10.1112/plms/s2-42.1.230
+  date_basis: publication
+  note: The cited journal volume is dated 1937; the paper was received and read in
+    1936. Year precision is intentional.
+- date: '1937'
+  type: problem
+  problem: HALT
+  class: RE
+  title: HALT ∈ RE
+  paper:
+    authors: A. M. Turing
+    title: On computable numbers, with an application to the Entscheidungsproblem
+    venue: Proc. London Math. Soc.
+    url: https://doi.org/10.1112/plms/s2-42.1.230
+  date_basis: publication
+  note: The cited journal volume is dated 1937; the paper was received and read in
+    1936. Year precision is intentional.
+- date: '1937'
+  type: separation
+  sub: R
+  sup: RE
+  title: R ⊊ RE
+  note: The cited journal volume is dated 1937; the paper was received and read in
+    1936. Year precision is intentional.
+  paper:
+    authors: A. M. Turing
+    title: On computable numbers, with an application to the Entscheidungsproblem
+    venue: Proc. London Math. Soc.
+    url: https://doi.org/10.1112/plms/s2-42.1.230
+  date_basis: publication
+- date: '1937'
+  date_basis: publication
+  type: nonmembership
+  problem: HALT
+  class: R
+  title: HALT ∉ R
+  paper:
+    authors: A. M. Turing
+    title: On computable numbers, with an application to the Entscheidungsproblem
+    venue: Proc. London Math. Soc.
+    url: https://doi.org/10.1112/plms/s2-42.1.230
+  note: Undecidability is an explicit negative membership fact.
+- date: 1965-05
+  type: define
+  class: EXP
+  sup:
+  - R
+  title: Time complexity classes (EXP)
+  note: Hartmanis and Stearns founded time complexity and proved the time hierarchy
+    theorem.
+  paper:
+    authors: J. Hartmanis, R. E. Stearns
+    title: On the computational complexity of algorithms
+    venue: Trans. AMS
+    url: https://doi.org/10.1090/S0002-9947-1965-0170805-7
+  date_basis: publication
+- date: 1965-06
+  type: define
+  class: P
+  sup:
+  - EXP
+  title: Polynomial time as "efficient" (P)
+  note: Cobham and Edmonds independently proposed polynomial time as the notion of
+    efficient computation.
+  paper:
+    authors: A. Cobham; J. Edmonds
+    title: The intrinsic computational difficulty of functions; Paths, trees, and
+      flowers
+    venue: LMPS 1964 (pub. 1965); Canad. J. Math.
+    url: https://doi.org/10.4153/CJM-1965-045-4
+  date_basis: publication
+- date: 1965-06
+  type: separation
+  sub: P
+  sup: EXP
+  title: P ⊊ EXP
+  note: Immediate from the deterministic time hierarchy theorem.
+  paper:
+    authors: J. Hartmanis, R. E. Stearns
+    title: On the computational complexity of algorithms
+    venue: Trans. AMS
+    url: https://doi.org/10.1090/S0002-9947-1965-0170805-7
+  date_basis: derived
+- date: 1965-10
+  type: define
+  class: PSPACE
+  sub:
+  - P
+  sup:
+  - EXP
+  title: Space-bounded computation (PSPACE)
+  paper:
+    authors: P. M. Lewis II, R. E. Stearns, J. Hartmanis
+    title: Memory bounds for recognition of context-free and context-sensitive languages
+    venue: SWCT 1965
+    url: https://doi.org/10.1109/FOCS.1965.14
+  date_basis: publication
+- date: 1971-05
+  type: define
+  class: NP
+  sub:
+  - P
+  sup:
+  - EXP
+  title: NP and NP-completeness
+  paper:
+    authors: S. A. Cook
+    title: The complexity of theorem-proving procedures
+    venue: STOC 1971
+    url: https://doi.org/10.1145/800157.805047
+  date_basis: publication
+- date: 1971-05
+  type: problem
+  problem: SAT
+  class: NP
+  title: SAT ∈ NP (NP-complete)
+  paper:
+    authors: S. A. Cook
+    title: The complexity of theorem-proving procedures
+    venue: STOC 1971
+    url: https://doi.org/10.1145/800157.805047
+  date_basis: publication
+- date: 1971-05
+  type: problem
+  problem: FACTORING
+  class: NP
+  title: FACTORING ∈ NP
+  note: Elementary certificate argument, displayed when NP enters the tour; not a
+    claim that this paper first proved this problem membership.
+  paper:
+    authors: S. A. Cook
+    title: The complexity of theorem-proving procedures
+    venue: STOC 1971
+    url: https://doi.org/10.1145/800157.805047
+  date_basis: derived
+- date: 1971-05
+  type: problem
+  problem: GI
+  class: NP
+  title: GI ∈ NP
+  note: Elementary certificate argument, displayed when NP enters the tour; not a
+    claim that this paper first proved this problem membership.
+  paper:
+    authors: S. A. Cook
+    title: The complexity of theorem-proving procedures
+    venue: STOC 1971
+    url: https://doi.org/10.1145/800157.805047
+  date_basis: derived
+- date: 1972-05
+  type: define
+  class: NEXP
+  sub:
+  - EXP
+  sup:
+  - R
+  title: Nondeterministic time hierarchy (NEXP)
+  paper:
+    authors: S. A. Cook
+    title: A hierarchy for nondeterministic time complexity
+    venue: STOC 1972
+  date_basis: publication
+- date: 1972-05
+  type: separation
+  sub: NEXP
+  sup: R
+  title: NEXP ⊊ R
+  note: Deterministic simulation bounds NEXP by double-exponential time; the deterministic
+    time hierarchy supplies decidable languages beyond that entire class.
+  paper:
+    authors: J. Hartmanis, R. E. Stearns
+    title: On the computational complexity of algorithms
+    venue: Trans. AMS
+    url: https://doi.org/10.1090/S0002-9947-1965-0170805-7
+  date_basis: derived
+- date: 1972-10
+  type: define
+  class: PH
+  sub:
+  - NP
+  sup:
+  - PSPACE
+  title: The polynomial hierarchy (PH)
+  paper:
+    authors: A. R. Meyer, L. J. Stockmeyer
+    title: The equivalence problem for regular expressions with squaring requires
+      exponential space
+    venue: SWAT 1972
+    url: https://doi.org/10.1109/SWAT.1972.29
+  date_basis: publication
+- date: 1973-04
+  type: problem
+  problem: TQBF
+  class: PSPACE
+  title: TQBF ∈ PSPACE (PSPACE-complete)
+  paper:
+    authors: L. J. Stockmeyer, A. R. Meyer
+    title: 'Word problems requiring exponential time: preliminary report'
+    venue: STOC 1973
+    url: https://doi.org/10.1145/800125.804029
+  date_basis: publication
+- date: 1975-09
+  type: problem
+  problem: PRIMES
+  class: NP
+  title: PRIMES ∈ NP
+  paper:
+    authors: V. R. Pratt
+    title: Every prime has a succinct certificate
+    venue: SIAM J. Comput.
+    url: https://doi.org/10.1137/0204018
+  date_basis: publication
+- date: 1977-12
+  type: define
+  class: PP
+  sub:
+  - NP
+  sup:
+  - PSPACE
+  title: Probabilistic Turing machines (PP)
+  paper:
+    authors: J. Gill
+    title: Computational complexity of probabilistic Turing machines
+    venue: SIAM J. Comput.
+    url: https://doi.org/10.1137/0206049
+  date_basis: publication
+- date: 1977-12
+  type: define
+  class: BPP
+  sub:
+  - P
+  sup:
+  - PP
+  title: Bounded-error randomness (BPP)
+  paper:
+    authors: J. Gill
+    title: Computational complexity of probabilistic Turing machines
+    venue: SIAM J. Comput.
+    url: https://doi.org/10.1137/0206049
+  date_basis: publication
+- date: 1977-12
+  type: problem
+  problem: MAJSAT
+  class: PP
+  title: MAJSAT ∈ PP (PP-complete)
+  paper:
+    authors: J. Gill
+    title: Computational complexity of probabilistic Turing machines
+    venue: SIAM J. Comput.
+    url: https://doi.org/10.1137/0206049
+  date_basis: publication
+- date: 1977-12
+  type: problem
+  problem: PRIMES
+  class: BPP
+  title: PRIMES ∈ BPP
+  note: Solovay–Strassen was published March 1977. The membership is displayed once
+    BPP enters this tour later in 1977.
+  paper:
+    authors: R. Solovay, V. Strassen
+    title: A fast Monte-Carlo test for primality
+    venue: SIAM J. Comput.
+    url: https://doi.org/10.1137/0206006
+  date_basis: derived
+- date: 1978-01
+  type: separation
+  sub: NP
+  sup: NEXP
+  title: NP ⊊ NEXP
+  note: The nondeterministic time hierarchy theorem.
+  paper:
+    authors: J. I. Seiferas, M. J. Fischer, A. R. Meyer
+    title: Separating nondeterministic time complexity classes
+    venue: J. ACM
+    url: https://doi.org/10.1145/322047.322061
+  date_basis: publication
+- date: 1983-11
+  type: inclusion
+  sub: BPP
+  sup: PH
+  title: BPP ⊆ PH
+  note: This event uses the November journal publication of the sharper bound BPP
+    ⊆ Σ₂ ∩ Π₂. Sipser and Gács obtained an earlier hierarchy containment.
+  paper:
+    authors: C. Lautemann
+    title: BPP and the polynomial hierarchy
+    venue: Information Processing Letters
+    url: https://doi.org/10.1016/0020-0190(83)90044-3
+  date_basis: publication
+- date: 1985-05
+  type: define
+  class: AM
+  sub:
+  - NP
+  - BPP
+  sup:
+  - PH
+  title: Arthur–Merlin games (AM)
+  note: Babai also showed AM ⊆ Π₂ ⊆ PH.
+  paper:
+    authors: L. Babai
+    title: Trading group theory for randomness
+    venue: STOC 1985
+    url: https://doi.org/10.1145/22145.22192
+  date_basis: publication
+- date: 1985-05
+  type: define
+  class: MA
+  sub:
+  - NP
+  - BPP
+  sup:
+  - AM
+  title: Merlin–Arthur games (MA)
+  paper:
+    authors: L. Babai
+    title: Trading group theory for randomness
+    venue: STOC 1985
+    url: https://doi.org/10.1145/22145.22192
+  date_basis: publication
+- date: 1985-05
+  type: define
+  class: IP
+  sub:
+  - AM
+  sup:
+  - PSPACE
+  title: Interactive proof systems (IP)
+  note: Private-coin interaction generalizes AM; simulating the optimal prover gives
+    IP ⊆ PSPACE.
+  paper:
+    authors: S. Goldwasser, S. Micali, C. Rackoff
+    title: The knowledge complexity of interactive proof systems
+    venue: STOC 1985
+    url: https://doi.org/10.1137/0218012
+    version_note: The event uses the conference publication; the link is to the expanded
+      journal version.
+  date_basis: publication
+- date: 1988-05
+  type: define
+  class: MIP
+  sub:
+  - IP
+  sup:
+  - NEXP
+  title: Multi-prover interactive proofs (MIP)
+  note: The upper bound MIP ⊆ NEXP is due to Fortnow, Rompel, and Sipser (1988).
+  paper:
+    authors: M. Ben-Or, S. Goldwasser, J. Kilian, A. Wigderson
+    title: 'Multi-prover interactive proofs: how to remove intractability assumptions'
+    venue: STOC 1988
+    url: https://doi.org/10.1145/62212.62223
+  date_basis: publication
+- date: 1990-10
+  type: inclusion
+  sub: PH
+  sup: IP
+  title: PH ⊆ IP
+  note: Algebraic interactive proofs for the permanent give P^#P ⊆ IP, hence PH ⊆
+    IP (via Toda) and PP ⊆ IP.
+  paper:
+    authors: C. Lund, L. Fortnow, H. Karloff, N. Nisan
+    title: Algebraic methods for interactive proof systems
+    venue: FOCS 1990
+    url: https://doi.org/10.1145/146585.146605
+    version_note: The event uses the conference publication; the link is to the expanded
+      journal version.
+  date_basis: publication
+- date: 1990-10
+  type: inclusion
+  sub: PP
+  sup: IP
+  title: PP ⊆ IP
+  paper:
+    authors: C. Lund, L. Fortnow, H. Karloff, N. Nisan
+    title: Algebraic methods for interactive proof systems
+    venue: FOCS 1990
+    url: https://doi.org/10.1145/146585.146605
+    version_note: The event uses the conference publication; the link is to the expanded
+      journal version.
+  date_basis: publication
+- date: 1990-10
+  type: equality
+  classes:
+  - IP
+  - PSPACE
+  title: IP = PSPACE
+  paper:
+    authors: A. Shamir
+    title: IP = PSPACE
+    venue: FOCS 1990
+    url: https://doi.org/10.1145/146585.146609
+    version_note: The event uses the conference publication; the link is to the expanded
+      journal version.
+  date_basis: publication
+- date: 1990-10
+  type: equality
+  classes:
+  - MIP
+  - NEXP
+  title: MIP = NEXP
+  paper:
+    authors: L. Babai, L. Fortnow, C. Lund
+    title: Non-deterministic exponential time has two-prover interactive protocols
+    venue: FOCS 1990
+    url: https://doi.org/10.1007/BF01200056
+    version_note: The event uses the conference publication; the link is to the expanded
+      journal version.
+  date_basis: publication
+- date: 1993-05
+  type: define
+  class: BQP
+  sub:
+  - BPP
+  sup:
+  - PSPACE
+  title: Quantum complexity theory (BQP)
+  paper:
+    authors: E. Bernstein, U. Vazirani
+    title: Quantum complexity theory
+    venue: STOC 1993
+    url: https://doi.org/10.1137/S0097539796300921
+    version_note: The event uses the conference publication; the link is to the expanded
+      journal version.
+  date_basis: publication
+- date: 1994-11
+  type: oracle
+  a: BQP
+  b: BPP
+  title: BQP ⊄ BPP relative to an oracle
+  note: Simon's problem. An oracle result only, so the BPP and BQP membranes are not
+    changed.
+  paper:
+    authors: D. R. Simon
+    title: On the power of quantum computation
+    venue: FOCS 1994
+    url: https://doi.org/10.1137/S0097539796298637
+    version_note: The event uses the conference publication; the link is to the expanded
+      journal version.
+  date_basis: publication
+- date: 1994-11
+  type: problem
+  problem: FACTORING
+  class: BQP
+  title: FACTORING ∈ BQP
+  paper:
+    authors: P. W. Shor
+    title: Algorithms for quantum computation, discrete logarithms and factoring
+    venue: FOCS 1994
+    url: https://arxiv.org/abs/quant-ph/9508027
+  date_basis: publication
+- date: 1997-10
+  type: inclusion
+  sub: BQP
+  sup: PP
+  title: BQP ⊆ PP
+  paper:
+    authors: L. M. Adleman, J. DeMarrais, M.-D. A. Huang
+    title: Quantum computability
+    venue: SIAM J. Comput.
+    url: https://doi.org/10.1137/S0097539795293639
+  date_basis: publication
+- date: 1999-10
+  type: define
+  class: QIP
+  sub:
+  - PSPACE
+  sup:
+  - R
+  title: Quantum interactive proofs (QIP)
+  note: Watrous showed PSPACE has constant-round quantum interactive proofs.
+  paper:
+    authors: J. Watrous
+    title: PSPACE has constant-round quantum interactive proof systems
+    venue: FOCS 1999
+    url: https://arxiv.org/abs/cs/9901015
+  date_basis: publication
+- date: 2000-05
+  type: define
+  class: QMA
+  sub:
+  - MA
+  - BQP
+  sup:
+  - QIP
+  - PP
+  title: Quantum Merlin–Arthur (QMA)
+  note: A publication milestone for quantum witnesses; earlier Kitaev lectures are
+    not used as publication dates.
+  paper:
+    authors: A. Kitaev, J. Watrous
+    title: Parallelization, amplification, and exponential time simulation of quantum
+      interactive proof systems
+    venue: STOC 2000
+    url: https://doi.org/10.1145/335305.335387
+  date_basis: publication
+- date: 2000-05
+  type: inclusion
+  sub: QIP
+  sup: EXP
+  title: QIP ⊆ EXP
+  paper:
+    authors: A. Kitaev, J. Watrous
+    title: Parallelization, amplification, and exponential time simulation of quantum
+      interactive proof systems
+    venue: STOC 2000
+    url: https://doi.org/10.1145/335305.335387
+  date_basis: publication
+- date: 2000-05
+  type: inclusion
+  sub: QMA
+  sup: PP
+  title: QMA ⊆ PP
+  paper:
+    authors: A. Kitaev, J. Watrous
+    title: Parallelization, amplification, and exponential time simulation of quantum
+      interactive proof systems
+    venue: STOC 2000
+    url: https://doi.org/10.1145/335305.335387
+  date_basis: publication
+- date: '2002'
+  type: problem
+  problem: LH
+  class: QMA
+  title: k-LOCAL HAMILTONIAN ∈ QMA (QMA-complete)
+  paper:
+    authors: A. Yu. Kitaev, A. H. Shen, M. N. Vyalyi
+    title: Classical and Quantum Computation
+    venue: AMS Graduate Studies in Mathematics
+    url: https://doi.org/10.1090/gsm/047
+  date_basis: publication
+  note: Promise-problem example for the promise version of QMA; kept in the example
+    list, not plotted as a language.
+- date: 2002-10
+  type: define
+  class: QCMA
+  sub:
+  - MA
+  - BQP
+  sup:
+  - QMA
+  title: Classical proofs, quantum verifier (QCMA)
+  paper:
+    authors: D. Aharonov, T. Naveh
+    title: Quantum NP — a survey
+    venue: arXiv
+    url: https://arxiv.org/abs/quant-ph/0210077
+  date_basis: preprint
+  note: 'Preprint-only source: October 2002. Shown explicitly as a preprint milestone.'
+- date: 2003-12
+  type: define
+  class: QMA2
+  sub:
+  - QMA
+  sup:
+  - NEXP
+  title: Multiple unentangled Merlins (QMA(2))
+  paper:
+    authors: H. Kobayashi, K. Matsumoto, T. Yamakami
+    title: 'Quantum Merlin-Arthur proof systems: are multiple Merlins more helpful
+      to Arthur?'
+    venue: ISAAC 2003
+    url: https://arxiv.org/abs/quant-ph/0306051
+  date_basis: publication
+- date: 2004-06
+  type: define
+  class: MIPstar
+  sub:
+  - IP
+  sup:
+  - RE
+  title: Entangled provers (MIP*)
+  note: Entanglement can break the soundness of classical MIP protocols, so MIP ⊆
+    MIP* was not known at first.
+  paper:
+    authors: R. Cleve, P. Høyer, B. Toner, J. Watrous
+    title: Consequences and limits of nonlocal strategies
+    venue: CCC 2004
+    url: https://arxiv.org/abs/quant-ph/0404076
+  date_basis: publication
+- date: 2004-09
+  type: problem
+  problem: PRIMES
+  class: P
+  title: PRIMES ∈ P
+  paper:
+    authors: M. Agrawal, N. Kayal, N. Saxena
+    title: PRIMES is in P
+    venue: Annals of Mathematics, 160(2), 2004
+    url: https://doi.org/10.4007/annals.2004.160.781
+  date_basis: publication
+  note: Published September 2004. The 2002 preprint date is not the timeline date.
+- date: 2005-09
+  type: define
+  class: PostBQP
+  sub:
+  - BQP
+  sup:
+  - PP
+  title: Postselected quantum computing (PostBQP)
+  paper:
+    authors: S. Aaronson
+    title: Quantum computing, postselection, and probabilistic polynomial-time
+    venue: Proc. R. Soc. A
+    url: https://doi.org/10.1098/rspa.2005.1546
+  date_basis: publication
+  note: First published online 5 September 2005; print issue November 2005.
+- date: 2005-09
+  type: equality
+  classes:
+  - PostBQP
+  - PP
+  title: PostBQP = PP
+  note: First published online 5 September 2005; print issue November 2005.
+  paper:
+    authors: S. Aaronson
+    title: Quantum computing, postselection, and probabilistic polynomial-time
+    venue: Proc. R. Soc. A
+    url: https://doi.org/10.1098/rspa.2005.1546
+  date_basis: publication
+- date: 2010-06
+  type: equality
+  classes:
+  - QIP
+  - PSPACE
+  title: QIP = PSPACE
+  paper:
+    authors: R. Jain, Z. Ji, S. Upadhyay, J. Watrous
+    title: QIP = PSPACE
+    venue: STOC 2010
+    url: https://arxiv.org/abs/0907.4737
+  date_basis: publication
+- date: 2012-10
+  type: inclusion
+  sub: NEXP
+  sup: MIPstar
+  title: NEXP ⊆ MIP*
+  paper:
+    authors: T. Ito, T. Vidick
+    title: A multi-prover interactive proof for NEXP sound against entangled provers
+    venue: FOCS 2012
+    url: https://arxiv.org/abs/1207.0550
+  date_basis: publication
+- date: 2019-06
+  type: oracle
+  a: BQP
+  b: PH
+  title: BQP ⊄ PH relative to an oracle
+  note: An oracle separation only. The BQP and PH membranes keep overlapping.
+  paper:
+    authors: R. Raz, A. Tal
+    title: Oracle separation of BQP and PH
+    venue: STOC 2019
+    url: https://eccc.weizmann.ac.il/report/2018/107/
+  date_basis: publication
+- date: 2021-11
+  type: equality
+  classes:
+  - MIPstar
+  - RE
+  title: MIP* = RE
+  note: Published November 2021; the January 2020 preprint is not used for this publication
+    timeline.
+  paper:
+    authors: Z. Ji, A. Natarajan, T. Vidick, J. Wright, H. Yuen
+    title: MIP* = RE
+    venue: Communications of the ACM, 64(11), 2021
+    url: https://authors.library.caltech.edu/records/1rfm7-r8870
+  date_basis: publication
+scope: The membranes compare language classes with standard uniform computation and
+  bounded error where applicable. Promise problems are identified separately and are
+  not plotted as languages.
+timeline_policy: Dates use the cited conference or journal publication (including
+  original online publication), not later digitization or preprint dates. A preprint-only
+  source is explicitly marked. Definition events mark a documented milestone in this
+  curated tour, not a claim of priority for the name. Some links point to expanded
+  versions; those are labeled.

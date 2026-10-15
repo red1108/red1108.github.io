@@ -1,0 +1,75 @@
+---
+layout: default
+---
+<article class="zoo" id="complexity-zoo">
+  <header class="zoo-heading">
+    <div><div class="eyebrow"><a href="{{ '/projects/' | relative_url }}">Projects</a> / An evolving atlas</div>
+      <h1>Quantum<br><em>Complexity Zoo</em></h1>
+    </div>
+    <div class="zoo-heading__note"><span class="zoo-seal" aria-hidden="true">⊆</span><span>Pull a membrane.<br>Follow an idea through time.</span></div>
+  </header>
+
+  <section class="zoo-workbench" aria-label="Interactive complexity atlas">
+    <div class="zoo-toolbar">
+      <span class="zoo-kicker">THE OBSERVATORY <span id="zoo-count"></span></span>
+      <div class="zoo-tools">
+        <label><input type="checkbox" id="zoo-examples" checked> Examples</label>
+        <label><input type="checkbox" id="zoo-motion" checked> Motion</label>
+        <button type="button" id="zoo-zoom-out" aria-label="Zoom out">−</button>
+        <button type="button" id="zoo-zoom-in" aria-label="Zoom in">+</button>
+        <button type="button" id="zoo-reset">Reset view</button>
+      </div>
+    </div>
+    <div class="zoo-grid">
+      <div class="zoo-stage" id="zoo-stage">
+        <canvas id="zoo-canvas" aria-label="Nested complexity membranes. Drag a boundary to deform it, drag empty space to pan, or use the class buttons below for definitions." role="img">Use the class list and publication timeline below to explore the atlas.</canvas>
+        <div class="zoo-stage__stamp"><span id="zoo-stage-year"></span><span id="zoo-stage-type"></span></div>
+        <div id="zoo-tooltip" class="zoo-tooltip" role="tooltip" hidden></div>
+        <div class="zoo-stage__hint">DRAG A BOUNDARY · SCROLL TO ZOOM</div>
+      </div>
+      <aside class="zoo-inspector" aria-label="Class and publication details">
+        <div class="zoo-kicker">FIELD NOTES</div>
+        <div id="zoo-detail"><h2>Explore the membranes</h2><p>Hover for a definition. Select a class to inspect its known relationships at this point in history.</p></div>
+        <label class="zoo-compare-label" for="zoo-compare">Compare with</label>
+        <select id="zoo-compare" disabled><option value="">Choose a class</option></select>
+        <p id="zoo-relation" class="zoo-relation" aria-live="polite"></p>
+        <button type="button" id="zoo-clear" hidden>Clear selection</button>
+        <div class="zoo-paper" id="zoo-paper" aria-live="polite"></div>
+      </aside>
+    </div>
+    <div class="zoo-legend">
+      <span><i class="zoo-line zoo-line--open"></i> Inclusion · equality unresolved in this atlas</span>
+      <span><i class="zoo-line zoo-line--strict"></i> Proven strict inclusion</span>
+      <span><i class="zoo-line zoo-line--unknown"></i> Unresolved / oracle-only comparison</span>
+      <span><i class="zoo-dot"></i> Example problem</span>
+    </div>
+    <p class="zoo-reading-note">Nested membranes show recorded inclusions. Space between membranes does not establish a separation. Select two classes to read the exact relation; incidental overlaps and example positions make no additional claims.</p>
+  </section>
+
+  <section class="zoo-history" aria-label="Publication timeline">
+    <div class="zoo-history__head"><div><span class="zoo-kicker">A HISTORY IN PAPERS</span><h2 id="zoo-event-title"></h2></div><output id="zoo-date" for="zoo-timeline"></output></div>
+    <div class="zoo-transport">
+      <button type="button" id="zoo-prev" aria-label="Previous event">←</button>
+      <button type="button" id="zoo-play" aria-pressed="false">Play history</button>
+      <input type="range" id="zoo-timeline" min="0" max="0" value="0" aria-label="Publication timeline">
+      <button type="button" id="zoo-next" aria-label="Next event">→</button>
+    </div>
+    <div class="zoo-history__ticks"><span>1937</span><span>1965</span><span>1993</span><span>2021</span></div>
+    <label class="zoo-jump-label" for="zoo-event-select">Jump to a paper milestone</label>
+    <select id="zoo-event-select"></select>
+  </section>
+
+  <section class="zoo-directory" aria-label="Classes at the selected date">
+    <div class="zoo-directory__head"><h2>In the atlas</h2><label><span class="sr-only">Filter classes</span><input type="search" id="zoo-search" placeholder="Find a class…" aria-label="Filter classes"></label></div>
+    <div id="zoo-classes" class="zoo-class-list"></div>
+    <details class="zoo-explanation"><summary>Example problems at this date</summary><div id="zoo-problems"></div><p>Memberships are limited to this timeline. An unlisted membership is unknown to this dataset, not a nonmembership result. Promise problems are listed separately and are not drawn as languages.</p></details>
+    <details class="zoo-explanation"><summary>How to read this atlas &amp; its dates</summary>
+      <p>{{ site.data.complexity_zoo.scope }}</p>
+      <p>{{ site.data.complexity_zoo.timeline_policy }}</p>
+      <p>Thin, flexible boundaries represent inclusions whose strictness is not established here. Thick, firmer boundaries indicate a recorded strict relation. Select a class to make material and line styles relative to that class. Equal classes share a membrane and retain all their names. Oracle separations are annotations, never unconditional splits.</p>
+      <p>This is a curated set of milestones, not an exhaustive literature survey. “Unresolved in this atlas” also includes missing evidence. Definitions use modern notation. Timeline steps are evenly spaced by event, not by elapsed years.</p>
+    </details>
+  </section>
+  <noscript><p>This interactive atlas needs JavaScript. The cited milestones are listed below.</p><ol>{% for event in site.data.complexity_zoo.events %}<li>{{ event.date }} — {{ event.title }}. {{ event.paper.authors }}. {{ event.paper.title }}.</li>{% endfor %}</ol></noscript>
+</article>
+<script id="zoo-data" type="application/json">{{ site.data.complexity_zoo | jsonify | replace: '<', '\u003c' }}</script>
