@@ -2009,8 +2009,6 @@ ol.bibliography > li {
 .zoo-heading h1 { font-size: clamp(42px, 5vw, 72px); line-height: 1.04; margin: 18px 0; letter-spacing: -2px; }
 .zoo-heading h1 em { color: var(--zoo-accent); font-weight: 400; }
 .zoo-heading p { color: var(--ink-3); font-size: 18px; }
-.zoo-heading__note { display: flex; align-items: center; gap: 16px; font-family: var(--sans); font-size: 13px; line-height: 1.7; color: var(--ink-3); padding-bottom: 8px; }
-.zoo-seal { display: grid; place-items: center; width: 66px; height: 66px; border: 1px solid var(--rule); border-radius: 48% 52% 57% 43%; color: var(--zoo-accent); font-size: 36px; font-family: var(--serif); }
 .zoo-workbench { border: 1px solid var(--rule); background: #faf7ef; }
 .zoo-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding: 14px 20px; border-bottom: 1px solid var(--rule); }
 .zoo-kicker { font: 10px var(--mono); letter-spacing: 1.4px; color: var(--ink-3); }
@@ -2084,7 +2082,6 @@ ol.bibliography > li {
 @media (max-width: 1000px) {
   .zoo-grid { grid-template-columns: minmax(0,1fr) 240px; }
   .zoo-inspector { padding: 20px 15px; }
-  .zoo-heading__note { display: none; }
   .zoo-stage, .zoo-inspector { height: 620px; }
 }
 @media (max-width: 720px) {
