@@ -86,6 +86,37 @@ Ensure repository name is `username.github.io` and GitHub Pages is set to "GitHu
 - Accessible alt text for hero/profile/quant imagery.
 - Clean permalinks (`/:categories/:title/`, `/shares/:title/`, `/projects/:title/`).
 
+## Quantum Complexity Zoo
+
+The atlas lives at `/projects/quantum-complexity-zoo/`. Its curated publication
+timeline and definitions are in `_data/complexity_zoo.yml`; the DOM-free model
+and membrane simulator are in `assets/js/complexity-zoo-engine.js`. The browser
+controller and canvas renderer are in `assets/js/complexity-zoo.js`.
+
+Run `node scripts/tests/complexity-zoo.cjs` to exercise timeline replay, equality
+fusion and reversal, unknown versus negative membership, rapid dragging,
+resizing, and geometry acceptance. Ruby is used only to parse the Jekyll YAML.
+Then build with `bundle exec jekyll build --trace` and inspect the page locally.
+
+New timeline facts need a source, a date, and a `date_basis` (`publication`,
+`preprint`, or `derived`). Explicit negative membership uses `nonmembership`;
+absence of positive evidence must never become an exclusion constraint.
+Promise problems are identified and listed separately from language markers.
+Oracle events annotate comparisons without changing unconditional strictness.
+
+The simulator limits growth per substep and resolves membrane self-contact so
+new births and shrinking shapes do not jam the safety guard. Rewinds initialize
+a feasible layout; forward steps retain existing shapes when feasible.
+If proposed motion remains blocked for 18 frames with no active drag, the
+simulator restores a validated layout instead of leaving the scene frozen.
+It proposes PBD displacements, limits them with continuous moving
+edge contact checks, and validates containment and self-intersection before
+acceptance. Invalid proposals fall back to the last valid geometry. Draw the
+validated polygons directly: smoothing splines can overshoot their boundaries.
+The renderer additionally clips child fills and strokes to their known parents.
+The regression suite establishes the checked cases, not a formal numerical
+proof for arbitrary datasets or floating-point inputs.
+
 ## Testing
 - `bundle exec jekyll build` (ensures layout + Liquid correctness).
 - `python scripts/build_quant.py && bundle exec jekyll serve --unpublished` for iterative development.
