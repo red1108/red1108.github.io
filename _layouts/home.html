@@ -118,7 +118,9 @@ layout: default
     <div class="projects">
       {% for project in site.data.projects limit: 3 %}
       <article class="project">
+        {% if project.status %}
         <div class="project__status"><span class="dot"></span>{{ project.status }}</div>
+        {% endif %}
         <h3 class="project__title">{{ project.name }}</h3>
         <p class="project__problem">{{ project.description }}</p>
         {% if project.tags %}

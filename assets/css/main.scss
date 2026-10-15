@@ -1000,6 +1000,28 @@ ol.bibliography > li {
   flex-direction: column;
 }
 
+.project-overview > * + * {
+  margin-top: var(--s-5);
+}
+
+.project-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-repo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--sans);
+  font-size: var(--fs-md);
+}
+
+.project-repo svg {
+  flex-shrink: 0;
+}
+
 .proj-row {
   display: grid;
   grid-template-columns: 200px 1fr 200px;

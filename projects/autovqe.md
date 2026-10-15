@@ -9,7 +9,7 @@ eyebrow: Projects · Hardware-aware VQE
 <div class="case-grid">
   <aside class="case-meta">
     <dl>
-      <dt>Status</dt><dd>In progress · 2026</dd>
+      <dt>Date</dt><dd>Mar, 2026</dd>
       <dt>Role</dt><dd>Sole author</dd>
       <dt>Methods</dt><dd>VQE · Qiskit · transpilation</dd>
       <dt>Budget</dt><dd><span class="mono">2^(n−2)</span> seconds</dd>
