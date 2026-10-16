@@ -11,7 +11,7 @@ image: /assets/images/autoagent.png
 <div class="project-overview">
 <img class="project-image" src="{{ '/assets/images/autoagent.png' | relative_url }}" alt="Orange pixel-art agents evolving from a small creature to a robot reading a book, against a green progress chart." width="1536" height="614" />
 
-<p>AutoAgent is an open-source framework for autonomous agent harness engineering. I worked with Kevin Gu on a short-term project at Thirdlayer to build a harness that generates and improves agent harnesses. Guided by an instruction file, a coding agent iteratively modifies prompts, tools, and orchestration in a single Python harness, evaluates each change on Harbor benchmark tasks, and keeps improvements while discarding unsuccessful experiments.</p>
+<p>AutoAgent is an open-source evolutionary framework for autonomous agent harness engineering. I worked with Kevin Gu on a short-term project at Thirdlayer to build a harness that generates and improves agent harnesses. Guided by an instruction file, a coding agent iteratively modifies prompts, tools, and orchestration in a single Python harness, evaluates each change on Harbor benchmark tasks, and keeps improvements while discarding unsuccessful experiments.</p>
 
 <a class="project-repo" href="https://github.com/thirdlayerinc/autoagent">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
