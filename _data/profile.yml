@@ -10,12 +10,9 @@ summary: |-
 
   I genuinely enjoy discussing new ideas regardless of the topic. If you'd like to collaborate, have questions, or just want to connect, feel free to reach out at minkyu.lee65@gmail.com or red1108@snu.ac.kr. I'm always happy to hear from you!
 cta:
-  - label: Download CV (PDF)
+  - label: View full CV (PDF)
     url: /assets/docs/mingyu-lee-cv.pdf
     variant: primary
-  - label: View CV page
-    url: /cv/
-    variant: ghost
 experience:
   - role: Undergraduate Researcher
     org: Research Institute of Mathematics, Seoul National University

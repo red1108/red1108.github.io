@@ -2,26 +2,37 @@
 layout: page
 title: Research
 permalink: /research/
-description: The longer version of each thread.
+description: Research papers, talks, and posters.
 eyebrow: Research
 ---
 
-<section class="thread-list">
-{% for research in site.data.research %}
-<article class="thread">
-  <div class="thread__id"><span class="num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>{{ research.interests | first }}</div>
-  <div>
-    <h2>{{ research.title }}</h2>
-    <div class="body">
-      <p>{{ research.summary }}</p>
-    </div>
-    {% if research.interests %}
-    <dl class="related">
-      <dt>Keywords</dt>
-      <dd>{{ research.interests | join: ' · ' }}</dd>
-    </dl>
-    {% endif %}
-  </div>
-</article>
-{% endfor %}
+<section class="research-section" id="papers" aria-labelledby="papers-heading">
+  <h2 id="papers-heading">Papers</h2>
+{% bibliography --template bibliography %}
+</section>
+
+<section class="research-section" id="talks" aria-labelledby="talks-heading">
+  <h2 id="talks-heading">Talks</h2>
+  {% assign talk_sections = site.data.cv.sections | where: 'title', 'Contributed Talks' %}
+  {% assign invited_sections = site.data.cv.sections | where: 'title', 'Invited Talks' %}
+  {% for section in talk_sections %}
+    {% for item in section.items %}
+      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.{% if item.details %}<p>{{ item.details | join: ' ' }}</p>{% endif %}</div></div>
+    {% endfor %}
+  {% endfor %}
+  {% for section in invited_sections %}
+    {% for item in section.items %}
+      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.{% if item.details %}<p>{{ item.details | join: ' ' }}</p>{% endif %}</div></div>
+    {% endfor %}
+  {% endfor %}
+</section>
+
+<section class="research-section" id="posters" aria-labelledby="posters-heading">
+  <h2 id="posters-heading">Posters</h2>
+  {% assign poster_sections = site.data.cv.sections | where: 'title', 'Poster Presentations' %}
+  {% for section in poster_sections %}
+    {% for item in section.items %}
+      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.{% if item.details %}<p>{{ item.details | join: ' ' }}</p>{% endif %}</div></div>
+    {% endfor %}
+  {% endfor %}
 </section>

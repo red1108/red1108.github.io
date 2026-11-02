@@ -20,25 +20,23 @@ layout: default
       Quantum Computing · Problem Solving · Machine Learning · Quant Investment
     </p>
     <div class="hero__actions">
-      <a class="btn btn--primary" href="{{ '/cv/' | relative_url }}">View CV</a>
-      <a class="btn" href="{{ '/publications/' | relative_url }}">Publications</a>
+      <a class="btn btn--primary" href="{{ '/assets/docs/mingyu-lee-cv.pdf' | relative_url }}" type="application/pdf" target="_blank" rel="noopener" aria-label="View full CV (PDF)">View CV</a>
+      <a class="btn" href="{{ '/research/' | relative_url }}">Research</a>
       <a class="btn btn--ghost" href="mailto:{{ profile.email }}">Contact</a>
     </div>
   </div>
 
   <div class="hero__right">
-    <figure class="hero__portrait-lg">
-      <img src="{{ '/assets/images/profile-wide.png' | relative_url }}" alt="Portrait of {{ profile.name }}" />
-    </figure>
-    <aside class="hero__sidecard">
-      <h4>Elsewhere</h4>
-      <ul>
-        <li><a href="https://github.com/{{ site.social.github }}">GitHub</a><span class="date">@{{ site.social.github }}</span></li>
-        {% if site.social.scholar %}<li><a href="{{ site.social.scholar }}">Google Scholar</a><span class="date">profile</span></li>{% endif %}
-        {% if site.social.linkedin %}<li><a href="{{ site.social.linkedin }}">LinkedIn</a><span class="date">profile</span></li>{% endif %}
-        <li><a href="mailto:{{ profile.email }}">Email</a><span class="date">{{ profile.email }}</span></li>
-      </ul>
-    </aside>
+    <div class="hero__portrait-cluster">
+      <figure class="hero__portrait-lg">
+        <img src="{{ '/assets/images/profile-wide.png' | relative_url }}" alt="Portrait of {{ profile.name }}" />
+      </figure>
+      <nav class="hero__social-links" aria-label="Social profiles">
+        <a class="hero__social-link hero__social-link--github" href="https://github.com/{{ site.social.github }}" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener noreferrer">{% include icons/github.svg %}</a>
+        {% if site.social.scholar %}<a class="hero__social-link hero__social-link--scholar" href="{{ site.social.scholar }}" aria-label="Google Scholar" title="Google Scholar" target="_blank" rel="noopener noreferrer">{% include icons/google-scholar.svg %}</a>{% endif %}
+        {% if site.social.linkedin %}<a class="hero__social-link hero__social-link--linkedin" href="{{ site.social.linkedin }}" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer">{% include icons/linkedin-in.svg %}</a>{% endif %}
+      </nav>
+    </div>
   </div>
 </section>
 
@@ -72,9 +70,9 @@ layout: default
 
 <details class="section section--collapsible">
   <summary class="section__summary"><div class="section__head-inner">
-    <div class="section__num">§02 / Selected publications</div>
-    <h2 class="section__title">Publications</h2>
-    <p class="section__lede">Preprints and peer-reviewed articles. Full list on the <a href="{{ '/publications/' | relative_url }}">publications page</a>.</p>
+    <div class="section__num">§02 / Papers</div>
+    <h2 class="section__title">Papers</h2>
+    <p class="section__lede">Papers and presentations on the <a href="{{ '/research/' | relative_url }}">research page</a>.</p>
   </div></summary>
   <div class="section__body">
     <div class="pubs">

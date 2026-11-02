@@ -1,50 +1,24 @@
 ---
-layout: page
-title: Publications
+layout: null
+title: Research
 permalink: /publications/
-description: Preprints, peer-reviewed articles, talks, and posters.
-eyebrow: Publications
+sitemap: false
 ---
-
-<nav class="pubs-toc">
-  <a href="#preprints">Preprints</a>
-  <a href="#peer-reviewed">Peer-reviewed</a>
-  <a href="#talks">Talks</a>
-  <a href="#posters">Posters</a>
-</nav>
-
-<section class="pubs-section" id="preprints">
-  <h2>Preprints</h2>
-{% bibliography --template bibliography --query @*[pubstate=preprint] %}
-</section>
-
-<section class="pubs-section" id="peer-reviewed">
-  <h2>Peer-reviewed articles</h2>
-{% bibliography --template bibliography --query @*[pubstate=published] %}
-</section>
-
-<section class="pubs-section" id="talks">
-  <h2>Contributed and invited talks</h2>
-  {% assign talk_sections = site.data.cv.sections | where: 'title', 'Contributed Talks' %}
-  {% assign invited_sections = site.data.cv.sections | where: 'title', 'Invited Talks' %}
-  {% for section in talk_sections %}
-    {% for item in section.items %}
-      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.{% if item.details %}<p>{{ item.details | join: ' ' }}</p>{% endif %}</div></div>
-    {% endfor %}
-  {% endfor %}
-  {% for section in invited_sections %}
-    {% for item in section.items %}
-      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.{% if item.details %}<p>{{ item.details | join: ' ' }}</p>{% endif %}</div></div>
-    {% endfor %}
-  {% endfor %}
-</section>
-
-<section class="pubs-section" id="posters">
-  <h2>Posters</h2>
-  {% assign poster_sections = site.data.cv.sections | where: 'title', 'Poster Presentations' %}
-  {% for section in poster_sections %}
-    {% for item in section.items %}
-      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.{% if item.details %}<p>{{ item.details | join: ' ' }}</p>{% endif %}</div></div>
-    {% endfor %}
-  {% endfor %}
-</section>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, follow">
+  <meta http-equiv="refresh" content="0; url={{ '/research/' | relative_url }}">
+  <link rel="canonical" href="{{ '/research/' | absolute_url }}">
+  <title>Research | {{ site.title | escape }}</title>
+</head>
+<body>
+  <p><a href="{{ '/research/' | relative_url }}">Continue to Research</a></p>
+  <script>
+    var section = window.location.hash;
+    if (section === '#preprints' || section === '#peer-reviewed') section = '#papers';
+    window.location.replace({{ '/research/' | relative_url | jsonify }} + section);
+  </script>
+</body>
+</html>

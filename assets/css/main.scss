@@ -434,7 +434,16 @@ main {
 .hero__right {
   display: flex;
   flex-direction: column;
-  gap: var(--s-5);
+  align-items: center;
+}
+
+.hero__portrait-cluster {
+  --social-size: 52px;
+  --social-clearance: 12px;
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  margin-bottom: calc(var(--social-size) * 1.1 + var(--social-clearance));
 }
 
 .hero__portrait-lg {
@@ -457,24 +466,95 @@ main {
   filter: saturate(0.94) contrast(1.02);
 }
 
-.hero__sidecard {
-  border-left: 1px solid var(--rule);
-  padding-left: var(--s-6);
-  color: var(--ink-2);
-  font-family: var(--sans);
-  font-size: var(--fs-sm);
+.hero__social-links {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-.hero__sidecard h4 {
-  color: var(--ink-3);
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 500;
-  margin-bottom: var(--s-3);
-  text-transform: uppercase;
+.hero__social-link {
+  --social-scale: 1;
+  position: absolute;
+  // Orbit radius = photo radius + scaled button radius + edge clearance.
+  left: calc(50% + var(--social-x) * (50% + var(--social-size) * var(--social-scale) / 2 + var(--social-clearance)));
+  top: calc(50% + var(--social-y) * (50% + var(--social-size) * var(--social-scale) / 2 + var(--social-clearance)));
+  display: grid;
+  place-items: center;
+  width: var(--social-size);
+  height: var(--social-size);
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-color: color-mix(in srgb, var(--social-accent) 24%, var(--rule));
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--social-accent) 4%, var(--paper));
+  color: var(--social-accent);
+  box-shadow: 0 2px 8px rgba(26, 24, 22, 0.05);
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(var(--social-scale));
+  transition: left 180ms ease, top 180ms ease, transform 180ms ease, background-color 180ms ease,
+    color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
-.hero__sidecard ul,
+// Equal 30-degree steps around the lower edge of the portrait.
+.hero__social-link--github {
+  --social-x: -0.5;
+  --social-y: 0.866025404;
+  --social-accent: #655078;
+}
+
+.hero__social-link--scholar {
+  --social-x: 0;
+  --social-y: 1;
+  --social-accent: #3b5e91;
+}
+
+.hero__social-link--linkedin {
+  --social-x: 0.5;
+  --social-y: 0.866025404;
+  --social-accent: #255f80;
+}
+
+.hero__social-link svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.hero__social-link--linkedin svg {
+  width: 23px;
+  height: 23px;
+}
+
+.hero__social-link:hover,
+.hero__social-link:focus-visible {
+  --social-scale: 1.1;
+  color: #fff;
+  background: var(--social-accent);
+  border-color: var(--social-accent);
+  box-shadow: 0 7px 18px rgba(26, 24, 22, 0.14);
+}
+
+.hero__social-link:focus-visible {
+  outline: 2px solid var(--social-accent);
+  outline-offset: 4px;
+}
+
+.hero__social-link:active {
+  --social-scale: 1.02;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__social-link {
+    transition: none;
+  }
+
+  .hero__social-link:hover,
+  .hero__social-link:focus-visible,
+  .hero__social-link:active {
+    --social-scale: 1;
+  }
+}
+
 .updates,
 .notes,
 .cv-list,
@@ -482,29 +562,6 @@ main {
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-.hero__sidecard li {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--s-3);
-  padding: 6px 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.hero__sidecard li:last-child {
-  border-bottom: 0;
-}
-
-.hero__sidecard a {
-  color: var(--ink-2);
-}
-
-.hero__sidecard .date {
-  color: var(--ink-3);
-  font-size: 11px;
-  white-space: nowrap;
 }
 
 .section {
@@ -938,6 +995,15 @@ details.section--collapsible:not([open]) > .section__body {
 .thread .related dd {
   margin: 0;
   color: var(--ink-2);
+}
+
+.research-section + .research-section {
+  margin-top: var(--s-8);
+}
+
+.research-section > h2 {
+  font-size: 28px;
+  margin-bottom: var(--s-4);
 }
 
 .pubs-toc {
@@ -1912,15 +1978,9 @@ ol.bibliography > li {
     font-size: 56px;
   }
 
-  .hero__portrait-lg {
+  .hero__portrait-cluster {
+    --social-size: 46px;
     max-width: 200px;
-  }
-
-  .hero__sidecard {
-    border-left: 0;
-    border-top: 1px solid var(--rule);
-    padding-left: 0;
-    padding-top: var(--s-5);
   }
 
   .section__head,
