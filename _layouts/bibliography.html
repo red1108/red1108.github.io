@@ -1,9 +1,17 @@
 <article class="pub-card pub--full" id="{{ entry.key }}">
   <div class="pub__year">{{ entry.year }}</div>
-  <div class="pub-card-main pub__main">{{ reference }}</div>
+  <div class="pub-card-main pub__main">
+    <span class="pub__authors">{% for author in entry.author_array %}{% if author.first == 'Mingyu' and author.last == 'Lee' %}<span class="self">{% endif %}{% assign given_names = author.first | split: ' ' %}{% for name in given_names %}{{ name | slice: 0 }}. {% endfor %}{{ author.last }}{% if author.first == 'Mingyu' and author.last == 'Lee' %}</span>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</span>.
+    <span class="pub__title">{{ entry.title | escape }}</span>.
+    {% if entry.pubstate == 'preprint' %}
+      <span class="pub__venue">Preprint ({{ entry.year }})</span>.{% if entry.eprint %} arXiv:{{ entry.eprint }}.{% endif %}
+    {% else %}
+      <span class="pub__venue">{{ entry.journal }}</span>{% if entry.volume %} <strong>{{ entry.volume }}</strong>{% endif %}{% if entry.number %}({{ entry.number }}){% endif %}{% if entry.pages %}, {{ entry.pages }}{% endif %}.
+    {% endif %}
+  </div>
   <div class="pub-card-actions pub__links">
     {% if entry.url %}
-      <a class="pub-link" href="{{ entry.url }}" target="_blank" rel="noopener noreferrer">paper</a>
+      <a class="pub-link" href="{{ entry.url }}" target="_blank" rel="noopener noreferrer">{% if entry.eprint %}arXiv{% else %}paper{% endif %}</a>
     {% else %}
       <span class="pub-link-muted">archive</span>
     {% endif %}

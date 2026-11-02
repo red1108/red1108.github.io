@@ -2,19 +2,25 @@
 layout: page
 title: Publications
 permalink: /publications/
-description: Peer-reviewed, contributed, invited.
+description: Preprints, peer-reviewed articles, talks, and posters.
 eyebrow: Publications
 ---
 
 <nav class="pubs-toc">
+  <a href="#preprints">Preprints</a>
   <a href="#peer-reviewed">Peer-reviewed</a>
   <a href="#talks">Talks</a>
   <a href="#posters">Posters</a>
 </nav>
 
+<section class="pubs-section" id="preprints">
+  <h2>Preprints</h2>
+{% bibliography --template bibliography --query @*[pubstate=preprint] %}
+</section>
+
 <section class="pubs-section" id="peer-reviewed">
   <h2>Peer-reviewed articles</h2>
-{% bibliography --template bibliography %}
+{% bibliography --template bibliography --query @*[pubstate=published] %}
 </section>
 
 <section class="pubs-section" id="talks">
@@ -23,12 +29,12 @@ eyebrow: Publications
   {% assign invited_sections = site.data.cv.sections | where: 'title', 'Invited Talks' %}
   {% for section in talk_sections %}
     {% for item in section.items %}
-      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.</div></div>
+      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.{% if item.details %}<p>{{ item.details | join: ' ' }}</p>{% endif %}</div></div>
     {% endfor %}
   {% endfor %}
   {% for section in invited_sections %}
     {% for item in section.items %}
-      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.</div></div>
+      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.{% if item.details %}<p>{{ item.details | join: ' ' }}</p>{% endif %}</div></div>
     {% endfor %}
   {% endfor %}
 </section>
@@ -38,7 +44,7 @@ eyebrow: Publications
   {% assign poster_sections = site.data.cv.sections | where: 'title', 'Poster Presentations' %}
   {% for section in poster_sections %}
     {% for item in section.items %}
-      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.</div></div>
+      <div class="talk"><div class="talk__date">{{ item.period }}</div><div class="talk__body"><strong>{{ item.role }}</strong>. <em>{{ item.institution }}</em>.{% if item.details %}<p>{{ item.details | join: ' ' }}</p>{% endif %}</div></div>
     {% endfor %}
   {% endfor %}
 </section>

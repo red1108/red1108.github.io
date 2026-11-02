@@ -1,5 +1,5 @@
 title: "Mingyu Lee"
-description: "I'm a 4th-year undergrad at SNU, currently on exchange at UC Davis. I work on quantum complexity and quantum machine learning."
+description: "4th-year undergraduate at Seoul National University researching quantum complexity and quantum machine learning. Former exchange student at UC Davis (Jan–Jun 2026)."
 lang: en
 url: https://red1108.github.io
 baseurl: ""
@@ -68,7 +68,7 @@ author:
 social:
   github: red1108
   linkedin: https://www.linkedin.com/in/%EB%AF%BC%EA%B7%9C-%EC%9D%B4-1b50871b8/
-  scholar: 
+  scholar: https://scholar.google.com/citations?user=ok3lJjEAAAAJ
   twitter: 
   orcid: 
 navigation: _data/navigation.yml

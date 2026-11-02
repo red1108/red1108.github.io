@@ -1,6 +1,6 @@
 header:
   name: Mingyu Lee
-  role: Undergraduate Researcher · Quantum ML & Finance
+  role: Undergraduate Researcher · Quantum Complexity & QML
   location: Seoul, Korea
   contacts:
     - label: red1108@snu.ac.kr
@@ -11,7 +11,7 @@ header:
       url: https://www.linkedin.com/in/%EB%AF%BC%EA%B7%9C-%EC%9D%B4-1b50871b8/
     - label: Homepage
       url: /
-  updated: Feb 2026
+  updated: November 2, 2026
 
 sections:
   - title: Education
@@ -33,7 +33,7 @@ sections:
         period: Jul 2022 — Present
         location: Seoul, Korea
         details:
-          - Exploring quantum machine learning and quantum generative models, adapting techniques from classical neural networks.
+          - Investigated problems in quantum machine learning and quantum complexity theory.
   - title: Work Experience
     items:
       - institution: Republic of Korea Air Force
@@ -86,7 +86,7 @@ sections:
         period: Sep 2022
       - institution: Samsung Humantech Paper Award
         role: Bronze prize for “Improving Performance of Pyramid CNN used in Image Deblurring (2020)”
-        period: Jul 2021
+        period: Feb 2021
   - title: Honors
     items:
       - institution: Korea–U.S. Advanced Industries Youth Exchange Scholarship, 4th Cohort
@@ -101,6 +101,18 @@ sections:
         period: Mar 2022 — Present
   - title: Publications
     items:
+      - institution: Preprint
+        role: Encoded reversible addition in constant Toffoli depth
+        period: 2026
+        url: https://arxiv.org/abs/2610.41142
+        details:
+          - "Authors: A. Epperly, I. H. Kim, M. Lee. Preprint (2026). arXiv:2610.41142."
+      - institution: Preprint
+        role: Optimal (Parallel) Spooky Pebbling on Binary Trees
+        period: 2026
+        url: https://arxiv.org/abs/2610.09434
+        details:
+          - "Authors: M. Lee, S. Lee, K. Jeong. Preprint (2026). arXiv:2610.09434."
       - institution: Scientific Reports
         role: Mutual information maximizing quantum generative adversarial networks
         period: 2025
@@ -132,14 +144,48 @@ sections:
         period: Jan 2023
   - title: Invited Talks
     items:
+      - institution: 8th QNRC Workshop
+        role: Optimal (Parallel) Spooky Pebbling on Binary Trees (Speaker)
+        period: Nov 12, 2026; scheduled
+        location: Hotel Inter-Burgo Daegu, Daegu, Korea
+        details:
+          - "Authors: Mingyu Lee (speaker), Sanghyun Lee, and Kabgyun Jeong."
       - institution: Quantum FinTech Webinars Series, Rethinc. Labs, UNC Kenan-Flagler Business School
         role: Mutual Information Maximizing Quantum Generative Adversarial Network and Its Applications in Finance (Speaker)
         period: Nov 2023
+  - title: Teaching
+    items:
+      - institution: Quantum Information Science Club Association
+        role: Organizer and Lecturer, Quantum Algorithms
+        period: Spring 2026
+        url: /teaching/spring-2026-quantum-algorithms/
+        details:
+          - 7-week online program covering basic quantum algorithms.
+      - institution: Quantum Information Science Club Association
+        role: Invited Lecturer, Quantum Algorithms
+        period: Winter 2026
+        url: https://myeongjinshin.github.io/quantum-algorithm-winter26/
+        details:
+          - "Lecture 5: Decoded Quantum Interferometry."
   - title: Poster Presentations
     items:
+      - institution: International Conference on Quantum Simulation (QSim) 2026
+        role: Exponential Quantum-Classical Memory Separation in Online Quantum Anomaly Detection
+        period: Aug 2026
+        location: Roeterseiland Campus, University of Amsterdam, Amsterdam, The Netherlands
+        details:
+          - "Authors: Mingyu Lee (presenter), Sanghyun Lee, HaKyoung Chang, and Kabgyun Jeong."
+      - institution: Asian Quantum Information Science Conference (AQIS) 2026
+        role: Exponential Quantum-Classical Memory Separation in Online Quantum Anomaly Detection
+        period: Aug 2026
+      - institution: Asian Quantum Information Science Conference (AQIS) 2026
+        role: "AutoVQE: Automated Ansatz Exploration"
+        period: Aug 2026
+        details:
+          - "Sole poster presenter: Mingyu Lee."
       - institution: 27th Annual Conference on Quantum Information Processing (QIP 2024)
         role: Mutual Information Maximizing Quantum Generative Adversarial Network and Its Applications
-        period: 2024
+        period: Jan 2024
   - title: Skills & Qualifications
     items:
       - institution: Programming
@@ -152,8 +198,8 @@ sections:
           - MATLAB, TypeScript/JavaScript, Java, R
       - institution: Algorithms & Problem Solving
         details:
-          - Codeforces Master (rating 2177, max 2279) — handle: red1108
-          - AtCoder 1 Kyu (rating 1915, max 1929) — handle: red1108
+          - "Codeforces Master (rating 2177, max 2279) — handle: red1108"
+          - "AtCoder 1 Kyu (rating 1915, max 1929) — handle: red1108"
   - title: Interests
     items:
       - institution: Quantum computation and quantum information

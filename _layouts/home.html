@@ -7,12 +7,12 @@ layout: default
     <div class="hero__id">
       <div class="hero__id-text">
         <div class="hero__role">Undergraduate Researcher · Quantum Complexity &amp; QML</div>
-        <div class="hero__id-aff">Seoul National University · exchange at UC Davis (Jan — Jun 2026)</div>
+        <div class="hero__id-aff">Seoul National University · Former exchange student at UC Davis (Jan — Jun 2026)</div>
       </div>
     </div>
     <h1 class="hero__name">{{ profile.name }}</h1>
     <p class="hero__thesis">
-      4th-year undergrad at <em>SNU</em>, exchange at <em>UC Davis</em>.
+      4th-year undergrad at <em>SNU</em>; previously an exchange student at <em>UC Davis</em>.
       Research in <em>quantum complexity</em> and <em>quantum machine learning</em>.
     </p>
     <p class="hero__interests">
@@ -74,36 +74,11 @@ layout: default
   <summary class="section__summary"><div class="section__head-inner">
     <div class="section__num">§02 / Selected publications</div>
     <h2 class="section__title">Publications</h2>
-    <p class="section__lede">Peer-reviewed work. Full list on the <a href="{{ '/publications/' | relative_url }}">publications page</a>.</p>
+    <p class="section__lede">Preprints and peer-reviewed articles. Full list on the <a href="{{ '/publications/' | relative_url }}">publications page</a>.</p>
   </div></summary>
   <div class="section__body">
     <div class="pubs">
-      <article class="pub" id="qmi-gan">
-        <div class="pub__year">2025</div>
-        <div class="pub__main">
-          <span class="pub__authors"><span class="self">M. Lee</span>, M. Shin, J. Lee, K. Jeong</span>.
-          <span class="pub__title">Mutual information maximizing quantum generative adversarial networks</span>.
-          <span class="pub__venue">Scientific Reports</span> <strong>15</strong>(1), 32835.
-        </div>
-        <div class="pub__links"><a href="https://www.nature.com/articles/s41598-025-18476-y">paper</a></div>
-      </article>
-      <article class="pub" id="disentangling">
-        <div class="pub__year">2024</div>
-        <div class="pub__main">
-          <span class="pub__authors">M. Shin, S. Lee, J. Lee, <span class="self">M. Lee</span>, D. Ji, H. Yeo, K. Jeong</span>.
-          <span class="pub__title">Disentangling quantum neural networks for unified estimation of quantum entropies and distance measures</span>.
-          <span class="pub__venue">Physical Review A</span> <strong>110</strong>, 062418.
-        </div>
-        <div class="pub__links"><a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.110.062418">paper</a></div>
-      </article>
-      <article class="pub">
-        <div class="pub__year">2020</div>
-        <div class="pub__main">
-          <span class="pub__authors"><span class="self">M. Lee</span></span>.
-          <span class="pub__title">Improving performance of pyramid CNN used in image deblurring</span>.
-          <span class="pub__venue">Samsung Humantech Paper Award</span> (Bronze).
-        </div>
-      </article>
+      {% bibliography --template bibliography %}
     </div>
   </div>
 </details>

@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Mingyu Lee
-description: I'm a 4th-year undergrad at SNU, currently on exchange at UC Davis. I work on quantum complexity and quantum machine learning.
+description: 4th-year undergraduate at Seoul National University researching quantum complexity and quantum machine learning. Former exchange student at UC Davis (Jan–Jun 2026).
 image: /assets/images/profile-wide.png
 schema: home
 permalink: /

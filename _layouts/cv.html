@@ -27,7 +27,7 @@ layout: default
     <div class="cv-entry">
       <div>
         <h3>{{ item.institution }}</h3>
-        {% if item.role %}<div class="sub">{{ item.role }}</div>{% endif %}
+        {% if item.role %}<div class="sub">{% if item.url %}<a href="{{ item.url }}">{{ item.role }}</a>{% else %}{{ item.role }}{% endif %}</div>{% endif %}
         {% if item.location %}<div class="desc">{{ item.location }}</div>{% endif %}
         {% if item.details %}
         <ul class="cv-bullets">
