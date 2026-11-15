@@ -11,7 +11,7 @@ header:
       url: https://www.linkedin.com/in/%EB%AF%BC%EA%B7%9C-%EC%9D%B4-1b50871b8/
     - label: Homepage
       url: /
-  updated: November 2, 2026
+  updated: November 15, 2026
 
 sections:
   - title: Education
@@ -28,12 +28,16 @@ sections:
         location: Suwon, Korea
   - title: Research Experience
     items:
-      - institution: Research Institute of Mathematics, Seoul National University
-        role: Undergraduate Researcher
+      - institution: Department of Computer Science and Engineering, Seoul National University
+        role: Undergraduate Researcher, Team QST
         period: Jul 2022 — Present
         location: Seoul, Korea
         details:
           - Investigated problems in quantum machine learning and quantum complexity theory.
+      - institution: University of California, Davis
+        role: Undergraduate Research Collaborator with Prof. Isaac H. Kim
+        period: Feb 2026 — Jun 2026 (on site)
+        location: Davis, CA, USA
   - title: Work Experience
     items:
       - institution: Republic of Korea Air Force
@@ -178,6 +182,8 @@ sections:
       - institution: Asian Quantum Information Science Conference (AQIS) 2026
         role: Exponential Quantum-Classical Memory Separation in Online Quantum Anomaly Detection
         period: Aug 2026
+        details:
+          - "Poster presenter: Sanghyun Lee."
       - institution: Asian Quantum Information Science Conference (AQIS) 2026
         role: "AutoVQE: Automated Ansatz Exploration"
         period: Aug 2026
